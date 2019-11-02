@@ -1,0 +1,36 @@
+.product {
+  // &__wrapper{
+  //     display: flex;
+  //     width: 100%;
+  // }
+  &__item {
+    // border: 2px solid #eee;
+  }
+  &__image__small {
+    width: 100%;
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+    img {
+      position: absolute;
+      object-fit: cover;
+      object-position: center;
+      width: auto;
+      height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &__caption {
+    padding-top: 10px;
+  }
+  &__title {
+    line-height: 1;
+  }
+  &__category {
+    padding: 0 10px;
+    border-left: 2px solid $color-1;
+    line-height: 1;
+  }
+}

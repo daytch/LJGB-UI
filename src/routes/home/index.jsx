@@ -1,11 +1,17 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee, faCar } from '@fortawesome/free-solid-svg-icons';
+
 const Home = () => {
   return (
     <main role="main">
       <div className="jumbotron">
         <div className="container">
-          <h1 className="display-3">Hello, world!</h1>
+          <h1 className="display-3">
+            Test! <FontAwesomeIcon icon={faCar} />{' '}
+          </h1>
           <p>
             This is a template for a simple marketing or informational website.
             It includes a large callout called a jumbotron and three supporting
@@ -21,48 +27,109 @@ const Home = () => {
       </div>
 
       <div className="container">
-        <div className="row">
-          <div className="col-md-4">
-            <h2>Heading</h2>
-            <p>
-              Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-              tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-              fermentum massa justo sit amet risus. Etiam porta sem malesuada
-              magna mollis euismod. Donec sed odio dui.
-            </p>
-            <p>
-              <a className="btn btn-secondary" href="#body" role="button">
-                View details &raquo;
-              </a>
-            </p>
-          </div>
-          <div className="col-md-4">
-            <h2>Heading</h2>
-            <p>
-              Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-              tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-              fermentum massa justo sit amet risus. Etiam porta sem malesuada
-              magna mollis euismod. Donec sed odio dui.
-            </p>
-            <p>
-              <a className="btn btn-secondary" href="#body" role="button">
-                View details &raquo;
-              </a>
-            </p>
-          </div>
-          <div className="col-md-4">
-            <h2>Heading</h2>
-            <p>
-              Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-              egestas eget quam. Vestibulum id ligula porta felis euismod
-              semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-              condimentum nibh, ut fermentum massa justo sit amet risus.
-            </p>
-            <p>
-              <a className="btn btn-secondary" href="#body" role="button">
-                View details &raquo;
-              </a>
-            </p>
+        <div className="product">
+          <h3 className="product__category-big">Lowest Ask</h3>
+
+          <div className="row">
+            <div className="col-6 col-md">
+              <Link to="/">
+                <div className="product__item">
+                  <div className="product__image__small">
+                    <img
+                      src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="product__caption">
+                    <p className="product__category">Lowest Ask</p>
+                    <p className="product__title">AUTO 330e iPERFORMANCE</p>
+                    <p className="product__price">
+                      <span className="">Rp.100</span>
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div className="col-6 col-md">
+              <Link to="/">
+                <div className="product__item">
+                  <div className="product__image__small">
+                    <img
+                      src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="product__caption">
+                    <p className="product__category">Lowest Ask</p>
+                    <p className="product__title">AUTO 330e iPERFORMANCE</p>
+                    <p className="product__price">
+                      <span className="">Rp.100</span>
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div className="col-6 col-md">
+              <Link to="/">
+                <div className="product__item">
+                  <div className="product__image__small">
+                    <img
+                      src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="product__caption">
+                    <p className="product__category">Lowest Ask</p>
+                    <p className="product__title">AUTO 330e iPERFORMANCE</p>
+                    <p className="product__price">
+                      <span className="">Rp.100</span>
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div className="col-6 col-md">
+              <Link to="/">
+                <div className="product__item">
+                  <div className="product__image__small">
+                    <img
+                      src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="product__caption">
+                    <p className="product__category">Lowest Ask</p>
+                    <p className="product__title">AUTO 330e iPERFORMANCE</p>
+                    <p className="product__price">
+                      <span className="">Rp.100</span>
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div className="col-6 col-md">
+              <Link to="/">
+                <div className="product__item">
+                  <div className="product__image__small">
+                    <img
+                      src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="product__caption">
+                    <p className="product__category">Lowest Ask</p>
+                    <p className="product__title">AUTO 330e iPERFORMANCE</p>
+                    <p className="product__price">
+                      <span className="">Rp.100</span>
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -1,0 +1,251 @@
+.formLoginWrapper {
+  max-width: 768px;
+  margin: auto;
+  margin-top: 70px;
+  padding: 10px 20px 20px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  box-shadow: 0 0 10px #eee;
+}
+
+.formLoginHide {
+  display: none;
+}
+
+.field {
+  /* display: flex;
+    flex-flow: column-reverse; */
+  margin: 1em 0 1.5em;
+  position: relative;
+
+  label,
+  input {
+    transition: all 0.25s;
+    touch-action: manipulation;
+  }
+
+  label {
+    max-width: max-content;
+    /* letter-spacing: 0.05em; */
+    font-weight: 400;
+    color: #888;
+    background: #fff;
+    padding: 0 5px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border-bottom: 2px solid #dcdcdc;
+    text-overflow: ellipsis;
+    font-family: inherit;
+    -webkit-appearance: none;
+    padding: 10px 15px 8px;
+    cursor: text;
+    &.text-pass {
+      padding-right: 40px;
+      text-overflow: unset;
+    }
+  }
+
+  input:focus {
+    outline: 0;
+    border-bottom: 2px solid $color-3;
+  }
+
+  input:placeholder-shown + label {
+    max-width: max-content;
+    font-size: 1em;
+    font-weight: inherit;
+    color: $color-3;
+    /* text-overflow: ellipsis; */
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: text;
+    transform-origin: left bottom;
+    transform: translate(11px, 0.7em);
+  }
+
+  input::-webkit-input-placeholder {
+    opacity: 0;
+    transition: inherit;
+    color: $color-2;
+  }
+
+  input:focus::-webkit-input-placeholder {
+    opacity: 1;
+  }
+
+  input:not(:placeholder-shown) + label,
+  input:focus + label {
+    color: #444;
+    font-size: 0.8em;
+    transform: translate(11px, -1em);
+    cursor: pointer;
+  }
+}
+
+.backToLogin {
+  position: relative;
+  top: 20px;
+  cursor: pointer;
+  padding-left: 20px;
+
+  &:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-left: 1.5px solid #444;
+    border-bottom: 1.5px solid #444;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 3px;
+    left: 5px;
+  }
+}
+
+.loginWith {
+  width: calc(100% + 20px);
+  display: flex;
+  margin: 0 -10px;
+  button {
+    width: 50%;
+    margin: 15px 10px;
+  }
+}
+
+.linedText {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #888;
+
+  &:before {
+    content: '';
+    width: 100%;
+    border-top: 1px solid #dcdcdc;
+    position: absolute;
+    left: 0;
+    top: 50%;
+  }
+
+  span {
+    background: #fff;
+    padding: 0 8px;
+    position: relative;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+}
+
+.accessToggle {
+  display: flex;
+  cursor: pointer;
+
+  &_option {
+    width: 50%;
+    text-align: center;
+    font-weight: 400;
+    padding: 10px 0 15px;
+    color: $color-4;
+    border-bottom: 3px solid #eee;
+    transition: 0.2s ease;
+
+    &:hover,
+    &.active {
+      color: $color-5;
+    }
+
+    &.active {
+      border-color: $color-1;
+      font-weight: 600;
+    }
+  }
+}
+
+.iconEye {
+  padding: 10px;
+  // background: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  position: absolute;
+  right: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.check {
+  &Label {
+    font-size: 1em;
+    font-weight: 400;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    padding: 10px;
+    padding-left: 23px !important;
+    padding-bottom: 5px !important;
+  }
+  &Input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0 !important;
+  }
+  &Go {
+    position: relative;
+    /* margin-bottom: 10px; */
+  }
+}
+
+.checkmark {
+  position: absolute;
+  top: 11px;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  background: #fff;
+  transition: 0.2s ease;
+  &:after {
+    content: '';
+    position: absolute;
+    display: none;
+  }
+}
+
+.checkGo .checkmark:after {
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.checkGo:hover input.checkInput ~ .checkmark {
+  border-color: $color-1;
+}
+.checkGo input.checkInput:checked ~ .checkmark {
+  background-color: $color-1;
+}
+.checkGo input.checkInput:checked ~ .checkmark:after {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .formLoginWrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: unset;
+    border: none;
+    padding: 0;
+  }
+}

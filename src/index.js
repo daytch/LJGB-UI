@@ -4,11 +4,14 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { CookiesProvider } from 'react-cookie';
+
 import App from './App';
+
 import store from './services/store';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
 import * as serviceWorker from './serviceWorker';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './style/style.scss';
 
 const history = createBrowserHistory();
 

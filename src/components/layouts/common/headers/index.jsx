@@ -2,22 +2,35 @@ import React from 'react';
 import {
   Navbar,
   NavDropdown,
-  Nav,
-  Form,
-  FormControl,
-  Button
+  Nav
+  // Form,
+  // FormControl,
+  // Button
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <header>
       <Navbar fixed="top" bg="light" expand="lg">
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/" className="App-link">
+            React-Bootstrap
+          </Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
+            <Nav>
+              <Link to="/" className="nav-link">
+                Home
+              </Link>
+            </Nav>
+            <Nav>
+              <Link to="/login" className="nav-link">
+                Login
+              </Link>
+            </Nav>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -30,10 +43,10 @@ const Header = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form inline>
+          {/* <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
-          </Form>
+          </Form> */}
         </Navbar.Collapse>
       </Navbar>
     </header>

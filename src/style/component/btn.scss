@@ -1,0 +1,36 @@
+.btn {
+  // border: none;
+  // outline: none;
+  // border-radius: 5px;
+  // padding: 10px;
+  // width: 100%;
+  // transition: all 0.2s ease-in-out;
+
+  &Grey {
+    background: $color-3;
+    color: #fff;
+
+    &:hover {
+      background: #3c9ae2;
+      color: #fff;
+    }
+  }
+  &Fb {
+    background: #3b5998;
+    color: #fff;
+
+    &:hover {
+      background: #2a4887;
+      color: #fff;
+    }
+  }
+  &Tw {
+    background: #2ba9e1;
+    color: #fff;
+
+    &:hover {
+      background: #1a98d0;
+      color: #fff;
+    }
+  }
+}
