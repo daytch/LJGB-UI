@@ -1,20 +1,35 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Aplication from './components';
-import { Home, Login, PageNotFound } from './routes';
+import { Home, Login, PageNotFound, Logout } from './routes';
+import Header from './components/layouts/common/headers';
 
 function App() {
+  const ComponentToHide = props => {
+    const { location } = props;
+    if (location.pathname == '/') {
+      return null;
+    }
+
+    return <Header />;
+  };
+
+  const ComponentThatHides = withRouter(ComponentToHide);
   return (
-    <Aplication>
-      {/* <Container> */}
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route path="*" component={PageNotFound} />
-      </Switch>
-      {/* </Container> */}
-    </Aplication>
+    <div>
+      <ComponentThatHides />
+      <Aplication>
+        {/* <Container> */}
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/logout" component={Logout} />
+          <Route exact path="/home" component={Home} />
+          <Route path="*" component={PageNotFound} />
+        </Switch>
+        {/* </Container> */}
+      </Aplication>
+    </div>
   );
 }
 

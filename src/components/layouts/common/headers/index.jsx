@@ -22,13 +22,13 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav>
-              <Link to="/" className="nav-link">
+              <Link to="/home" className="nav-link">
                 Home
               </Link>
             </Nav>
             <Nav>
-              <Link to="/login" className="nav-link">
-                Login
+              <Link to="/logout" className="nav-link">
+                Logout
               </Link>
             </Nav>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">

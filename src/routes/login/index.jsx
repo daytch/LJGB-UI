@@ -4,6 +4,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import ForgetPassword from './ForgetPassword';
 import FormSignUp from './FormSignUp';
 import LoginWith from './LoginWith';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -12,11 +13,13 @@ class Login extends Component {
       isSignUpForm: false,
       isLoginForm: true,
       unSeen: true,
-      forget: false
+      forget: false,
+      idToken: localStorage.getItem('idToken')
     };
     this.toggleForm = this.toggleForm.bind(this);
     this.toggleType = this.toggleType.bind(this);
     this.handleForget = this.handleForget.bind(this);
+    this.onLogin = this.onLogin.bind(this);
   }
 
   toggleForm() {
@@ -24,6 +27,12 @@ class Login extends Component {
       isSignUpForm: !prevState.isSignUpForm,
       isLoginForm: !prevState.isLoginForm
     }));
+  }
+
+  onLogin() {
+    let token = '1234567890';
+    localStorage.setItem('idToken', token);
+    this.setState({ idToken: token });
   }
 
   toggleType() {
@@ -40,6 +49,15 @@ class Login extends Component {
 
   render() {
     var log = this.state;
+    if (this.state.idToken !== null) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/home'
+          }}
+        />
+      );
+    }
     return (
       <main role="main">
         <div className="container">
@@ -92,6 +110,7 @@ class Login extends Component {
                       name="email"
                       id="email"
                       placeholder="email.address@domain.com"
+                      value="test@test.com"
                     />
                     <label htmlFor="email">Email</label>
                   </div>
@@ -103,6 +122,7 @@ class Login extends Component {
                       id="password"
                       placeholder="Password"
                       className="text-pass"
+                      value="test"
                     />
                     <label htmlFor="password">Password</label>
                     <span className="iconEye" onClick={this.toggleType}>
@@ -138,7 +158,12 @@ class Login extends Component {
                     <span className="checkmark"></span>
                   </div>
 
-                  <button className="btn btnGrey">Log In</button>
+                  <button
+                    className="btn btnGrey"
+                    onClick={this.onLogin.bind(this)}
+                  >
+                    Log In
+                  </button>
 
                   <p
                     style={{

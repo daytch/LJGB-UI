@@ -5,9 +5,9 @@ import Footer from './layouts/common/footers';
 const App = ({ children }) => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
