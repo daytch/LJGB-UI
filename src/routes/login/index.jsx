@@ -6,6 +6,9 @@ import FormSignUp from './FormSignUp';
 import LoginWith from './LoginWith';
 import { Redirect } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+import { actions } from '../../actions/loginAction';
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -49,15 +52,7 @@ class Login extends Component {
 
   render() {
     var log = this.state;
-    // if (this.state.idToken !== null) {
-    //   return (
-    //     <Redirect
-    //       to={{
-    //         pathname: '/home'
-    //       }}
-    //     />
-    //   );
-    // }
+    const { login, handleState } = this.props;
     return (
       <main role="main">
         <div className="container">
@@ -110,7 +105,8 @@ class Login extends Component {
                       name="email"
                       id="email"
                       placeholder="email.address@domain.com"
-                      value="test@test.com"
+                      value={login.name}
+                      onChange={handleState.bind(this, 'name')}
                     />
                     <label htmlFor="email">Email</label>
                   </div>
@@ -122,7 +118,8 @@ class Login extends Component {
                       id="password"
                       placeholder="Password"
                       className="text-pass"
-                      value="test"
+                      value={login.password}
+                      onChange={handleState.bind(this, 'password')}
                     />
                     <label htmlFor="password">Password</label>
                     <span className="iconEye" onClick={this.toggleType}>
@@ -197,4 +194,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  login: state.loginReducer
+});
+export default connect(
+  mapStateToProps,
+  {
+    ...actions
+  }
+)(Login);
