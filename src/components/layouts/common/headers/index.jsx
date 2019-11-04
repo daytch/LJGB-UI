@@ -14,7 +14,7 @@ const Header = () => {
     <header>
       <Navbar fixed="top" bg="light" expand="lg">
         <Navbar.Brand>
-          <Link to="/" className="App-link">
+          <Link to="/" className="">
             React-Bootstrap
           </Link>
         </Navbar.Brand>
