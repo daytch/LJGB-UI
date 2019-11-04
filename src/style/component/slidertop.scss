@@ -1,0 +1,118 @@
+.slider {
+  &__top {
+    padding: 0;
+    // background: #dcdcdc;
+    // height: 400px;
+    position: relative;
+  }
+  &__wrapper {
+    overflow: hidden;
+  }
+  &__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+
+    .txt1 span {
+      padding: 0 10px;
+      border-width: 0 3px;
+      border-style: solid;
+      border-color: #fff;
+      font-size: 1.3em;
+    }
+    .txt2 {
+      font-size: 2em;
+    }
+    .txt3 {
+      font-size: 1.3em;
+
+      span {
+        float: right;
+        font-size: 2em;
+        background: green;
+        padding: 5px 20px;
+      }
+    }
+    // .link1 span{
+    //     float: right;
+    //     font-size: 2em;
+    //     background: green;
+    //     padding: 5px 20px;
+    // }
+  }
+  &__link {
+    display: inline-block;
+    text-decoration: none;
+    color: #444444;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 50px;
+    padding: 0 60px 0 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 60px;
+      background: #1c2931;
+      position: absolute;
+      right: -10px;
+      top: 0;
+      transition: all 0.3s ease-out;
+      -moz-transition: all 0.3s ease-out;
+      -webkit-transition: all 0.3s ease-out;
+      -o-transition: all 0.3s ease-out;
+      -webkit-transform: skewX(-25deg);
+      -ms-transform: skewX(-25deg);
+      transform: skewX(-25deg);
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid #fff;
+      border-right: 2px solid #fff;
+      transform: translateY(-50%) rotate(45deg);
+    }
+    &:hover {
+      color: #fff;
+      &:before {
+        width: 100%;
+      }
+    }
+    span {
+      position: relative;
+      display: inline-block;
+    }
+  }
+}
+.head__image {
+  width: 100%;
+  height: 60vh;
+  position: relative;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    object-position: center;
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
