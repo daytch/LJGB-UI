@@ -22,9 +22,10 @@ function App() {
       <Aplication>
         {/* <Container> */}
         <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/logout" component={Logout} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/logout" component={Logout} />
+          <Route exact path="/login" component={Login} />
           <Route path="*" component={PageNotFound} />
         </Switch>
         {/* </Container> */}

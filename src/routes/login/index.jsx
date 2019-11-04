@@ -49,15 +49,15 @@ class Login extends Component {
 
   render() {
     var log = this.state;
-    if (this.state.idToken !== null) {
-      return (
-        <Redirect
-          to={{
-            pathname: '/home'
-          }}
-        />
-      );
-    }
+    // if (this.state.idToken !== null) {
+    //   return (
+    //     <Redirect
+    //       to={{
+    //         pathname: '/home'
+    //       }}
+    //     />
+    //   );
+    // }
     return (
       <main role="main">
         <div className="container">

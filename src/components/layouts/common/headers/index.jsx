@@ -27,8 +27,8 @@ const Header = () => {
               </Link>
             </Nav>
             <Nav>
-              <Link to="/logout" className="nav-link">
-                Logout
+              <Link to="/login" className="nav-link">
+                Login
               </Link>
             </Nav>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
