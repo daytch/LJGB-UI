@@ -18,6 +18,7 @@ class Home extends Component {
     this.props.getDataHome();
   }
   render() {
+    const { home } = this.props;
     return (
       <main role="main">
         <div className="slider__top">
