@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faCar } from '@fortawesome/free-solid-svg-icons';
-
 import { connect } from 'react-redux';
 import { actions } from '../../actions/homeAction';
-
 import { Select } from 'antd';
+
+import BoxItem from '../../components/layouts/common/boxItem';
 
 const { Option } = Select;
 
@@ -35,18 +34,21 @@ class Home extends Component {
                 <div class="slider__caption">
                   <div class="container">
                     <div class="txt1">
-                      <span>FIND MY DREAM CAR</span>
+                      <span>FIND YOUR DREAM CAR</span>
                     </div>
                     <div class="txt2">CAR M5 GRAN TURISMO</div>
                     <div class="txt3">MODEL 2017</div>
                     <div class="txt3">
                       <span>$64,000</span>
                     </div>
-                    <div class="link1">
+                    <div className="txt3 color-green">
+                      <Link>SEE DETAILS</Link>
+                    </div>
+                    {/* <div class="link1">
                       <a href="details.html" class="slider__link">
                         <span>SEE DETAILS</span>
                       </a>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -65,37 +67,31 @@ class Home extends Component {
                     <div class="txt1">
                       <span>FIND YOUR DREAM CAR</span>
                     </div>
-                    <div class="txt2">CAR M5 GRAN TURISMO</div>
+                    <div class="txt2">CAR M7 GRAN TURISMO</div>
+                    <div class="txt3">MODEL 2019</div>
                     <div class="txt3">
-                      MODEL 2017 <span>$64,000</span>
+                      <span>$90,000</span>
                     </div>
-                    {/* <div class="txt4">MODEL 2017 <span>$64,000</span></div> */}
-                    <div class="link1">
-                      {/* <a href="details.html" class="slider__link"></a> */}
+                    <div className="txt3 color-green">
+                      <Link>SEE DETAILS</Link>
+                    </div>
+                    {/* <div class="link1">
+                      <a href="details.html" class="slider__link"></a>
                       <Link class="slider__link">
                         <span>SEE DETAILS</span>
                       </Link>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
             </Carousel.Item>
           </Carousel>
           <div className="search">
-            {/* <Select2
-            data={[
-              { text: 'Jakarta', id: 1 },
-              { text: 'Bandung', id: 2 },
-              { text: 'Surabaya', id: 3 },
-            ]}
-            options={{
-              placeholder: 'Select City',
-            }}
-          /> */}
             <div className="container">
               <div className="select__wrapper">
                 <div className="row">
                   <div className="col-6 col-md">
+                    <span className="search__label">Select City</span>
                     <Select
                       showSearch
                       style={{ width: 200 }}
@@ -115,6 +111,7 @@ class Home extends Component {
                   </div>
 
                   <div className="col-6 col-md">
+                    <span className="search__label">Select Brand</span>
                     <Select
                       showSearch
                       style={{ width: 200 }}
@@ -134,6 +131,7 @@ class Home extends Component {
                   </div>
 
                   <div className="col-6 col-md">
+                    <span className="search__label">Select Model</span>
                     <Select
                       showSearch
                       style={{ width: 200 }}
@@ -153,6 +151,7 @@ class Home extends Component {
                   </div>
 
                   <div className="col-6 col-md">
+                    <span className="search__label">Select Type</span>
                     <Select
                       showSearch
                       style={{ width: 200 }}
@@ -183,103 +182,23 @@ class Home extends Component {
 
               <div className="row">
                 <div className="col-6 col-md">
-                  <Link to="/">
-                    <div className="product__item">
-                      <div className="product__image__small">
-                        <img
-                          src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <div className="product__caption">
-                        <p className="product__category">Lowest Ask</p>
-                        <p className="product__title">AUTO 330e iPERFORMANCE</p>
-                        <p className="product__price">
-                          <span className="">Rp.100</span>
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
+                  <BoxItem />
                 </div>
 
                 <div className="col-6 col-md">
-                  <Link to="/">
-                    <div className="product__item">
-                      <div className="product__image__small">
-                        <img
-                          src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <div className="product__caption">
-                        <p className="product__category">Lowest Ask</p>
-                        <p className="product__title">AUTO 330e iPERFORMANCE</p>
-                        <p className="product__price">
-                          <span className="">Rp.100</span>
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
+                  <BoxItem />
                 </div>
 
                 <div className="col-6 col-md">
-                  <Link to="/">
-                    <div className="product__item">
-                      <div className="product__image__small">
-                        <img
-                          src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <div className="product__caption">
-                        <p className="product__category">Lowest Ask</p>
-                        <p className="product__title">AUTO 330e iPERFORMANCE</p>
-                        <p className="product__price">
-                          <span className="">Rp.100</span>
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
+                  <BoxItem />
                 </div>
 
                 <div className="col-6 col-md">
-                  <Link to="/">
-                    <div className="product__item">
-                      <div className="product__image__small">
-                        <img
-                          src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <div className="product__caption">
-                        <p className="product__category">Lowest Ask</p>
-                        <p className="product__title">AUTO 330e iPERFORMANCE</p>
-                        <p className="product__price">
-                          <span className="">Rp.100</span>
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
+                  <BoxItem />
                 </div>
 
                 <div className="col-6 col-md">
-                  <Link to="/">
-                    <div className="product__item">
-                      <div className="product__image__small">
-                        <img
-                          src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <div className="product__caption">
-                        <p className="product__category">Lowest Ask</p>
-                        <p className="product__title">AUTO 330e iPERFORMANCE</p>
-                        <p className="product__price">
-                          <span className="">Rp.100</span>
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
+                  <BoxItem />
                 </div>
               </div>
             </div>

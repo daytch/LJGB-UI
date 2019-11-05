@@ -16,7 +16,12 @@
     height: 100%;
     font-weight: 700;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
+    padding-bottom: 30px;
 
     .txt1 span {
       padding: 0 10px;
@@ -24,15 +29,20 @@
       border-style: solid;
       border-color: #fff;
       font-size: 1.3em;
+      font-weight: 400;
     }
     .txt2 {
-      font-size: 2em;
+      font-size: 3em;
+      letter-spacing: 11px;
+      font-weight: 400;
     }
     .txt3 {
       font-size: 1.3em;
+      font-weight: 400;
+      margin: 10px 0;
 
       span {
-        float: right;
+        // float: right;
         font-size: 2em;
         background: green;
         padding: 5px 20px;

@@ -4,7 +4,6 @@ import rootReducer from '../../reducers';
 import rootSaga from '../../sagas';
 
 const composeEnhancers =
-  // eslint-disable-next-line no-nested-ternary
   process.env.NODE_ENV === 'development'
     ? typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
