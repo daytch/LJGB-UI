@@ -14,6 +14,7 @@ import {
   faArrowCircleRight,
   faCaretSquareRight
 } from '@fortawesome/free-solid-svg-icons';
+import Selected from './../../components/globalComponents/customSelect';
 
 import Product from '../../components/layouts/common/product';
 
@@ -22,8 +23,11 @@ const { Option } = Select;
 class Home extends Component {
   componentWillMount() {
     this.props.getDataHome();
+    this.props.getDataKota();
   }
   render() {
+    const { home, handleChange, getDataBrand } = this.props;
+    console.log(home);
     return (
       <main role="main">
         <div className="slider__top">
@@ -98,22 +102,17 @@ class Home extends Component {
                 <div className="row">
                   <div className="col-6 col-md">
                     <span className="search__label">Select City</span>
-                    <Select
-                      showSearch
-                      style={{ width: 200 }}
-                      placeholder="Select city"
-                      optionFilterProp="children"
-                      // onChange={onChange}
-                      filterOption={(input, option) =>
-                        option.props.children
-                          .toLowerCase()
-                          .indexOf(input.toLowerCase()) >= 0
-                      }
-                    >
-                      <Option value="1">Jakarta</Option>
-                      <Option value="2">Bandung</Option>
-                      <Option value="3">Surabaya</Option>
-                    </Select>
+                    <Selected
+                      value={home.search.city}
+                      placeholder="Select City"
+                      data={home.dataKota}
+                      form="search"
+                      name="city"
+                      onChange={(form, name, event) => {
+                        handleChange(form, name, event);
+                        getDataBrand(form, name, event);
+                      }}
+                    />
                   </div>
 
                   <div className="col-6 col-md">
