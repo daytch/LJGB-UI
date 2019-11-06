@@ -2,7 +2,7 @@ import { call, put, all, select, takeLatest } from 'redux-saga/effects';
 // import { takeLatest } from 'redux-saga';
 import { master } from '../services/header';
 import Endpoint from '../services/endpoint';
-import { messages } from '../components/Message';
+import { messages, warning, error } from '../components/Message';
 import { GET, POST } from '../services/api';
 import {
   API_DATA,
@@ -13,6 +13,8 @@ import {
   GET_DATA_BRAND,
   SET_DATA_BRAND
 } from '../constants/index';
+
+const getHome = state => state.homeReducer;
 
 export function* getDataHome(action) {
   try {
@@ -25,7 +27,8 @@ export function* getDataHome(action) {
     if (data.isSuccess) {
       yield put({ type: SET_DATA_HOME, payload: data });
     } else {
-      messages('Warning', data.message, 'warning', false);
+      let message = data.message;
+      warning(message);
     }
     // yield put({ type: SET_DATA_AKTIVITAS, data });
     // yield put({
@@ -37,7 +40,7 @@ export function* getDataHome(action) {
   } catch (error) {
     console.log(error);
     // yield put({ type: SET_LOADER, payload: false });
-    // messages('Info', error, 'info', false);
+    error(error);
   }
 }
 
@@ -53,7 +56,7 @@ export function* getDataKota(action) {
     if (data.isSuccess) {
       yield put({ type: SET_DATA_KOTA, payload: data.listKotas });
     } else {
-      messages('Warning', data.message, 'warning', false);
+      warning(data.message);
     }
     // yield put({ type: SET_DATA_AKTIVITAS, data });
     // yield put({
@@ -64,6 +67,7 @@ export function* getDataKota(action) {
     // });
   } catch (error) {
     console.log(error);
+    error(error);
     // yield put({ type: SET_LOADER, payload: false });
     // messages('Info', error, 'info', false);
   }
@@ -71,6 +75,8 @@ export function* getDataKota(action) {
 
 export function* getDataBrand(action) {
   try {
+    debugger;
+    const home = yield select(getHome);
     // yield put({ type: SET_ISLOADING, payload: true });
     let body = '';
     const data = yield call(
@@ -82,7 +88,7 @@ export function* getDataBrand(action) {
     if (data.isSuccess) {
       yield put({ type: SET_DATA_BRAND, payload: data });
     } else {
-      messages('Warning', data.message, 'warning', false);
+      warning(data.message);
     }
     // yield put({ type: SET_DATA_AKTIVITAS, data });
     // yield put({
@@ -93,6 +99,7 @@ export function* getDataBrand(action) {
     // });
   } catch (error) {
     console.log(error);
+    error(error);
     // yield put({ type: SET_LOADER, payload: false });
     // messages('Info', error, 'info', false);
   }

@@ -1,18 +1,34 @@
 import swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-export function success() {
-  swal({
-    title: 'Horeee!',
-    text: 'transaction was succeed',
+export function success(message) {
+  swal.fire({
+    title: 'Success',
+    text: message,
     type: 'success'
   });
 }
 
-export function error() {
-  swal({
+export function info(message) {
+  swal.fire({
+    title: 'Info',
+    text: message,
+    type: 'info'
+  });
+}
+
+export function warning(message) {
+  swal.fire({
+    title: 'Warning',
+    text: message,
+    type: 'warning'
+  });
+}
+
+export function error(message) {
+  swal.fire({
     title: 'Oops!',
-    text: 'There is something wrong, Please contact IT Care',
+    text: message,
     type: 'error'
   });
 }
@@ -23,44 +39,50 @@ export function messages(
   type = null,
   refresh = null
 ) {
-  swal({
-    title: title,
-    text: text,
-    type: type
-  }).then(function() {
-    if (refresh) window.location.reload();
-  });
+  swal
+    .fire({
+      title: title,
+      text: text,
+      type: type
+    })
+    .then(function() {
+      if (refresh) window.location.reload();
+    });
 }
 
 export function deleteData(id, confirmDelete) {
   let result = false;
-  swal({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'No, cancel!'
-  }).then(function(confirm) {
-    confirmDelete(id);
-  });
+  swal
+    .fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!'
+    })
+    .then(function(confirm) {
+      confirmDelete(id);
+    });
 }
 
 export function confirmation(id, confirmAction, dismissAction) {
   let result = false;
-  swal({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'No, cancel!'
-  }).then(
-    function(confirm) {
-      confirmAction(id);
-    },
-    function(dismiss) {
-      dismissAction();
-    }
-  );
+  swal
+    .fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!'
+    })
+    .then(
+      function(confirm) {
+        confirmAction(id);
+      },
+      function(dismiss) {
+        dismissAction();
+      }
+    );
 }
