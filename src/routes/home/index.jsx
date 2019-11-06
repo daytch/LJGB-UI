@@ -187,7 +187,23 @@ class Home extends Component {
                 <span className="product__category-big">Lowest Ask</span>
                 <Link className="see__all">See all </Link>
               </div>
+              <Product />
+            </div>
 
+            <div className="product">
+              <div className="row__header">
+                <span className="product__category-big">Highest Bid</span>
+                <Link className="see__all">See all </Link>
+              </div>
+              <Product />
+            </div>
+
+            <div className="product">
+              <div className="row__header">
+                <span className="product__category-big">Other</span>
+                <Link className="see__all">See all </Link>
+              </div>
+              <Product />
               <Product />
             </div>
           </div>

@@ -1,11 +1,26 @@
 .product {
   margin-top: 30px;
+
   &__wrapper {
     margin-top: 10px;
+
+    @media (max-width: 767px) {
+      overflow-y: scroll;
+
+      .row {
+        flex-wrap: unset;
+      }
+      .col-md.col-6 {
+        max-width: unset;
+        flex: 0 0 40%;
+        padding-bottom: 10px;
+      }
+    }
   }
 
   &__item {
-    // border: 2px solid #eee;
+    box-shadow: 0 0 10px rgba(220, 220, 220, 0.5);
+
     &:hover {
       color: inherit;
     }
@@ -22,42 +37,54 @@
         object-fit: cover;
         object-position: center;
         width: auto;
+        min-width: 100%;
         height: 100%;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
+
+      // style kalo tulisan kategorinya didalam foto
+      .product__category {
+        color: #fff;
+        display: block;
+        line-height: 1;
+        text-transform: uppercase;
+        font-size: 0.6em;
+        letter-spacing: 1.3px;
+        background-color: #bc4749;
+        width: max-content;
+        margin: 0;
+        padding: 3px 10px;
+        border-radius: 10px;
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   }
 
   &__caption {
-    // padding-top: 10px;
+    padding: 0 10px 10px;
     font-weight: 600;
+
     p {
       margin: 0;
     }
   }
 
   &__title {
-    line-height: 1;
+    line-height: 1.3;
+    padding-top: 5px;
   }
 
   &__category {
-    color: #fff;
-    display: block;
-    line-height: 1;
+    color: $color-3;
+    font-weight: 400;
     text-transform: uppercase;
-    font-size: 0.6em;
-    letter-spacing: 1.3px;
-    background-color: #bc4749;
-    width: max-content;
-    margin: 0;
-    padding: 3px 10px;
-    border-radius: 10px;
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
+    font-size: 0.8em;
+    letter-spacing: 1px;
 
     &-big {
       font-weight: 400;
@@ -68,12 +95,14 @@
     }
 
     @media (max-width: 767px) {
-      // color: #bc4749;
     }
   }
 
   &__price {
-    line-height: 1;
+    line-height: 1.3;
+    font-size: 1.3em;
+    font-weight: 700;
+    // color: #bc4749;
   }
   .see__all {
     font-size: 1em;

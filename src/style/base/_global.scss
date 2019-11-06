@@ -89,6 +89,15 @@ strong {
   float: right;
 }
 
+.container {
+  @media (min-width: 576px) and (max-width: 767px) {
+    max-width: unset;
+  }
+  // @media (min-width: 768px){
+  //   max-width: 540px;
+  // }
+}
+
 main {
   margin-top: 50px;
   min-height: calc(100vh - 50px);
