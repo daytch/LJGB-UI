@@ -9,13 +9,13 @@ class BoxItem extends Component {
           <div className="product__item">
             <div className="product__image__small">
               <img
-                src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
+                src="https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/body-image/public/911-road-3629a.jpg?itok=m6x23Go0"
                 alt=""
               />
+              <p className="product__category">Lowest Ask</p>
             </div>
             <div className="product__caption">
-              <p className="product__category">Lowest Ask</p>
-              <p className="product__title">AUTO 330e iPERFORMANCE</p>
+              <p className="product__title">CAR M5 GRAN TURISMO</p>
               <p className="product__price">
                 <span className="">Rp.100</span>
               </p>

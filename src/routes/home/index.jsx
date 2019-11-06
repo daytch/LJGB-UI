@@ -2,13 +2,20 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faCar } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { actions } from '../../actions/homeAction';
 import { Select } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCoffee,
+  faCar,
+  faCaretRight,
+  faArrowRight,
+  faArrowCircleRight,
+  faCaretSquareRight
+} from '@fortawesome/free-solid-svg-icons';
 
-import BoxItem from '../../components/layouts/common/boxItem';
+import Product from '../../components/layouts/common/product';
 
 const { Option } = Select;
 
@@ -177,29 +184,12 @@ class Home extends Component {
         <div>
           <div className="container">
             <div className="product">
-              <h3 className="product__category-big">Lowest Ask</h3>
-
-              <div className="row">
-                <div className="col-6 col-md">
-                  <BoxItem />
-                </div>
-
-                <div className="col-6 col-md">
-                  <BoxItem />
-                </div>
-
-                <div className="col-6 col-md">
-                  <BoxItem />
-                </div>
-
-                <div className="col-6 col-md">
-                  <BoxItem />
-                </div>
-
-                <div className="col-6 col-md">
-                  <BoxItem />
-                </div>
+              <div className="row__header">
+                <span className="product__category-big">Lowest Ask</span>
+                <Link className="see__all">See all </Link>
               </div>
+
+              <Product />
             </div>
           </div>
         </div>

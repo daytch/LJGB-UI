@@ -25,16 +25,26 @@
 
     .txt1 span {
       padding: 0 10px;
-      border-width: 0 3px;
+      border-width: 0 2px;
       border-style: solid;
       border-color: #fff;
       font-size: 1.3em;
       font-weight: 400;
+      display: block;
+      max-width: max-content;
+      margin: auto;
+      line-height: 1;
     }
     .txt2 {
       font-size: 3em;
       letter-spacing: 11px;
       font-weight: 400;
+
+      @media (max-width: 767px) {
+        font-size: 2em;
+        letter-spacing: 2px;
+        line-height: 1.2;
+      }
     }
     .txt3 {
       font-size: 1.3em;
@@ -46,6 +56,9 @@
         font-size: 2em;
         background: green;
         padding: 5px 20px;
+        @media (max-width: 767px) {
+          font-size: 1.5em;
+        }
       }
     }
     // .link1 span{
@@ -115,6 +128,10 @@
   position: relative;
   overflow: hidden;
 
+  @media (max-width: 767px) {
+    height: calc(100vh - 50px);
+  }
+
   img {
     object-fit: cover;
     object-position: center;
@@ -124,5 +141,15 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+
+.carousel {
+  &-indicators {
+    display: none;
+  }
+  &-control-next,
+  &-control-prev {
+    width: 5%;
   }
 }

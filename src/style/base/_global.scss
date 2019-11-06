@@ -50,6 +50,9 @@ button:focus {
   box-shadow: unset;
 }
 
+a:hover {
+  color: inherit;
+}
 ol,
 ul {
   margin: 0;
@@ -88,4 +91,5 @@ strong {
 
 main {
   margin-top: 50px;
+  min-height: calc(100vh - 50px);
 }

@@ -18,7 +18,7 @@ function App() {
   const ComponentThatHides = withRouter(ComponentToHide);
   return (
     <div>
-      <ComponentThatHides />
+      {/* <ComponentThatHides /> */}
       <Aplication>
         {/* <Container> */}
         <Switch>
