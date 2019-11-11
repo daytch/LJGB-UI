@@ -188,7 +188,7 @@ class Home extends Component {
                 <span className="product__category-big">Lowest Ask</span>
                 <Link className="see__all">See all </Link>
               </div>
-              <Product />
+              <Product data={home.dataHome.lowestAsks} />
             </div>
 
             <div className="product">
@@ -196,7 +196,7 @@ class Home extends Component {
                 <span className="product__category-big">Highest Bid</span>
                 <Link className="see__all">See all </Link>
               </div>
-              <Product />
+              <Product data={home.dataHome.highestBids} />
             </div>
 
             <div className="product">
@@ -204,8 +204,10 @@ class Home extends Component {
                 <span className="product__category-big">Other</span>
                 <Link className="see__all">See all </Link>
               </div>
-              <Product />
-              <Product />
+              <Product data={home.dataHome.listNormal} />
+              />
+              {/* <Product
+                data={home.dataHome.highestBids} /> /> */}
             </div>
 
             <div className="pilihLjgb">
