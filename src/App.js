@@ -4,6 +4,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Aplication from './components';
 import { Home, Login, PageNotFound, Logout } from './routes';
 import Header from './components/layouts/common/headers';
+import Detail from './routes/detail';
 
 function App() {
   const ComponentToHide = props => {
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/home" component={Home} />
           <Route exact path="/logout" component={Logout} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/detail" component={Detail} />
           <Route path="*" component={PageNotFound} />
         </Switch>
         {/* </Container> */}

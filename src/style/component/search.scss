@@ -5,11 +5,23 @@
   width: 100%;
   .select {
     &__wrapper {
-      // border-radius: 10px;
-      // box-shadow: 0 0 10px #dcdcdc;
-      // padding: 20px 25px;
-      // background: #fff;
+      text-align: center;
       color: #fff;
+      font-weight: 700;
+
+      .ant-select-selection {
+        background: rgba(0, 0, 0, 0);
+        &:hover,
+        &:focus {
+          border-color: #ec2347;
+        }
+      }
+      .ant-select-open .ant-select-selection {
+        border-color: #ec2347;
+      }
+      .ant-select-arrow {
+        color: rgba(255, 255, 255, 0.8);
+      }
     }
   }
   &__label {

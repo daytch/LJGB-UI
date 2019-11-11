@@ -96,6 +96,7 @@ class Home extends Component {
               </div>
             </Carousel.Item>
           </Carousel>
+
           <div className="search">
             <div className="container">
               <div className="select__wrapper">
@@ -205,6 +206,59 @@ class Home extends Component {
               </div>
               <Product />
               <Product />
+            </div>
+
+            <div className="pilihLjgb">
+              <h4>Kenapa pilih mobil baru di Lojualguebeli.com?</h4>
+
+              <div className="pilihLjgb__wrapper">
+                <div className="pilihLjgb__item">
+                  <div className="pilihLjgb__item__img">
+                    <img
+                      src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/lengkap.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="pilihLjgb__item__">
+                    <p>
+                      RajaMobil.com memiliki 34 merk mobil di Indonesia. 500+
+                      Dealer memiliki promo dan harga bersaing.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pilihLjgb__item">
+                  <div className="pilihLjgb__item__img">
+                    <img
+                      src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/promo-harga-bersaing.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="pilihLjgb__item__">
+                    <p>
+                      5000+ Wiraniaga yang memberikan promo mobil terbaru setiap
+                      hari. Semua sales resmi dari authorized dealer siap
+                      melayani Anda di mana saja. Minta penawaran, negosiasi
+                      harga, hingga test drive di rumah.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pilihLjgb__item">
+                  <div className="pilihLjgb__item__img">
+                    <img
+                      src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/aman-terpecaya.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="pilihLjgb__item__">
+                    <p>
+                      Semua authorized dealer yang akan menghubungi Anda. Anda
+                      bisa pesan mobil dari mana saja.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

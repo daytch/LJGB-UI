@@ -1,4 +1,5 @@
 // base style
+// @import 'base/fonts';
 @import 'base/vars';
 @import 'base/mixin';
 @import 'base/global';
@@ -11,8 +12,10 @@
 @import 'component/btn';
 @import 'component/login';
 @import 'component/product';
+@import 'component/pilihLjgb';
 @import 'component/slidertop.scss';
 @import 'component/search.scss';
+@import 'component/detail.scss';
 
 // plugin custom style
 @import 'component/custom.scss';

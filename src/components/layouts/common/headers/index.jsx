@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <header>
-      <Navbar fixed="top" bg="light" expand="md">
+      <Navbar fixed="top" expand="md">
         <Navbar.Brand>
           <Link to="/" className="">
             React-Bootstrap

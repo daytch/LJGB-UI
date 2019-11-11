@@ -15,7 +15,7 @@ class BoxItem extends Component {
               {/* <p className="product__category">Lowest Ask</p> */}
             </div>
             <div className="product__caption">
-              <p className="product__title">CAR M5 GRAN TURISMO</p>
+              <p className="product__title">Car M5 Gran Turismo </p>
               <p className="product__category">Lowest Ask</p>
               <p className="product__price">
                 <span className="">Rp.100</span>
