@@ -1,6 +1,3 @@
-.ant-select {
-  width: 100% !important;
-}
 .navbar-light .navbar-brand,
 .navbar-light .navbar-nav .nav-link {
   color: #fff;
@@ -12,5 +9,11 @@
   color: #dcdcdc;
 }
 .navbar-light.white {
-  background: #fff;
+  background: #000;
+}
+.navbar {
+  display: block;
+}
+.navbar-expand-md .navbar-collapse {
+  float: right;
 }

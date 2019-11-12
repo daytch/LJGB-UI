@@ -60,7 +60,9 @@ class Detail extends Component {
                         .indexOf(input.toLowerCase()) >= 0
                     }
                   >
-                    <Option value="jack">select A</Option>
+                    <Option value="jack">
+                      <div>select A</div>
+                    </Option>
                     <Option value="lucy">select B</Option>
                     <Option value="tom">select C</Option>
                   </Select>

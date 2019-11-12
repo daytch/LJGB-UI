@@ -1,144 +1,164 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-light py-5 mt-md-5">
-      <div className="container">
+    <footer className="bg-light mt-md-5 footer__wrapper">
+      <div className="container footer__inner">
         <div className="row">
-          <div className="col-12 col-md">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="d-block mb-2"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <line x1="14.31" y1="8" x2="20.05" y2="17.94" />
-              <line x1="9.69" y1="8" x2="21.17" y2="8" />
-              <line x1="7.38" y1="12" x2="13.12" y2="2.06" />
-              <line x1="9.69" y1="16" x2="3.95" y2="6.06" />
-              <line x1="14.31" y1="16" x2="2.83" y2="16" />
-              <line x1="16.62" y1="12" x2="10.88" y2="21.94" />
-            </svg>
-            <small className="d-block mb-3 text-muted">&copy; 2017-2018</small>
+          <div className="col-md-9">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="footer__desc">
+                  <div>
+                    <img
+                      src="https://www.rajamobil.com/themes/rmperjuangan/images/logo/logo-footer-new.svg"
+                      alt=""
+                    />
+                  </div>
+                  <p>
+                    RajaMobil.com adalah portal mobil. Portal ini memudahkan
+                    pengunjung dalam proses jual-beli mobil baru dan bekas yang
+                    tersaji eksklusif dengan gambar menarik dan informasi
+                    lengkap. Rajamobil.com juga memiliki banyak fitur menarik
+                    yang tentu saja berkaitan dengan bisnis mobil, seperti
+                    perhitungan simulasi kredit dan asuransi, serta fitur
+                    lainnya.
+                  </p>
+                </div>
+              </div>
+              <div className="col-6 col-md">
+                <h5>Informasi</h5>
+                <ul className="list-unstyled text-small">
+                  <li>
+                    <Link to="/">
+                      Apa sih <b>lojualguebeli.com</b>?
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/">Benefit di lojualguebeli.com?</Link>
+                  </li>
+                  <li>
+                    <Link to="/">
+                      Bagaimana sistem transaksi sebagai customer?
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/">
+                      Bagaimana sistem transaksi sebagai sales?
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/">Profile lojualguebeli.com</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-6 col-md">
+                <h5>Popular Release</h5>
+                <ul className="list-unstyled text-small">
+                  <li>
+                    <Link to="/">Cool stuff</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Random feature</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Team feature</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Stuff for developers</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Another one</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Last time</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-6 col-md">
+                <h5>Toyota</h5>
+                <ul className="list-unstyled text-small">
+                  <li>
+                    <Link to="/">Resource</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Resource name</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Another resource</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Final resource</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-6 col-md">
+                <h5>Honda</h5>
+                <ul className="list-unstyled text-small">
+                  <li>
+                    <Link to="/">Business</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Education</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Government</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Gaming</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-6 col-md">
+                <h5>Daihatsu</h5>
+                <ul className="list-unstyled text-small">
+                  <li>
+                    <Link to="/">Team</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Locations</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Privacy</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Terms</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div className="col-6 col-md">
-            <h5>Features</h5>
-            <ul className="list-unstyled text-small">
-              <li>
-                <a className="text-muted" href="#footer">
-                  Cool stuff
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Random feature
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Team feature
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Stuff for developers
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Another one
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Last time
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="col-6 col-md">
-            <h5>Resources</h5>
-            <ul className="list-unstyled text-small">
-              <li>
-                <a className="text-muted" href="#footer">
-                  Resource
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Resource name
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Another resource
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Final resource
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="col-6 col-md">
-            <h5>Resources</h5>
-            <ul className="list-unstyled text-small">
-              <li>
-                <a className="text-muted" href="#footer">
-                  Business
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Education
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Government
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Gaming
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="col-6 col-md">
-            <h5>About</h5>
-            <ul className="list-unstyled text-small">
-              <li>
-                <a className="text-muted" href="#footer">
-                  Team
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Locations
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Privacy
-                </a>
-              </li>
-              <li>
-                <a className="text-muted" href="#footer">
-                  Terms
-                </a>
-              </li>
-            </ul>
+
+          <div className="col-md-3">
+            <div className="socmed">
+              <h4>Ikuti kami di</h4>
+              <div className="socmed__wrapper">
+                <span class="socmed__icon icon-facebook"></span>
+                <span class="socmed__icon icon-twitter"></span>
+                <span class="socmed__icon icon-youtube"></span>
+                <span class="socmed__icon icon-google-plus"></span>
+                <span class="socmed__icon icon-instagram"></span>
+              </div>
+            </div>
+            <div className="customercare">
+              <div className="customercare__img">
+                <img
+                  src="https://www.rajamobil.com/themes/rmperjuangan/images/footer/customer-service.svg"
+                  alt=""
+                />
+              </div>
+              <div>
+                <span className="title">Customer Care</span>
+                <span className="phone">021 123456</span>
+                <span className="note">Senin-Jumat, 08:00-17:00 WIB</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+      <div className="footer__bottom text-center">
+        <span>Copyright &copy;2019 lojualguebeli.com</span>
       </div>
     </footer>
   );

@@ -1,5 +1,5 @@
 // base style
-// @import 'base/fonts';
+@import 'base/fonts';
 @import 'base/vars';
 @import 'base/mixin';
 @import 'base/global';
@@ -7,6 +7,7 @@
 // layout style
 @import 'layout/header';
 @import 'layout/footer';
+@import 'layout/navbar.scss';
 
 // component style
 @import 'component/btn';
@@ -16,30 +17,7 @@
 @import 'component/slidertop.scss';
 @import 'component/search.scss';
 @import 'component/detail.scss';
+@import 'component/socmed.scss';
 
 // plugin custom style
 @import 'component/custom.scss';
-
-// default from react
-// .App {
-//   text-align: center;
-
-//   &-link {
-//     color: #09d3ac;
-//   }
-
-//   &-logo {
-//     height: 40vmin;
-//   }
-
-//   &-header {
-//     background-color: #282c34;
-//     min-height: 100vh;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     font-size: calc(10px + 2vmin);
-//     color: white;
-//   }
-// }

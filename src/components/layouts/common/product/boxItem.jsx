@@ -6,7 +6,7 @@ class BoxItem extends Component {
     const { image, price, name } = this.props;
     return (
       <div>
-        <Link to="/">
+        <Link to="/detail">
           <div className="product__item">
             <div className="product__image__small">
               <img src={image} alt="" />
