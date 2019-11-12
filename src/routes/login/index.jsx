@@ -4,7 +4,6 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import ForgetPassword from './ForgetPassword';
 import FormSignUp from './FormSignUp';
 import LoginWith from './LoginWith';
-import { Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { actions } from '../../actions/loginAction';
@@ -58,7 +57,7 @@ class Login extends Component {
         <div className="container">
           <span
             className={
-              log.forget == true ? 'backToLogin' : 'formLoginHide backToLogin'
+              log.forget === true ? 'backToLogin' : 'formLoginHide backToLogin'
             }
             onClick={this.handleForget}
           >
@@ -66,12 +65,12 @@ class Login extends Component {
           </span>
 
           <div className="formLoginWrapper">
-            <div className={log.forget == true ? 'formLoginHide' : ''}>
+            <div className={log.forget === true ? 'formLoginHide' : ''}>
               <div className="accessToggle">
                 <span
                   onClick={this.toggleForm}
                   className={
-                    log.isSignUpForm == true
+                    log.isSignUpForm === true
                       ? 'accessToggle_option active'
                       : 'accessToggle_option'
                   }
@@ -81,7 +80,7 @@ class Login extends Component {
                 <span
                   onClick={this.toggleForm}
                   className={
-                    log.isLoginForm == true
+                    log.isLoginForm === true
                       ? 'accessToggle_option active'
                       : 'accessToggle_option'
                   }
@@ -91,7 +90,7 @@ class Login extends Component {
               </div>
 
               {/* s: Login form */}
-              <div className={log.isLoginForm == true ? '' : 'formLoginHide'}>
+              <div className={log.isLoginForm === true ? '' : 'formLoginHide'}>
                 <LoginWith />
 
                 <p className="linedText">
@@ -178,13 +177,13 @@ class Login extends Component {
               {/* e: Login form */}
 
               {/* s: Sign up form */}
-              <div className={log.isSignUpForm == true ? '' : 'formLoginHide'}>
+              <div className={log.isSignUpForm === true ? '' : 'formLoginHide'}>
                 <FormSignUp />
               </div>
               {/* e: Sign up form */}
             </div>
 
-            <div className={log.forget == true ? '' : 'formLoginHide'}>
+            <div className={log.forget === true ? '' : 'formLoginHide'}>
               <ForgetPassword />
             </div>
           </div>

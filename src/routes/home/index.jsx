@@ -118,7 +118,18 @@ class Home extends Component {
 
                   <div className="col-6 col-md">
                     <span className="search__label">Select Brand</span>
-                    <Select
+                    <Selected
+                      value={home.search.city}
+                      placeholder="Select Brand"
+                      data={home.dataBrand}
+                      form="search"
+                      name="brand"
+                      onChange={(form, name, event) => {
+                        handleChange(form, name, event);
+                        // getDataBrand(form, name, event);
+                      }}
+                    />
+                    {/* <Select
                       showSearch
                       style={{ width: 200 }}
                       placeholder="Select brand"
@@ -133,7 +144,7 @@ class Home extends Component {
                       <Option value="1">Brand 1</Option>
                       <Option value="2">Brand 2</Option>
                       <Option value="3">Brand 3</Option>
-                    </Select>
+                    </Select> */}
                   </div>
 
                   <div className="col-6 col-md">

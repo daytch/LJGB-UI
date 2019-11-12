@@ -2,7 +2,7 @@ import { call, put, all, select, takeLatest } from 'redux-saga/effects';
 // import { takeLatest } from 'redux-saga';
 import { master } from '../services/header';
 import Endpoint from '../services/endpoint';
-import { messages, warning, error } from '../components/Message';
+import { warning } from '../components/Message';
 import { GET, POST } from '../services/api';
 import {
   API_DATA,
@@ -78,15 +78,21 @@ export function* getDataBrand(action) {
     debugger;
     const home = yield select(getHome);
     // yield put({ type: SET_ISLOADING, payload: true });
-    let body = '';
+    let body = action.value;
     const data = yield call(
       POST,
-      API_DATA + Endpoint.DATA_BRAND,
-      body,
+      API_DATA + Endpoint.DATA_MERK_BY_ID_KOTA + '?KotaID=' + body,
       master.getHeader()
     );
     if (data.isSuccess) {
-      yield put({ type: SET_DATA_BRAND, payload: data });
+      let dataMerk = [];
+      data.listSP_MerkByKotaID.map((x, i) => {
+        dataMerk.push({
+          code: x.id,
+          text: x.name
+        });
+      });
+      yield put({ type: SET_DATA_BRAND, payload: dataMerk });
     } else {
       warning(data.message);
     }
