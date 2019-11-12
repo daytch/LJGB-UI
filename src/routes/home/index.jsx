@@ -34,28 +34,28 @@ class Home extends Component {
           <Carousel fade="true">
             <Carousel.Item>
               <div className="">
-                <div class="head__image">
+                <div className="head__image">
                   <img
                     src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
                     alt=""
-                    class=""
+                    className=""
                   />
                 </div>
-                <div class="slider__caption">
-                  <div class="container">
-                    <div class="txt1">
+                <div className="slider__caption">
+                  <div className="container">
+                    <div className="txt1">
                       <span>FIND YOUR DREAM CAR</span>
                     </div>
-                    <div class="txt2">CAR M5 GRAN TURISMO</div>
-                    <div class="txt3">MODEL 2017</div>
-                    <div class="txt3">
+                    <div className="txt2">CAR M5 GRAN TURISMO</div>
+                    <div className="txt3">MODEL 2017</div>
+                    <div className="txt3">
                       <span>$64,000</span>
                     </div>
                     <div className="txt3 color-green">
                       <Link>SEE DETAILS</Link>
                     </div>
-                    {/* <div class="link1">
-                      <a href="details.html" class="slider__link">
+                    {/* <div className="link1">
+                      <a href="details.html" className="slider__link">
                         <span>SEE DETAILS</span>
                       </a>
                     </div> */}
@@ -65,29 +65,29 @@ class Home extends Component {
             </Carousel.Item>
             <Carousel.Item>
               <div className="">
-                <div class="head__image">
+                <div className="head__image">
                   <img
                     src="https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/body-image/public/911-road-3629a.jpg?itok=m6x23Go0"
                     alt=""
-                    class=""
+                    className=""
                   />
                 </div>
-                <div class="slider__caption">
-                  <div class="container">
-                    <div class="txt1">
+                <div className="slider__caption">
+                  <div className="container">
+                    <div className="txt1">
                       <span>FIND YOUR DREAM CAR</span>
                     </div>
-                    <div class="txt2">CAR M7 GRAN TURISMO</div>
-                    <div class="txt3">MODEL 2019</div>
-                    <div class="txt3">
+                    <div className="txt2">CAR M7 GRAN TURISMO</div>
+                    <div className="txt3">MODEL 2019</div>
+                    <div className="txt3">
                       <span>$90,000</span>
                     </div>
                     <div className="txt3 color-green">
                       <Link>SEE DETAILS</Link>
                     </div>
-                    {/* <div class="link1">
-                      <a href="details.html" class="slider__link"></a>
-                      <Link class="slider__link">
+                    {/* <div className="link1">
+                      <a href="details.html" className="slider__link"></a>
+                      <Link className="slider__link">
                         <span>SEE DETAILS</span>
                       </Link>
                     </div> */}
@@ -188,7 +188,7 @@ class Home extends Component {
                 <span className="product__category-big">Lowest Ask</span>
                 <Link className="see__all">See all </Link>
               </div>
-              <Product />
+              <Product data={home.dataHome.lowestAsks} />
             </div>
 
             <div className="product">
@@ -196,7 +196,7 @@ class Home extends Component {
                 <span className="product__category-big">Highest Bid</span>
                 <Link className="see__all">See all </Link>
               </div>
-              <Product />
+              <Product data={home.dataHome.highestBids} />
             </div>
 
             <div className="product">
@@ -204,8 +204,9 @@ class Home extends Component {
                 <span className="product__category-big">Other</span>
                 <Link className="see__all">See all </Link>
               </div>
-              <Product />
-              <Product />
+              <Product data={home.dataHome.listNormal} />
+              {/* <Product
+                data={home.dataHome.highestBids} /> /> */}
             </div>
 
             <div className="pilihLjgb">
