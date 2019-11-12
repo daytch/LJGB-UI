@@ -102,7 +102,9 @@ class Home extends Component {
               <div className="select__wrapper">
                 <div className="row">
                   <div className="col-6 col-md">
-                    <span className="search__label">Select City</span>
+                    <span className="search__label">
+                      Cari Berdasarkan Wilayah
+                    </span>
                     <Selected
                       value={home.search.city}
                       placeholder="Select City"
@@ -130,6 +132,8 @@ class Home extends Component {
                       }}
                     />
                     {/* <Select
+                    <span className="search__label">Merk Mobil</span>
+                    <Select
                       showSearch
                       style={{ width: 200 }}
                       placeholder="Select brand"
@@ -148,7 +152,7 @@ class Home extends Component {
                   </div>
 
                   <div className="col-6 col-md">
-                    <span className="search__label">Select Model</span>
+                    <span className="search__label">Model Mobil</span>
                     <Select
                       showSearch
                       style={{ width: 200 }}
@@ -168,7 +172,7 @@ class Home extends Component {
                   </div>
 
                   <div className="col-6 col-md">
-                    <span className="search__label">Select Type</span>
+                    <span className="search__label">Tipe mobil</span>
                     <Select
                       showSearch
                       style={{ width: 200 }}
@@ -231,7 +235,7 @@ class Home extends Component {
                       alt=""
                     />
                   </div>
-                  <div className="pilihLjgb__item__">
+                  <div className="pilihLjgb__item__caption">
                     <p>
                       RajaMobil.com memiliki 34 merk mobil di Indonesia. 500+
                       Dealer memiliki promo dan harga bersaing.
@@ -246,7 +250,7 @@ class Home extends Component {
                       alt=""
                     />
                   </div>
-                  <div className="pilihLjgb__item__">
+                  <div className="pilihLjgb__item__caption">
                     <p>
                       5000+ Wiraniaga yang memberikan promo mobil terbaru setiap
                       hari. Semua sales resmi dari authorized dealer siap
@@ -263,7 +267,7 @@ class Home extends Component {
                       alt=""
                     />
                   </div>
-                  <div className="pilihLjgb__item__">
+                  <div className="pilihLjgb__item__caption">
                     <p>
                       Semua authorized dealer yang akan menghubungi Anda. Anda
                       bisa pesan mobil dari mana saja.

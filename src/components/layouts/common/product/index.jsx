@@ -6,7 +6,7 @@ class Product extends Component {
   renderUi(data) {
     return data.map((x, i) => {
       return (
-        <div className="col-6 col-md">
+        <div className="col-3">
           <BoxItem image={x.image} name={x.name} price={x.price} />
         </div>
       );

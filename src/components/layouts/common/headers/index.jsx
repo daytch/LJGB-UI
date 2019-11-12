@@ -15,7 +15,7 @@ const Header = () => {
       <Navbar fixed="top" expand="md">
         <Navbar.Brand>
           <Link to="/" className="">
-            React-Bootstrap
+            lojualguebeli
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

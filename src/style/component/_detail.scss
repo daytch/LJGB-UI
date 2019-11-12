@@ -69,5 +69,8 @@
   }
   &__select {
     width: 100px;
+    .ant-select-dropdown {
+      width: 280px;
+    }
   }
 }
