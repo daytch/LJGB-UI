@@ -44,8 +44,8 @@ export default class CustomSelect extends Component {
     return (
       <Select
         showSearch
-        allowClear={allowClear == undefined ? false : true}
-        mode={mode == undefined ? 'single' : 'multiple'}
+        allowClear={allowClear === undefined ? false : true}
+        mode={mode === undefined ? 'single' : 'multiple'}
         placeholder={placeholder}
         defaultValue={defaultValue}
         onChange={event => {

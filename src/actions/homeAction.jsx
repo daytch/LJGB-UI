@@ -2,10 +2,12 @@ import {
   GET_DATA_HOME,
   GET_DATA_KOTA,
   HANDLE_CHANGE_HOME,
-  GET_DATA_BRAND
+  GET_DATA_BRAND,
+  GET_DATA_MODEL,
+  GET_DATA_TYPE
 } from '../constants/index';
 
-export function getDataHome(property, value) {
+export function getDataHome(property, index, value) {
   return {
     type: GET_DATA_HOME
   };
@@ -29,10 +31,24 @@ export function getDataBrand(property, event, value) {
     value
   };
 }
+export function getDataModel(property, event, value) {
+  return {
+    type: GET_DATA_MODEL,
+    value
+  };
+}
+export function getDataType(property, event, value) {
+  return {
+    type: GET_DATA_TYPE,
+    value
+  };
+}
 
 export const actions = {
   getDataHome,
   getDataKota,
   handleChange,
-  getDataBrand
+  getDataBrand,
+  getDataModel,
+  getDataType
 };

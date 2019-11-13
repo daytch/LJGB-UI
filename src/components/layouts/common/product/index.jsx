@@ -1,23 +1,38 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import BoxItem from './boxItem';
+import BlockUi from 'react-block-ui';
+import 'react-block-ui/style.css';
+import { connect } from 'react-redux';
 
 class Product extends Component {
-  renderUi(data) {
+  renderUi(data, title) {
+    const { home } = this.props;
     return data.map((x, i) => {
       return (
-        <div className="col-3">
-          <BoxItem image={x.image} name={x.name} price={x.price} />
-        </div>
+        <BlockUi
+          tag="div"
+          blocking={home.isLoading}
+          style={{ width: '100%' }}
+          className="col-3"
+        >
+          {/* <div className="col-3"> */}
+          <BoxItem
+            image={x.image}
+            name={x.name}
+            price={x.price}
+            title={title}
+          />
+          {/* </div> */}
+        </BlockUi>
       );
     });
   }
   render() {
-    const { data } = this.props;
+    const { data, title } = this.props;
     return (
       <div className="product__wrapper">
         <div className="row">
-          {data !== undefined ? this.renderUi(data) : null
+          {data !== undefined ? this.renderUi(data, title) : null
           // <div>
           //   <div className="col-6 col-md">
           //     <BoxItem
@@ -69,4 +84,8 @@ class Product extends Component {
   }
 }
 
-export default Product;
+const mapStateToProps = state => ({
+  home: state.homeReducer
+});
+export default connect(mapStateToProps)(Product);
+// export default Product;

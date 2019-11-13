@@ -51,7 +51,6 @@ export function messages(
 }
 
 export function deleteData(id, confirmDelete) {
-  let result = false;
   swal
     .fire({
       title: 'Are you sure?',
@@ -67,7 +66,6 @@ export function deleteData(id, confirmDelete) {
 }
 
 export function confirmation(id, confirmAction, dismissAction) {
-  let result = false;
   swal
     .fire({
       title: 'Are you sure?',
