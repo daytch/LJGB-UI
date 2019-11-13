@@ -19,14 +19,41 @@ import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
 
 import Product from '../../components/layouts/common/product';
+import $ from 'jquery';
 
 const { Option } = Select;
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      scrollY: 0
+    };
+  }
+
   componentWillMount() {
     this.props.getDataHome();
     this.props.getDataKota();
+
+    $('.navbar').addClass('navbar-dark');
+    $('.navbar').removeClass('bg-cl-white');
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = event => {
+    this.setState({
+      scrollY: window.scrollY
+    });
+
+    if (this.state.scrollY > 150) {
+      $('.navbar').removeClass('navbar-dark');
+      $('.navbar').addClass('bg-cl-white');
+    }
+  };
+
   render() {
     const {
       home,
@@ -41,7 +68,7 @@ class Home extends Component {
         blocking={home.isLoadingHome}
         style={{ width: '100%' }}
       >
-        <main role="main">
+        <main role="main" style={{ marginTop: '0' }}>
           <div className="slider__top">
             <Carousel fade="true">
               <Carousel.Item>
@@ -229,6 +256,11 @@ class Home extends Component {
                       <Option value="2">Type 2</Option>
                       <Option value="3">Type 3</Option>
                     </Select> */}
+                    </div>
+                    <div className="col-md-12 col-md">
+                      <div className="btn-center" style={{ marginTop: '15px' }}>
+                        <button className="btn btn-success">Search</button>
+                      </div>
                     </div>
                   </div>
                 </div>
