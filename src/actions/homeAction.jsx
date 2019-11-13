@@ -23,9 +23,10 @@ export function handleChange(property, index, value) {
     value
   };
 }
-export function getDataBrand(property, value) {
+export function getDataBrand(property, event, value) {
   return {
-    type: GET_DATA_BRAND
+    type: GET_DATA_BRAND,
+    value
   };
 }
 

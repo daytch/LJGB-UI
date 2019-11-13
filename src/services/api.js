@@ -6,9 +6,9 @@ export function POST(url, body, header) {
   return axios
     .post(url, body, header)
     .then(res => {
-      if (res.status == 201 || res.status == 200) {
+      if (res.status === 201 || res.status === 200) {
         return res.data;
-      } else if (res.status == 401) {
+      } else if (res.status === 401) {
         return res.data;
       }
       // else {
@@ -16,7 +16,7 @@ export function POST(url, body, header) {
       // }
     })
     .catch(err => {
-      if (err.response.status == 401) {
+      if (err.response.status === 401) {
         swals({
           title: 'Info',
           text: err.response.statusText,
@@ -35,9 +35,9 @@ export function GET(url, header) {
   return axios
     .get(url, header)
     .then(res => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         return res.data;
-      } else if (res.status == 401) {
+      } else if (res.status === 401) {
         return res.data;
       }
       // else {
@@ -45,7 +45,7 @@ export function GET(url, header) {
       // }
     })
     .catch(err => {
-      if (err.response.status == 401) {
+      if (err.response.status === 401) {
         swals({
           title: 'Info',
           text: err.response.statusText,
@@ -64,9 +64,9 @@ export function PUT(url, body, header) {
   return axios
     .put(url, body, header)
     .then(res => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         return res.data;
-      } else if (res.status == 401) {
+      } else if (res.status === 401) {
         return res.data;
       }
       // else {
@@ -74,7 +74,7 @@ export function PUT(url, body, header) {
       // }
     })
     .catch(err => {
-      if (err.response.status == 401) {
+      if (err.response.status === 401) {
         swals({
           title: 'Info',
           text: err.response.statusText,
@@ -93,9 +93,9 @@ export function DELETE(url, header) {
   return axios
     .delete(url, header)
     .then(res => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         return res.data;
-      } else if (res.status == 401) {
+      } else if (res.status === 401) {
         return res.data;
       }
       // else {
@@ -103,7 +103,7 @@ export function DELETE(url, header) {
       // }
     })
     .catch(err => {
-      if (err.response.status == 401) {
+      if (err.response.status === 401) {
         swals({
           title: 'Info',
           text: err.response.statusText,
