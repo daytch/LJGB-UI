@@ -17,26 +17,53 @@ import {
 import Selected from './../../components/globalComponents/customSelect';
 
 import Product from '../../components/layouts/common/product';
+import $ from 'jquery';
 
 const { Option } = Select;
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      scrollY: 0
+    };
+  }
+
   componentWillMount() {
     this.props.getDataHome();
     this.props.getDataKota();
+
+    $('.navbar').addClass('navbar-dark');
+    $('.navbar').removeClass('bg-cl-white');
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = event => {
+    this.setState({
+      scrollY: window.scrollY
+    });
+
+    if (this.state.scrollY > 150) {
+      $('.navbar').removeClass('navbar-dark');
+      $('.navbar').addClass('bg-cl-white');
+    }
+  };
+
   render() {
     const { home, handleChange, getDataBrand } = this.props;
     console.log(home);
     return (
-      <main role="main">
+      <main role="main" style={{ marginTop: '0' }}>
         <div className="slider__top">
           <Carousel fade="true">
             <Carousel.Item>
               <div className="">
                 <div className="head__image">
                   <img
-                    src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
+                    src="https://media.wired.com/photos/5d09594a62bcb0c9752779d9/master/w_2560%2Cc_limit/Transpo_G70_TA-518126.jpg"
                     alt=""
                     className=""
                   />
@@ -102,9 +129,7 @@ class Home extends Component {
               <div className="select__wrapper">
                 <div className="row">
                   <div className="col-6 col-md">
-                    <span className="search__label">
-                      Cari Berdasarkan Wilayah
-                    </span>
+                    <span className="search__label">Wilayah</span>
                     <Selected
                       value={home.search.city}
                       placeholder="Select City"
@@ -176,6 +201,11 @@ class Home extends Component {
                       <Option value="2">Type 2</Option>
                       <Option value="3">Type 3</Option>
                     </Select>
+                  </div>
+                  <div className="col-md-12 col-md">
+                    <div className="btn-center" style={{ marginTop: '15px' }}>
+                      <button className="btn btn-success">Search</button>
+                    </div>
                   </div>
                 </div>
               </div>
