@@ -15,6 +15,7 @@
 }
 .navbar.navbar-dark {
   background: rgba(0, 0, 0, 0);
+  transition: all 0.5s ease;
   .navbar__icon {
     color: #fff;
   }
@@ -31,6 +32,9 @@
 @media (max-width: 767px) {
   .navbar {
     text-align: center;
+    padding: 0;
+    height: 55px;
+
     &__icon {
       display: block;
       padding: 13px 15px;
@@ -45,8 +49,10 @@
       }
     }
     &-brand {
-      width: calc(100% - 70px);
+      width: calc(100% - 80px);
       margin-right: 0;
+      position: relative;
+      top: 6px;
       .navbar-input {
         position: relative;
         input {
@@ -54,10 +60,14 @@
           padding: 0 10px 2px;
           border-radius: 3px;
           width: 100%;
+          outline: none;
         }
         .iconSearch {
           position: absolute;
-          right: 0;
+          right: 6px;
+          top: 50%;
+          color: #444;
+          transform: translateY(-50%);
           color: #444;
         }
       }
@@ -69,6 +79,19 @@
   // }
   .navbar-expand-md .navbar-collapse {
     float: unset;
+    background: #fff;
+    margin-top: 10px;
     transition: all 0.5s ease;
+    height: calc(100vh - 50px);
+  }
+  // .navbar.navbar-dark .navbar-brand, .navbar.navbar-dark .navbar-nav .nav-link {
+  //   color: rgba(0,0,0,.5);
+  // }
+  // .navbar.navbar-dark .navbar-brand,
+  .navbar.navbar-dark .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  .navbar.navbar-dark .navbar-nav .nav-link:hover {
+    color: rgba(0, 0, 0, 0.7);
   }
 }

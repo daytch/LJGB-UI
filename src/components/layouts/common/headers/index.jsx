@@ -40,7 +40,7 @@ class Header extends Component {
             {this.state.showSearch ? (
               <div className="navbar-input">
                 <input type="text" placeholder="Cari" />
-                {/* <FontAwesomeIcon icon={faSearch} className="iconSearch" /> */}
+                <FontAwesomeIcon icon={faSearch} className="iconSearch" />
               </div>
             ) : (
               <Link to="/" className="">
@@ -53,9 +53,10 @@ class Header extends Component {
             <FontAwesomeIcon icon={this.state.showMenu ? faTimes : faBars} />
           </div>
           <div className="navbar__icon right" onClick={this.onShowSearch}>
-            <FontAwesomeIcon icon={faSearch} />
+            <FontAwesomeIcon
+              icon={this.state.showSearch ? faTimes : faSearch}
+            />
           </div>
-          {/* <h1 clasName="haha" id="haha">haha</h1> */}
           <Navbar.Collapse
             id="basic-navbar-nav"
             className={this.state.showMenu ? 'show' : ''}

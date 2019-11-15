@@ -4,6 +4,10 @@
     background-color: #666;
     overflow: hidden;
     // color: #fff;
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
     h5 {
       font-size: 1.2em;
       font-weight: 700;
@@ -24,6 +28,12 @@
   }
   &__desc {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    p {
+      padding-left: 15px;
+    }
   }
   &__bottom {
     background: #444;
@@ -35,13 +45,18 @@
 }
 .customercare {
   display: flex;
-  padding-left: 26px;
+  width: max-content;
+  margin: auto;
+  // padding-left: 26px;
 
   &__img {
     padding-right: 10px;
     img {
       height: 58px;
     }
+  }
+  &__wrapper {
+    margin: auto;
   }
   span {
     display: block;
@@ -56,4 +71,8 @@
       font-size: 0.8em;
     }
   }
+}
+
+.list-unstyled {
+  margin-bottom: 20px;
 }
