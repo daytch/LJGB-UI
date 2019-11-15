@@ -1,24 +1,64 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Select, Modal } from 'antd';
+import { Carousel } from 'react-bootstrap';
+
 import BreadCrumb from '../../components/layouts/common/breadcrumb';
 
-import { Select } from 'antd';
+import Gambar from '../../images/car.png';
+import Gambar2 from '../../images/images.jpg';
+
 const { Option } = Select;
 
 class Detail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showMore: false
+      showMore: false,
+      allAsk: false,
+      allBid: false,
+      allBid: false
     };
     this.onShowMore = this.onShowMore.bind(this);
+    this.showAllAsk = this.showAllAsk.bind(this);
   }
   onShowMore() {
     this.setState({
       showMore: !this.state.showMore
     });
   }
+  showAllAsk = () => {
+    this.setState({
+      visible: true
+    });
+  };
+  showAllBid = () => {
+    this.setState({
+      visible: true
+    });
+  };
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
   render() {
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+
     return (
       <main role="main">
         <div className="container">
@@ -49,26 +89,7 @@ class Detail extends Component {
                 </div>
               </div>
               <div className="detail__market">
-                <div className="detail__select">
-                  <Select
-                    showSearch
-                    placeholder="All"
-                    optionFilterProp="children"
-                    filterOption={(input, option) =>
-                      option.props.children
-                        .toLowerCase()
-                        .indexOf(input.toLowerCase()) >= 0
-                    }
-                    allowClear="true"
-                  >
-                    <Option value="jack">
-                      <div>select A</div>
-                    </Option>
-                    <Option value="lucy">select B</Option>
-                    <Option value="tom">select C</Option>
-                  </Select>
-                </div>
-                <div className="bid">
+                <div className="bid left">
                   <button className="btn btn-success">
                     <div className="bid__text left">
                       <span className="bid__text--big">Rp.901M</span>
@@ -79,8 +100,19 @@ class Detail extends Component {
                       <span className="bid__text--small">or Bid</span>
                     </div>
                   </button>
+                  <span onClick={this.showAllAsk}>View All Asks</span>
+                  <Modal
+                    title="All Asks"
+                    visible={this.state.visible}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                  >
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                  </Modal>
                 </div>
-                <div className="bid">
+                <div className="bid right">
                   <button className="btn btn-danger">
                     <div className="bid__text left">
                       <span className="bid__text--big">Rp.895M</span>
@@ -91,6 +123,17 @@ class Detail extends Component {
                       <span className="bid__text--small">or Ask</span>
                     </div>
                   </button>
+                  <span onClick={this.showAllBid}>View All Bids</span>
+                  <Modal
+                    title="All Bids"
+                    visible={this.state.visible}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                  >
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                  </Modal>
                 </div>
               </div>
             </div>
@@ -98,15 +141,33 @@ class Detail extends Component {
             <div className="detail__body">
               <div className="row">
                 <div className="col-md-12 mb-4">
-                  <div className="detail__body__img">
-                    <img
-                      src="https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/body-image/public/911-road-3629a.jpg?itok=m6x23Go0"
-                      alt=""
-                      className=""
-                      style={{ width: '100%' }}
-                    />
+                  <div className="row">
+                    <div className="col-md-9">
+                      <div className="detail__body__img">
+                        <Carousel fade="true">
+                          <Carousel.Item>
+                            <img
+                              src={Gambar}
+                              alt=""
+                              className=""
+                              style={{ height: '410px' }}
+                            />
+                          </Carousel.Item>
+                          <Carousel.Item>
+                            <img
+                              src={Gambar2}
+                              alt=""
+                              className=""
+                              style={{ height: '410px' }}
+                            />
+                          </Carousel.Item>
+                        </Carousel>
+                      </div>
+                    </div>
+                    <div className="col-3">triggernya</div>
                   </div>
                 </div>
+
                 <div className="col-md-4">
                   <div className="detail__product">
                     <p>
