@@ -6,7 +6,8 @@ import {
   SET_DATA_BRAND,
   SET_DATA_MODEL,
   SET_DATA_TYPE,
-  SET_LOADER_MINI
+  SET_LOADER_MINI,
+  SET_DATA_SEARCH
 } from '../constants/index';
 
 const INIT_STATE = {
@@ -48,7 +49,14 @@ const INIT_STATE = {
     brand: '',
     model: '',
     type: ''
-  }
+  },
+  dataSearch: [
+    { image: '', name: '', price: '' },
+    { image: '', name: '', price: '' },
+    { image: '', name: '', price: '' },
+    { image: '', name: '', price: '' },
+    { image: '', name: '', price: '' }
+  ]
 };
 
 export default (state = INIT_STATE, action) => {
@@ -102,6 +110,12 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         dataType: action.payload
+      };
+    }
+    case SET_DATA_SEARCH: {
+      return {
+        ...state,
+        dataSearch: action.payload
       };
     }
     default:

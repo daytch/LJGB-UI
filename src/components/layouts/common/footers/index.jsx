@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container footer__inner">
         <div className="row">
           <div className="col-lg-9">
-            <div className="footer__desc">
+            {/* <div className="footer__desc">
               <div>
                 <img
                   src="https://www.rajamobil.com/themes/rmperjuangan/images/logo/logo-footer-new.svg"
@@ -22,7 +22,7 @@ const Footer = () => {
                 berkaitan dengan bisnis mobil, seperti perhitungan simulasi
                 kredit dan asuransi, serta fitur lainnya.
               </p>
-            </div>
+            </div> */}
           </div>
           <div className="col-lg-3">
             <div className="socmed">

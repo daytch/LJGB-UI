@@ -39,7 +39,8 @@ export default class CustomSelect extends Component {
       form,
       mode,
       placeholder,
-      allowClear
+      allowClear,
+      filterOption
     } = this.props;
     return (
       <Select

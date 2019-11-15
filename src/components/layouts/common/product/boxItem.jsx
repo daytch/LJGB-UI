@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 class BoxItem extends Component {
   numberWithCommas(x) {
     let str = x.toString();
-    if (str.length === 9 || str.length === 8) {
-      str = str.substring(0, str.length - 6);
-      return str + ' JT';
-    } else if (str.length >= 10) {
-      str = str.substring(0, str.length - 9);
-      return str + ' M';
-    } else {
-      return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
+    // if (str.length === 9 || str.length === 8) {
+    str = str.substring(0, str.length - 6);
+    str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return str + ' JT';
+    // } else if (str.length >= 10) {
+    //   str = str.substring(0, str.length - 9);
+    //   return str + ' M';
+    // } else {
+    //   return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    // }
   }
 
   render() {

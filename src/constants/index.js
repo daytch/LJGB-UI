@@ -17,3 +17,5 @@ export const SET_DATA_MODEL = 'SET_DATA_MODEL';
 export const GET_DATA_MODEL = 'GET_DATA_MODEL';
 export const SET_DATA_TYPE = 'SET_DATA_TYPE';
 export const GET_DATA_TYPE = 'GET_DATA_TYPE';
+export const GET_DATA_SEARCH = 'GET_DATA_SEARCH';
+export const SET_DATA_SEARCH = 'SET_DATA_SEARCH';

@@ -21,7 +21,7 @@ import 'react-block-ui/style.css';
 import Product from '../../components/layouts/common/product';
 import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfo, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 const { Option } = Select;
 
@@ -34,6 +34,11 @@ class Home extends Component {
   }
 
   componentWillMount() {
+    localStorage.removeItem('city');
+    localStorage.removeItem('brand');
+    localStorage.removeItem('model');
+    localStorage.removeItem('type');
+
     this.props.getDataHome();
     this.props.getDataKota();
 
@@ -59,6 +64,21 @@ class Home extends Component {
     }
   };
 
+  setVar(data) {
+    if (data.city !== '') {
+      localStorage.setItem('city', data.city);
+    }
+    if (data.brand !== '') {
+      localStorage.setItem('brand', data.brand);
+    }
+    if (data.model !== '') {
+      localStorage.setItem('model', data.model);
+    }
+    if (data.type !== '') {
+      localStorage.setItem('type', data.type);
+    }
+  }
+
   render() {
     const {
       home,
@@ -67,6 +87,8 @@ class Home extends Component {
       getDataModel,
       getDataType
     } = this.props;
+
+    let form = 'search';
     return (
       <BlockUi
         tag="div"
@@ -85,26 +107,6 @@ class Home extends Component {
                       className=""
                     />
                   </div>
-                  <div className="slider__caption">
-                    <div className="container">
-                      <div className="txt1">
-                        <span>FIND YOUR DREAM CAR</span>
-                      </div>
-                      <div className="txt2">CAR M5 GRAN TURISMO</div>
-                      <div className="txt3">MODEL 2017</div>
-                      <div className="txt3">
-                        <span>$64,000</span>
-                      </div>
-                      <div className="txt3 color-green">
-                        <Link>SEE DETAILS</Link>
-                      </div>
-                      {/* <div className="link1">
-                      <a href="details.html" className="slider__link">
-                        <span>SEE DETAILS</span>
-                      </a>
-                    </div> */}
-                    </div>
-                  </div>
                 </div>
               </Carousel.Item>
               <Carousel.Item>
@@ -116,27 +118,6 @@ class Home extends Component {
                       className=""
                     />
                   </div>
-                  <div className="slider__caption">
-                    <div className="container">
-                      <div className="txt1">
-                        <span>FIND YOUR DREAM CAR</span>
-                      </div>
-                      <div className="txt2">CAR M7 GRAN TURISMO</div>
-                      <div className="txt3">MODEL 2019</div>
-                      <div className="txt3">
-                        <span>$90,000</span>
-                      </div>
-                      <div className="txt3 color-green">
-                        <Link>SEE DETAILS</Link>
-                      </div>
-                      {/* <div className="link1">
-                      <a href="details.html" className="slider__link"></a>
-                      <Link className="slider__link">
-                        <span>SEE DETAILS</span>
-                      </Link>
-                    </div> */}
-                    </div>
-                  </div>
                 </div>
               </Carousel.Item>
             </Carousel>
@@ -147,15 +128,17 @@ class Home extends Component {
                   <div className="row">
                     <div className="col-6 col-md">
                       <span className="search__label">Wilayah</span>
-                      <Selected
+                      <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="Select Wilayah"
+                        optionFilterProp="children"
                         value={home.search.city}
-                        placeholder="Select City"
-                        data={home.dataKota}
-                        form="search"
-                        name="city"
-                        onChange={(form, name, event) => {
+                        onChange={event => {
+                          let name = 'city';
                           let nameKota;
                           home.dataKota.map((x, index) => {
+                            let name = 'brand';
                             if (x.id == event) {
                               nameKota = x.text;
                             }
@@ -164,105 +147,127 @@ class Home extends Component {
                           handleChange(form, 'cityText', nameKota);
                           getDataBrand(form, name, event);
                         }}
-                      />
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        {(home.dataKota !== undefined ? home.dataKota : []).map(
+                          (x, index) => {
+                            return (
+                              <Option key={index} value={x.id}>
+                                {x.text}
+                              </Option>
+                            );
+                          }
+                        )}
+                      </Select>
                     </div>
 
                     <div className="col-6 col-md">
-                      <span className="search__label">Select Brand</span>
-                      <Selected
-                        value={home.search.brand}
+                      <span className="search__label">Brand</span>
+                      <Select
+                        showSearch
+                        style={{ width: 200 }}
                         placeholder="Select Brand"
-                        data={home.dataBrand}
-                        form="search"
-                        name="brand"
-                        onChange={(form, name, event) => {
+                        optionFilterProp="children"
+                        value={home.search.brand}
+                        onChange={event => {
+                          let name = 'brand';
                           handleChange(form, name, event);
                           getDataModel(form, name, event);
                         }}
-                      />
-                      {/* <Select
-                    <span className="search__label">Merk Mobil</span>
-                    <Select
-                      showSearch
-                      style={{ width: 200 }}
-                      placeholder="Select brand"
-                      optionFilterProp="children"
-                      // onChange={onChange}
-                      filterOption={(input, option) =>
-                        option.props.children
-                          .toLowerCase()
-                          .indexOf(input.toLowerCase()) >= 0
-                      }
-                    >
-                      <Option value="1">Brand 1</Option>
-                      <Option value="2">Brand 2</Option>
-                      <Option value="3">Brand 3</Option>
-                    </Select> */}
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        {(home.dataBrand !== undefined
+                          ? home.dataBrand
+                          : []
+                        ).map((x, index) => {
+                          return (
+                            <Option key={index} value={x.id}>
+                              {x.text}
+                            </Option>
+                          );
+                        })}
+                      </Select>
                     </div>
 
                     <div className="col-6 col-md">
-                      <span className="search__label">Model Mobil</span>
-                      <Selected
-                        value={home.search.model}
+                      <span className="search__label">Model</span>
+                      <Select
+                        showSearch
+                        style={{ width: 200 }}
                         placeholder="Select Model"
-                        data={home.dataModel}
-                        form="search"
-                        name="model"
-                        onChange={(form, name, event) => {
+                        optionFilterProp="children"
+                        value={home.search.model}
+                        onChange={event => {
+                          let name = 'model';
                           handleChange(form, name, event);
                           getDataType(form, name, event);
                         }}
-                      />
-                      {/* <Select
-                      showSearch
-                      style={{ width: 200 }}
-                      placeholder="Select model"
-                      optionFilterProp="children"
-                      // onChange={onChange}
-                      filterOption={(input, option) =>
-                        option.props.children
-                          .toLowerCase()
-                          .indexOf(input.toLowerCase()) >= 0
-                      }
-                    >
-                      <Option value="1">Model 1</Option>
-                      <Option value="2">Model 2</Option>
-                      <Option value="3">Model 3</Option>
-                    </Select> */}
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        {(home.dataModel !== undefined
+                          ? home.dataModel
+                          : []
+                        ).map((x, index) => {
+                          return (
+                            <Option key={index} value={x.id}>
+                              {x.text}
+                            </Option>
+                          );
+                        })}
+                      </Select>
                     </div>
 
                     <div className="col-6 col-md">
-                      <span className="search__label">Tipe mobil</span>
-                      <Selected
+                      <span className="search__label">Tipe</span>
+                      <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="Select Tipe"
+                        optionFilterProp="children"
                         value={home.search.type}
-                        placeholder="Select Type"
-                        data={home.dataType}
-                        form="search"
-                        name="type"
-                        onChange={(form, name, event) => {
+                        onChange={event => {
+                          let name = 'type';
                           handleChange(form, name, event);
                         }}
-                      />
-                      {/* <Select
-                      showSearch
-                      style={{ width: 200 }}
-                      placeholder="Select type"
-                      optionFilterProp="children"
-                      // onChange={onChange}
-                      filterOption={(input, option) =>
-                        option.props.children
-                          .toLowerCase()
-                          .indexOf(input.toLowerCase()) >= 0
-                      }
-                    >
-                      <Option value="1">Type 1</Option>
-                      <Option value="2">Type 2</Option>
-                      <Option value="3">Type 3</Option>
-                    </Select> */}
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        {(home.dataType !== undefined ? home.dataType : []).map(
+                          (x, index) => {
+                            return (
+                              <Option key={index} value={x.id}>
+                                {x.text}
+                              </Option>
+                            );
+                          }
+                        )}
+                      </Select>
                     </div>
                     <div className="col-md-12 col-md">
                       <div className="btn-center" style={{ marginTop: '15px' }}>
-                        <button className="btn btn-success">Search</button>
+                        <Link to="/search">
+                          <button
+                            className="btn btn-success"
+                            onClick={this.setVar.bind(this, home.search)}
+                          >
+                            Search
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -345,8 +350,9 @@ class Home extends Component {
                     </div>
                     <div className="pilihLjgb__item__caption">
                       <p>
-                        RajaMobil.com memiliki 34 merk mobil di Indonesia. 500+
-                        Dealer memiliki promo dan harga bersaing.
+                        Lojualguebeli.com Pertama di indonesia yang menawarkan
+                        feature BID & Ask. Dengan > 7000 dealer dari berbagai
+                        brand.
                       </p>
                     </div>
                   </div>
@@ -360,10 +366,9 @@ class Home extends Component {
                     </div>
                     <div className="pilihLjgb__item__caption">
                       <p>
-                        5000+ Wiraniaga yang memberikan promo mobil terbaru
-                        setiap hari. Semua sales resmi dari authorized dealer
-                        siap melayani Anda di mana saja. Minta penawaran,
-                        negosiasi harga, hingga test drive di rumah.
+                        7000+ Wiraniaga yang siap membantu melayani pelanggan.
+                        Semua sales resmi dari authorized dealer dengan didukung
+                        sistem yang terintegrasi
                       </p>
                     </div>
                   </div>
@@ -377,8 +382,7 @@ class Home extends Component {
                     </div>
                     <div className="pilihLjgb__item__caption">
                       <p>
-                        Semua authorized dealer yang akan menghubungi Anda. Anda
-                        bisa pesan mobil dari mana saja.
+                        Kemudahan untuk mendapatkan harga terbaik tanpa ribet
                       </p>
                     </div>
                   </div>

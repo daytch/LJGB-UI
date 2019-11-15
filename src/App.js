@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Aplication from './components';
-import { Home, Login, PageNotFound, Logout } from './routes';
+import { Home, Login, PageNotFound, Logout, Search } from './routes';
 import Detail from './routes/detail';
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
           <Route exact path="/logout" component={Logout} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/detail" component={Detail} />
+          <Route exact path="/search" component={Search} />
           <Route path="*" component={PageNotFound} />
         </Switch>
         {/* </Container> */}

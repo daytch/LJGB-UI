@@ -4,7 +4,8 @@ import {
   HANDLE_CHANGE_HOME,
   GET_DATA_BRAND,
   GET_DATA_MODEL,
-  GET_DATA_TYPE
+  GET_DATA_TYPE,
+  GET_DATA_SEARCH
 } from '../constants/index';
 
 export function getDataHome(property, index, value) {
@@ -44,11 +45,19 @@ export function getDataType(property, event, value) {
   };
 }
 
+export function getSearch(property, event, value) {
+  return {
+    type: GET_DATA_SEARCH,
+    value
+  };
+}
+
 export const actions = {
   getDataHome,
   getDataKota,
   handleChange,
   getDataBrand,
   getDataModel,
-  getDataType
+  getDataType,
+  getSearch
 };

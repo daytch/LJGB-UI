@@ -17,7 +17,9 @@ import {
   SET_DATA_MODEL,
   GET_DATA_TYPE,
   SET_DATA_TYPE,
-  SET_LOADER_MINI
+  SET_LOADER_MINI,
+  GET_DATA_SEARCH,
+  SET_DATA_SEARCH
 } from '../constants/index';
 
 const getHome = state => state.homeReducer;
@@ -25,8 +27,8 @@ const getHome = state => state.homeReducer;
 export function* getDataHome(action) {
   try {
     const home = yield select(getHome);
-    let body =
-      home.search.cityText === '' ? 'Jakarta Utara' : home.search.cityText;
+    let body = home.search.cityText;
+    // home.search.cityText === '' ? 'Jakarta (Plat Nomor "B")' : home.search.cityText;
     yield put({ type: SET_LOADER_MINI, payload: true });
     const data = yield call(
       GET,
@@ -140,12 +142,13 @@ export function* getDataModel(action) {
 
 export function* getDataType(action) {
   try {
+    debugger;
     const home = yield select(getHome);
     yield put({ type: SET_LOADER_HOME, payload: true });
     let body = {
       merkID: home.search.brand,
       kotaID: home.search.city,
-      modelID: home.search.model
+      modelBarangID: home.search.model
     };
     const data = yield call(
       POST,
@@ -172,12 +175,51 @@ export function* getDataType(action) {
   }
 }
 
+export function* getDataSearch(action) {
+  try {
+    const home = yield select(getHome);
+    let body = {
+      kotaID: home.search.city == '' ? null : home.search.city,
+      merkID: home.search.brand == '' ? null : home.search.brand,
+      modelBarangID: home.search.model == '' ? null : home.search.model,
+      typeID: home.search.type == '' ? null : home.search.type
+    };
+    yield put({ type: SET_LOADER_MINI, payload: true });
+    const data = yield call(
+      POST,
+      API_DATA + Endpoint.DATA_SEARCH,
+      body,
+      master.getHeader()
+    );
+    if (data.isSuccess) {
+      let dataAll = [];
+      data.sp_GetBarangByHomeParameters.map((x, i) => {
+        dataAll.push({
+          image: x.photopath,
+          name: x.name,
+          price: x.price == undefined ? '' : x.price,
+          id: x.id
+        });
+      });
+      yield put({ type: SET_DATA_SEARCH, payload: dataAll });
+    } else {
+      let message = data.message;
+      warning(message);
+    }
+    yield put({ type: SET_LOADER_MINI, payload: false });
+  } catch (err) {
+    yield put({ type: SET_LOADER_MINI, payload: false });
+    error(err);
+  }
+}
+
 export default function* rootSaga() {
   yield all([
     takeLatest(GET_DATA_HOME, getDataHome),
     takeLatest(GET_DATA_KOTA, getDataKota),
     takeLatest(GET_DATA_BRAND, getDataBrand),
     takeLatest(GET_DATA_MODEL, getDataModel),
+    takeLatest(GET_DATA_SEARCH, getDataSearch),
     takeLatest(GET_DATA_TYPE, getDataType)
   ]);
 }
