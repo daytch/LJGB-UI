@@ -1,3 +1,9 @@
+%bidText {
+  display: block;
+  font-weight: 600;
+  line-height: 1;
+  text-align: left;
+}
 .detail {
   &__header {
     font-weight: 700;
@@ -47,7 +53,7 @@
     height: 200px;
     overflow: hidden;
     position: relative;
-    transition: height 0.5s ease;
+    transition: all 0.5s ease;
     padding-bottom: 20px;
     &__more {
       position: absolute;
@@ -62,15 +68,72 @@
     }
     &--show {
       height: auto;
+      transition: all 0.5s ease;
     }
   }
   &__market {
     display: flex;
+    @media (max-width: 767px) {
+      position: fixed;
+      top: 54px;
+      background: #fff;
+      left: 0;
+      padding: 15px;
+      z-index: 1;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      width: 100%;
+    }
   }
   &__select {
-    width: 100px;
+    width: 70px;
     .ant-select-dropdown {
       width: 280px;
+    }
+    .ant-select-selection--single {
+      height: 59px;
+    }
+    .ant-select-selection-selected-value {
+      color: #444;
+      position: relative;
+      top: 50%;
+      transform: translateY(50%);
+    }
+    .ant-select-selection__placeholder,
+    .ant-select-search__field__placeholder {
+      transform: translateY(50%);
+    }
+  }
+}
+.bid {
+  margin: 0 0 20px 20px;
+  @media (max-width: 767px) {
+    margin: 0 0 0 10px;
+  }
+  .btn {
+    display: flex;
+    font-family: proxima-nova, sans-serif;
+  }
+  &__text {
+    padding: 3px 0;
+
+    &.left {
+      width: 83px;
+      padding-right: 10px;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    &.right {
+      width: 50px;
+      padding-left: 10px;
+    }
+    &--big {
+      @extend %bidText;
+      font-size: 1.1em;
+    }
+    &--small {
+      @extend %bidText;
+      font-size: 0.8em;
+      padding-top: 8px;
+      color: rgba(255, 255, 255, 0.7);
     }
   }
 }

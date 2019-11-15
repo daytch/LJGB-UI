@@ -94,8 +94,9 @@
 
     &-big {
       position: relative;
-      font-size: 1.6em;
-      font-weight: 700;
+      font-size: 1.4em;
+      font-weight: 600;
+      cursor: default;
       // text-transform: uppercase;
       // letter-spacing: 2px;
       @media (max-width: 767px) {
@@ -113,6 +114,11 @@
     @media (max-width: 767px) {
       font-size: 1em;
     }
+  }
+
+  &__info {
+    margin-left: 5px;
+    width: 0.6em !important;
   }
 
   .see__all {

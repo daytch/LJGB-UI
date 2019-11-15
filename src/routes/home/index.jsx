@@ -4,22 +4,24 @@ import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { actions } from '../../actions/homeAction';
-import { Select } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCoffee,
-  faCar,
-  faCaretRight,
-  faArrowRight,
-  faArrowCircleRight,
-  faCaretSquareRight
-} from '@fortawesome/free-solid-svg-icons';
+import { Select, Tooltip } from 'antd';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import {
+//   faCoffee,
+//   faCar,
+//   faCaretRight,
+//   faArrowRight,
+//   faArrowCircleRight,
+//   faCaretSquareRight
+// } from '@fortawesome/free-solid-svg-icons';
 import Selected from './../../components/globalComponents/customSelect';
 import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
 
 import Product from '../../components/layouts/common/product';
 import $ from 'jquery';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfo, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 const { Option } = Select;
 
@@ -51,6 +53,9 @@ class Home extends Component {
     if (this.state.scrollY > 150) {
       $('.navbar').removeClass('navbar-dark');
       $('.navbar').addClass('bg-cl-white');
+    } else {
+      $('.navbar').addClass('navbar-dark');
+      $('.navbar').removeClass('bg-cl-white');
     }
   };
 
@@ -141,9 +146,7 @@ class Home extends Component {
                 <div className="select__wrapper">
                   <div className="row">
                     <div className="col-6 col-md">
-                      <span className="search__label">
-                        Cari Berdasarkan Wilayah
-                      </span>
+                      <span className="search__label">Wilayah</span>
                       <Selected
                         value={home.search.city}
                         placeholder="Select City"
@@ -272,7 +275,18 @@ class Home extends Component {
             <div className="container">
               <div className="product">
                 <div className="row__header">
-                  <span className="product__category-big">Lowest Ask</span>
+                  <span className="product__category-big">
+                    <Tooltip
+                      placement="right"
+                      title="Lowest ask are the products listed width the lowest ask"
+                    >
+                      Lowest Ask
+                      <FontAwesomeIcon
+                        icon={faInfoCircle}
+                        className="product__info"
+                      />
+                    </Tooltip>
+                  </span>
                   <Link className="see__all">See all </Link>
                 </div>
                 <Product data={home.dataHome.lowestAsks} title={'Lowest Ask'} />
@@ -280,7 +294,18 @@ class Home extends Component {
 
               <div className="product">
                 <div className="row__header">
-                  <span className="product__category-big">Highest Bid</span>
+                  <span className="product__category-big">
+                    <Tooltip
+                      placement="right"
+                      title="Highest Bid are the products listed width the highest Bid"
+                    >
+                      Highest Bid
+                      <FontAwesomeIcon
+                        icon={faInfoCircle}
+                        className="product__info"
+                      />
+                    </Tooltip>
+                  </span>
                   <Link className="see__all">See all </Link>
                 </div>
                 <Product
@@ -291,7 +316,15 @@ class Home extends Component {
 
               <div className="product">
                 <div className="row__header">
-                  <span className="product__category-big">Other</span>
+                  <span className="product__category-big">
+                    <Tooltip placement="right" title="All products">
+                      Other
+                      <FontAwesomeIcon
+                        icon={faInfoCircle}
+                        className="product__info"
+                      />
+                    </Tooltip>
+                  </span>
                   <Link className="see__all">See all </Link>
                 </div>
                 <Product data={home.dataHome.listNormal} title={'Other'} />

@@ -52,13 +52,14 @@ class Detail extends Component {
                 <div className="detail__select">
                   <Select
                     showSearch
-                    placeholder="Select"
+                    placeholder="All"
                     optionFilterProp="children"
                     filterOption={(input, option) =>
                       option.props.children
                         .toLowerCase()
                         .indexOf(input.toLowerCase()) >= 0
                     }
+                    allowClear="true"
                   >
                     <Option value="jack">
                       <div>select A</div>
@@ -68,7 +69,28 @@ class Detail extends Component {
                   </Select>
                 </div>
                 <div className="bid">
-                  <button>Bid</button>
+                  <button className="btn btn-success">
+                    <div className="bid__text left">
+                      <span className="bid__text--big">Rp.901M</span>
+                      <span className="bid__text--small">Lowest Ask</span>
+                    </div>
+                    <div className="bid__text right">
+                      <span className="bid__text--big">Buy</span>
+                      <span className="bid__text--small">or Bid</span>
+                    </div>
+                  </button>
+                </div>
+                <div className="bid">
+                  <button className="btn btn-danger">
+                    <div className="bid__text left">
+                      <span className="bid__text--big">Rp.895M</span>
+                      <span className="bid__text--small">Highest Bid</span>
+                    </div>
+                    <div className="bid__text right">
+                      <span className="bid__text--big">Sell</span>
+                      <span className="bid__text--small">or Ask</span>
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
