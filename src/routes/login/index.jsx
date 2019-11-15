@@ -7,6 +7,16 @@ import LoginWith from './LoginWith';
 
 import { connect } from 'react-redux';
 import { actions } from '../../actions/loginAction';
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
+
+const responseFacebook = response => {
+  console.log(response);
+};
+
+const responseGoogle = response => {
+  console.log(response);
+};
 
 class Login extends Component {
   constructor(props) {
@@ -92,6 +102,19 @@ class Login extends Component {
               {/* s: Login form */}
               <div className={log.isLoginForm === true ? '' : 'formLoginHide'}>
                 <LoginWith />
+                {/* <GoogleLogin
+                  clientId="206275678690-iia8vnbt1sep36v2tiebqmqs1i5uu4h1.apps.googleusercontent.com"
+                  buttonText="Login"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={'single_host_origin'}
+                />
+                <FacebookLogin
+                  appId="1088597931155576"
+                  autoLoad={true}
+                  fields="name,email,picture"
+                  onClick={responseFacebook}
+                  callback={responseFacebook} /> */}
 
                 <p className="linedText">
                   <span>OR</span>
