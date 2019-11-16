@@ -131,6 +131,12 @@
     padding-right: 15px;
     position: relative;
 
+    &.noArrow {
+      &:before {
+        border: none;
+      }
+    }
+
     &:before {
       content: '';
       width: 8px;

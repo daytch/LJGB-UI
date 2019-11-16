@@ -10,6 +10,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faBars, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import ImageLogo from '../../../../images/ljgb.png';
 
 class Header extends Component {
   constructor(props) {
@@ -44,7 +45,11 @@ class Header extends Component {
               </div>
             ) : (
               <Link to="/" className="">
-                lojualguebeli
+                <img
+                  src={ImageLogo}
+                  alt="lojualguebeli.com"
+                  style={{ height: '30px' }}
+                />
               </Link>
             )}
           </Navbar.Brand>

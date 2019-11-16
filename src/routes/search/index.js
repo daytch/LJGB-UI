@@ -14,6 +14,7 @@ import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import ImageLogo from './../../images/ljgb.png';
+import Banner from '../../components/layouts/common/carousel/banner';
 
 const { Option } = Select;
 
@@ -109,26 +110,7 @@ class Search extends Component {
       >
         <main role="main" style={{ marginTop: '0' }}>
           <div className="slider__top">
-            <Carousel fade="true">
-              <Carousel.Item>
-                <div className="">
-                  <div className="head__image">
-                    <img
-                      src="https://www.kudosprime.com/gt6/images/users/car_87_28880_54c90a2e8a721.jpg"
-                      alt=""
-                      className=""
-                    />
-                  </div>
-                </div>
-              </Carousel.Item>
-              <Carousel.Item>
-                <div className="">
-                  <div className="head__image">
-                    <img src={ImageLogo} alt="" className="testLogo" />
-                  </div>
-                </div>
-              </Carousel.Item>
-            </Carousel>
+            <Banner />
 
             <div className="search">
               <div className="container">
@@ -286,7 +268,7 @@ class Search extends Component {
               <div className="product">
                 <div className="row__header">
                   <span className="product__category-big">Hasil Pencarian</span>
-                  <div className="see__all">Result 100 </div>
+                  <div className="see__all noArrow">Result 100 </div>
                   <Product data={home.dataSearch} title={''} />
                 </div>
               </div>

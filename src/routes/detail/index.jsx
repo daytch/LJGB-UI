@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Select, Modal } from 'antd';
 import { Carousel } from 'react-bootstrap';
 
+import $ from 'jquery';
 import BreadCrumb from '../../components/layouts/common/breadcrumb';
 
 import Gambar from '../../images/car.png';
@@ -21,6 +22,10 @@ class Detail extends Component {
     };
     this.onShowMore = this.onShowMore.bind(this);
     this.showAllAsk = this.showAllAsk.bind(this);
+  }
+  componentWillMount() {
+    $('.navbar').removeClass('navbar-dark');
+    $('.navbar').addClass('bg-cl-white');
   }
   onShowMore() {
     this.setState({
