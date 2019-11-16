@@ -29,7 +29,7 @@
   &__image {
     &__small {
       width: 100%;
-      height: 100px;
+      height: 200px;
       position: relative;
       overflow: hidden;
 
@@ -71,9 +71,9 @@
     padding: 0 10px 10px;
     font-weight: 600;
     text-align: center;
-    // background: #fafafa;
-    background: #444;
-    color: #fff;
+    background: #fafafa;
+    // background: #444;
+    color: black;
 
     p {
       margin: 0;

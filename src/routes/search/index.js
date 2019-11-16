@@ -13,6 +13,7 @@ import Product from '../../components/layouts/common/product';
 import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import ImageLogo from './../../images/ljgb.png';
 
 const { Option } = Select;
 
@@ -123,11 +124,7 @@ class Search extends Component {
               <Carousel.Item>
                 <div className="">
                   <div className="head__image">
-                    <img
-                      src="https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/body-image/public/911-road-3629a.jpg?itok=m6x23Go0"
-                      alt=""
-                      className=""
-                    />
+                    <img src={ImageLogo} alt="" className="testLogo" />
                   </div>
                 </div>
               </Carousel.Item>
