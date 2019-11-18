@@ -17,11 +17,11 @@ import {
 export function* getDataDetail(action) {
   try {
     // yield put({ type: SET_ISLOADING, payload: true });
-    let body = { postId: parseInt(action.property) };
+    let body = parseInt(action.property);
     const data = yield call(
-      POST,
-      API_DATA + Endpoint.DATA_DETAIL,
-      body,
+      GET,
+      API_DATA + Endpoint.DATA_DETAIL + '?Id=' + body,
+      // body,
       master.getHeader()
     );
     if (data.isSuccess) {

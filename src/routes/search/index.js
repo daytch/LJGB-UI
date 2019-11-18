@@ -109,7 +109,6 @@ class Search extends Component {
       getDataType,
       getSearch
     } = this.props;
-    console.log(home);
     let form = 'search';
     return (
       <BlockUi

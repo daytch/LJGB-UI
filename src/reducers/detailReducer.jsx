@@ -6,7 +6,15 @@ import {
 
 const INIT_STATE = {
   isLoading: false,
-  dataDetail: [],
+  dataDetail: {
+    carDetail: {
+      name: '',
+      description: '',
+      highestbid: '',
+      lowestask: '',
+      year: ''
+    }
+  },
   dataAllAsk: [
     {
       id: 1,
