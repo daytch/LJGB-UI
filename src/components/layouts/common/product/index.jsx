@@ -21,6 +21,7 @@ class Product extends Component {
             name={x.name}
             price={x.price}
             title={title}
+            id={x.id}
           />
           {/* </div> */}
         </BlockUi>

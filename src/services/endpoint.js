@@ -11,7 +11,9 @@ const Endpoint = {
   DATA_TYPE_BY_ID_BRAND: '/TypeBarang/GetTypeByKotaIDMerkIDModelID',
   DATA_ALL_FILTER: '/TypeBarang/GetTypeByKotaIDMerkIDModelID',
   DATA_DETAIL: '/Barang/GetModelWithID',
-  DATA_SEARCH: '/Barang/GetBarangByHomeParameter'
+  DATA_SEARCH: '/Barang/GetBarangByHomeParameter',
+  DATA_ALL_ASK: '/Barang/GetAllAsksById',
+  DATA_POSITION_ASK: '/Barang/GetAskPosition'
 };
 
 export default Endpoint;
