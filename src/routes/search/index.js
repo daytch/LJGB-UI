@@ -5,15 +5,12 @@ import { Carousel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { actions } from '../../actions/homeAction';
 import { Select, Tooltip, Pagination } from 'antd';
-import Selected from './../../components/globalComponents/customSelect';
-import BlockUi from 'react-block-ui';
-import 'react-block-ui/style.css';
-
-import Product from '../../components/layouts/common/product';
-import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import ImageLogo from './../../images/ljgb.png';
+import $ from 'jquery';
+import BlockUi from 'react-block-ui';
+import Selected from './../../components/globalComponents/customSelect';
+import Product from '../../components/layouts/common/product';
 import Banner from '../../components/layouts/common/carousel/banner';
 
 const { Option } = Select;
@@ -118,7 +115,7 @@ class Search extends Component {
         style={{ width: '100%' }}
       >
         <main role="main" style={{ marginTop: '0' }}>
-          <div className="slider__top">
+          <div className="slider__top pageSearch">
             <Banner />
 
             <div className="search">
@@ -277,12 +274,33 @@ class Search extends Component {
           </div>
 
           <div>
-            <div className="container">
+            <div className="container pd-t-30">
               <div className="product">
                 <div className="row__header">
                   <span className="product__category-big">Hasil Pencarian</span>
                   <div className="see__all noArrow">
                     Result {home.dataSearch.length}{' '}
+                  </div>
+                  <div
+                    style={{
+                      float: 'right',
+                      width: '200px',
+                      marginRight: '20px'
+                    }}
+                  >
+                    <Select defaultValue="1" style={{ width: 120 }}>
+                      <Option value="1">Featured</Option>
+                      <Option value="2">Most Popular</Option>
+                      <Option value="3">New Lowest Asks</Option>
+                      <Option value="3">New Highest Bids</Option>
+                      <Option value="3">Average Sale Price</Option>
+                      <Option value="3">Total Sold</Option>
+                      <Option value="3">Volatility</Option>
+                      <Option value="3">Price Premium</Option>
+                      <Option value="3">Lowest Ask</Option>
+                      <Option value="3">Highest Bid</Option>
+                      <Option value="3">Released Date</Option>
+                    </Select>
                   </div>
                   <Product data={home.dataSearch} title={''} />
                 </div>
