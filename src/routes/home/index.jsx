@@ -246,12 +246,13 @@ class Home extends Component {
           </div>
 
           <div>
-            <div className="container">
+            <div className="container pd-t-30">
               <div className="product">
                 <div className="row__header">
                   <span className="product__category-big">
                     <Tooltip
                       placement="right"
+                      autoAdjustOverflow="true"
                       title="Lowest ask are the products listed width the lowest ask"
                     >
                       Lowest Ask
@@ -271,6 +272,7 @@ class Home extends Component {
                   <span className="product__category-big">
                     <Tooltip
                       placement="right"
+                      autoAdjustOverflow="true"
                       title="Highest Bid are the products listed width the highest Bid"
                     >
                       Highest Bid
@@ -291,7 +293,11 @@ class Home extends Component {
               <div className="product">
                 <div className="row__header">
                   <span className="product__category-big">
-                    <Tooltip placement="right" title="All products">
+                    <Tooltip
+                      placement="right"
+                      autoAdjustOverflow="true"
+                      title="All products"
+                    >
                       Other
                       <FontAwesomeIcon
                         icon={faInfoCircle}
