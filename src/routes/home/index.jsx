@@ -6,7 +6,6 @@ import { actions } from '../../actions/homeAction';
 import { Select, Tooltip } from 'antd';
 import Selected from './../../components/globalComponents/customSelect';
 import BlockUi from 'react-block-ui';
-import 'react-block-ui/style.css';
 
 import Product from '../../components/layouts/common/product';
 import $ from 'jquery';

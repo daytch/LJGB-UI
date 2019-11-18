@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Select, Modal, Table } from 'antd';
+import { Select, Modal, Table, Icon } from 'antd';
 import { Carousel } from 'react-bootstrap';
 
 import $ from 'jquery';
+import Slider from 'react-slick';
 import BreadCrumb from '../../components/layouts/common/breadcrumb';
 
+import Img1 from './../../images/color/black.jpeg';
+import Img2 from './../../images/color/black2.jpeg';
+import Img3 from './../../images/color/red.jpeg';
+import Img4 from './../../images/color/silver.jpeg';
+import Img5 from './../../images/color/white.jpeg';
+import Img6 from './../../images/color/yellow.jpeg';
 import Gambar from '../../images/car.png';
 import Gambar2 from '../../images/images.jpg';
 import { connect } from 'react-redux';
 import { actions } from '../../actions/detailAction';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faChevronRight,
+  faChevronUp,
+  faChevronDown
+} from '@fortawesome/free-solid-svg-icons';
 
 const { Option } = Select;
 
@@ -21,7 +34,9 @@ class Detail extends Component {
       allAsk: false,
       allBid: false,
       allBid: false,
-      visibleAsk: false
+      visibleAsk: false,
+      nav1: null,
+      nav2: null
     };
     this.onShowMore = this.onShowMore.bind(this);
     this.showAllAsk = this.showAllAsk.bind(this);
@@ -32,6 +47,12 @@ class Detail extends Component {
 
     let getData = this.props.location.search.replace('?id=', '');
     this.props.getDataDetail(getData);
+  }
+  componentDidMount() {
+    this.setState({
+      nav1: this.slider1,
+      nav2: this.slider2
+    });
   }
   onShowMore() {
     this.setState({
@@ -76,13 +97,23 @@ class Detail extends Component {
   }
 
   render() {
-    var settings = {
-      dots: true,
+    const settings = {
+      dots: false,
+      arrow: true,
       infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      vertical: true,
+      verticalSwiping: true,
+      // nextArrow: <Icon type="caret-up" />,
+      // prevArrow: <Icon type="caret-down" />,
+      beforeChange: function(currentSlide, nextSlide) {
+        console.log('before change', currentSlide, nextSlide);
+      },
+      afterChange: function(currentSlide) {
+        console.log('after change', currentSlide);
+      }
     };
+
     const columns = [
       {
         title: 'Nama',
@@ -100,6 +131,7 @@ class Detail extends Component {
         ke: 'quantity'
       }
     ];
+
     const { detail } = this.props;
     return (
       <main role="main">
@@ -190,27 +222,86 @@ class Detail extends Component {
                   <div className="row">
                     <div className="col-md-9">
                       <div className="detail__body__img">
-                        <Carousel fade="true">
-                          <Carousel.Item>
-                            <img
-                              src={Gambar}
-                              alt=""
-                              className=""
-                              style={{ height: '410px' }}
-                            />
-                          </Carousel.Item>
-                          <Carousel.Item>
-                            <img
-                              src={Gambar2}
-                              alt=""
-                              className=""
-                              style={{ height: '410px' }}
-                            />
-                          </Carousel.Item>
-                        </Carousel>
+                        <Slider
+                          asNavFor={this.state.nav2}
+                          ref={slider => (this.slider1 = slider)}
+                          fade={true}
+                        >
+                          <div>
+                            <div className="detail__imgSlide--big">
+                              <img src={Img1} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--big">
+                              <img src={Img2} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--big">
+                              <img src={Img3} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--big">
+                              <img src={Img4} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--big">
+                              <img src={Img5} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--big">
+                              <img src={Img6} alt="" />
+                            </div>
+                          </div>
+                        </Slider>
                       </div>
                     </div>
-                    <div className="col-3">triggernya</div>
+                    <div className="col-3">
+                      <Slider
+                        asNavFor={this.state.nav1}
+                        ref={slider => (this.slider2 = slider)}
+                        slidesToShow={3}
+                        swipeToSlide={true}
+                        focusOnSelect={true}
+                        className="slideTrigger"
+                        {...settings}
+                      >
+                        <div>
+                          <div className="detail__imgSlide--small">
+                            <img src={Img1} alt="" />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="detail__imgSlide--small">
+                            <img src={Img2} alt="" />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="detail__imgSlide--small">
+                            <img src={Img3} alt="" />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="detail__imgSlide--small">
+                            <img src={Img4} alt="" />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="detail__imgSlide--small">
+                            <img src={Img5} alt="" />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="detail__imgSlide--small">
+                            <img src={Img6} alt="" />
+                          </div>
+                        </div>
+                      </Slider>
+                    </div>
                   </div>
                 </div>
 
@@ -356,6 +447,28 @@ class Detail extends Component {
                     </p>
                   </div>
                 </div>
+
+                {/* <div className="col-md-12">
+                  <div className="product">
+                    <div className="row__header">
+                      <span className="product__category-big">
+                        <Tooltip
+                          placement="right"
+                          autoAdjustOverflow="true"
+                          title="Lowest ask are the products listed width the lowest ask"
+                        >
+                          Related Product
+                          <FontAwesomeIcon
+                            icon={faInfoCircle}
+                            className="product__info"
+                          />
+                        </Tooltip>
+                      </span>
+                      <Link className="see__all">See all </Link>
+                    </div>
+                    <Product data={home.dataHome.lowestAsks} title={'Lowest Ask'} />
+                  </div>
+                </div> */}
               </div>
             </div>
           </div>
