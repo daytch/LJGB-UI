@@ -84,6 +84,16 @@ class Detail extends Component {
       visibleAsk: false
     });
   };
+
+  numberWithCommas(x) {
+    let str = x === null || x === '' ? '' : x.toString();
+    if (str !== '' && str.length >= 7) {
+      str = str.substring(0, str.length - 6);
+      str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      return str + ' JT';
+    }
+  }
+
   render() {
     const settings = {
       dots: false,
@@ -116,7 +126,7 @@ class Detail extends Component {
     ];
 
     const { detail } = this.props;
-
+    console.log(detail);
     return (
       <main role="main">
         <div className="container">
@@ -126,7 +136,7 @@ class Detail extends Component {
             <div className="detail__header">
               <div className="row">
                 <div className="col-md-12">
-                  <h1>Car M5 Grand Turismo</h1>
+                  <h1>{detail.dataDetail.carDetail.name}</h1>
                   <div className="detail__header__small">
                     <div className="detail__header__item">
                       <p>
@@ -150,7 +160,11 @@ class Detail extends Component {
                 <div className="bid left">
                   <button className="btn btn-success">
                     <div className="bid__text left">
-                      <span className="bid__text--big">Rp.901M</span>
+                      <span className="bid__text--big">
+                        {this.numberWithCommas(
+                          detail.dataDetail.carDetail.lowestask
+                        )}
+                      </span>
                       <span className="bid__text--small">Lowest Ask</span>
                     </div>
                     <div className="bid__text right">
@@ -171,7 +185,11 @@ class Detail extends Component {
                 <div className="bid right">
                   <button className="btn btn-danger">
                     <div className="bid__text left">
-                      <span className="bid__text--big">Rp.895M</span>
+                      <span className="bid__text--big">
+                        {this.numberWithCommas(
+                          detail.dataDetail.carDetail.highestbid
+                        )}
+                      </span>
                       <span className="bid__text--small">Highest Bid</span>
                     </div>
                     <div className="bid__text right">
@@ -311,6 +329,7 @@ class Detail extends Component {
                     }
                   >
                     <p>
+                      {/* {detail.dataDetail.carDetail.description} */}
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Quisque a accumsan arcu. Proin eu efficitur risus.
                       Maecenas finibus porttitor orci sit amet mollis. Duis
