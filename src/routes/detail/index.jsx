@@ -39,6 +39,8 @@ class Detail extends Component {
     });
   }
   showAllAsk = () => {
+    let getData = this.props.location.search.replace('?id=', '');
+    this.props.GetAllAsk(getData);
     this.setState({
       visibleAsk: true
     });
@@ -83,22 +85,26 @@ class Detail extends Component {
     };
     const columns = [
       {
-        title: 'Rank',
-        dataIndex: 'rank',
-        key: 'rank'
+        title: 'Nama',
+        dataIndex: 'name',
+        key: 'name'
       },
       {
         title: 'Price',
         dataIndex: 'price',
         ke: 'price'
+      },
+      {
+        title: 'Quantity',
+        dataIndex: 'quantity',
+        ke: 'quantity'
       }
     ];
     const { detail } = this.props;
-    console.log(detail);
     return (
       <main role="main">
         <div className="container">
-          <BreadCrumb />
+          <BreadCrumb breadName={detail.dataDetail.carDetail.name} />
 
           <div className="detail">
             <div className="detail__header">
@@ -113,7 +119,7 @@ class Detail extends Component {
                     </div>
                     <div className="detail__header__item">
                       <p>
-                        Lorem ipsum: <span>dolor sit</span>
+                        Year: <span>{detail.dataDetail.carDetail.year}</span>
                       </p>
                     </div>
                     <div className="detail__header__item">
@@ -172,9 +178,7 @@ class Detail extends Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                   >
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+                    <Table dataSource={detail.dataAllBid} columns={columns} />
                   </Modal>
                 </div>
               </div>
