@@ -142,7 +142,6 @@ export function* getDataModel(action) {
 
 export function* getDataType(action) {
   try {
-    debugger;
     const home = yield select(getHome);
     yield put({ type: SET_LOADER_HOME, payload: true });
     let body = {
@@ -182,7 +181,9 @@ export function* getDataSearch(action) {
       kotaID: home.search.city == '' ? null : home.search.city,
       merkID: home.search.brand == '' ? null : home.search.brand,
       modelBarangID: home.search.model == '' ? null : home.search.model,
-      typeID: home.search.type == '' ? null : home.search.type
+      typeID: home.search.type == '' ? null : home.search.type,
+      start: home.search.dataNumber,
+      limit: home.search.pageSize
     };
     yield put({ type: SET_LOADER_MINI, payload: true });
     const data = yield call(

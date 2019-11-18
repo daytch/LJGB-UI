@@ -17,10 +17,10 @@ class BoxItem extends Component {
   }
 
   render() {
-    const { image, price, name, title } = this.props;
+    const { image, price, name, title, id } = this.props;
     return (
       <div>
-        <Link to="/detail">
+        <Link to={'/detail?id=' + id}>
           <div className="product__item">
             <div className="product__image__small">
               <img src={image} alt="" />

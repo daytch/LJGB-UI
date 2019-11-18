@@ -6,7 +6,19 @@ import {
 
 const INIT_STATE = {
   isLoading: false,
-  dataDetail: []
+  dataDetail: [],
+  dataAllAsk: [
+    {
+      id: 1,
+      rank: 1,
+      price: 100
+    },
+    {
+      id: 2,
+      rank: 2,
+      price: 200
+    }
+  ]
 };
 
 export default (state = INIT_STATE, action) => {

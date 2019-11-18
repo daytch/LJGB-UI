@@ -48,7 +48,9 @@ const INIT_STATE = {
     cityText: '',
     brand: '',
     model: '',
-    type: ''
+    type: '',
+    dataNumber: 1,
+    pageSize: 10
   },
   dataSearch: [
     { image: '', name: '', price: '' },

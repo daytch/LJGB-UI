@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { actions } from '../../actions/homeAction';
-import { Select, Tooltip } from 'antd';
+import { Select, Tooltip, Pagination } from 'antd';
 import Selected from './../../components/globalComponents/customSelect';
 import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
@@ -92,13 +92,22 @@ class Search extends Component {
     }
   };
 
+  changePage(pagination, filters, sorter) {
+    console.log(pagination, filters, sorter);
+    const { handleChange, getSearch } = this.props;
+    handleChange('search', 'dataNumber', pagination * filters + 1);
+    handleChange('search', 'pageSize', filters);
+    getSearch();
+  }
+
   render() {
     const {
       home,
       handleChange,
       getDataBrand,
       getDataModel,
-      getDataType
+      getDataType,
+      getSearch
     } = this.props;
     console.log(home);
     let form = 'search';
@@ -251,7 +260,11 @@ class Search extends Component {
                       <div className="btn-center" style={{ marginTop: '15px' }}>
                         <button
                           className="btn btn-success"
-                          onClick={this.props.getSearch.bind(this)}
+                          onClick={e => {
+                            handleChange('search', 'dataNumber', 1);
+                            handleChange('search', 'pageSize', 10);
+                            getSearch();
+                          }}
                         >
                           Search
                         </button>
@@ -268,9 +281,16 @@ class Search extends Component {
               <div className="product">
                 <div className="row__header">
                   <span className="product__category-big">Hasil Pencarian</span>
-                  <div className="see__all noArrow">Result 100 </div>
+                  <div className="see__all noArrow">
+                    Result {home.dataSearch.length}{' '}
+                  </div>
                   <Product data={home.dataSearch} title={''} />
                 </div>
+                <Pagination
+                  defaultCurrent={1}
+                  total={home.dataSearch.length}
+                  onChange={this.changePage.bind(this)}
+                />
               </div>
             </div>
           </div>

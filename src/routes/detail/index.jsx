@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Select, Modal } from 'antd';
+import { Select, Modal, Table } from 'antd';
 import { Carousel } from 'react-bootstrap';
 
 import $ from 'jquery';
@@ -8,6 +8,8 @@ import BreadCrumb from '../../components/layouts/common/breadcrumb';
 
 import Gambar from '../../images/car.png';
 import Gambar2 from '../../images/images.jpg';
+import { connect } from 'react-redux';
+import { actions } from '../../actions/detailAction';
 
 const { Option } = Select;
 
@@ -18,7 +20,8 @@ class Detail extends Component {
       showMore: false,
       allAsk: false,
       allBid: false,
-      allBid: false
+      allBid: false,
+      visibleAsk: false
     };
     this.onShowMore = this.onShowMore.bind(this);
     this.showAllAsk = this.showAllAsk.bind(this);
@@ -26,6 +29,9 @@ class Detail extends Component {
   componentWillMount() {
     $('.navbar').removeClass('navbar-dark');
     $('.navbar').addClass('bg-cl-white');
+
+    let getData = this.props.location.search.replace('?id=', '');
+    this.props.getDataDetail(getData);
   }
   onShowMore() {
     this.setState({
@@ -34,7 +40,7 @@ class Detail extends Component {
   }
   showAllAsk = () => {
     this.setState({
-      visible: true
+      visibleAsk: true
     });
   };
   showAllBid = () => {
@@ -45,14 +51,16 @@ class Detail extends Component {
   handleOk = e => {
     console.log(e);
     this.setState({
-      visible: false
+      visible: false,
+      visibleAsk: false
     });
   };
 
   handleCancel = e => {
     console.log(e);
     this.setState({
-      visible: false
+      visible: false,
+      visibleAsk: false
     });
   };
   render() {
@@ -63,7 +71,19 @@ class Detail extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
-
+    const columns = [
+      {
+        title: 'Rank',
+        dataIndex: 'rank',
+        key: 'rank'
+      },
+      {
+        title: 'Price',
+        dataIndex: 'price',
+        ke: 'price'
+      }
+    ];
+    const { detail } = this.props;
     return (
       <main role="main">
         <div className="container">
@@ -105,16 +125,14 @@ class Detail extends Component {
                       <span className="bid__text--small">or Bid</span>
                     </div>
                   </button>
-                  <span onClick={this.showAllAsk}>View All Asks</span>
+                  <a onClick={this.showAllAsk}>View All Asks</a>
                   <Modal
                     title="All Asks"
-                    visible={this.state.visible}
+                    visible={this.state.visibleAsk}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                   >
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+                    <Table dataSource={detail.dataAllAsk} columns={columns} />
                   </Modal>
                 </div>
                 <div className="bid right">
@@ -128,7 +146,7 @@ class Detail extends Component {
                       <span className="bid__text--small">or Ask</span>
                     </div>
                   </button>
-                  <span onClick={this.showAllBid}>View All Bids</span>
+                  <a onClick={this.showAllBid}>View All Bids</a>
                   <Modal
                     title="All Bids"
                     visible={this.state.visible}
@@ -323,4 +341,12 @@ class Detail extends Component {
   }
 }
 
-export default Detail;
+const mapStateToProps = state => ({
+  detail: state.detailReducer
+});
+export default connect(
+  mapStateToProps,
+  {
+    ...actions
+  }
+)(Detail);
