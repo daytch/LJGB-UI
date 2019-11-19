@@ -104,6 +104,25 @@ class Detail extends Component {
       verticalSwiping: true,
       // nextArrow: <Icon type="caret-up" />,
       // prevArrow: <Icon type="caret-down" />,
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2,
+            vertical: false,
+            verticalSwiping: false
+          }
+        }
+        // {
+        //   breakpoint: 480,
+        //   settings: {
+        //     slidesToShow: 1,
+        //     slidesToScroll: 1
+        //   }
+        // }
+      ],
       beforeChange: function(currentSlide, nextSlide) {
         console.log('before change', currentSlide, nextSlide);
       },
