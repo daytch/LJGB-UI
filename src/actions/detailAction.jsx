@@ -1,4 +1,9 @@
-import { GET_DATA_DETAIL, GET_DATA_ALL_ASK } from '../constants/index';
+import {
+  GET_DATA_DETAIL,
+  GET_DATA_ALL_ASK,
+  GET_DATA_WARNA,
+  GET_PROCESS_DATA
+} from '../constants/index';
 
 export function getDataDetail(property, value) {
   return {
@@ -14,7 +19,21 @@ export function GetAllAsk(property, value) {
   };
 }
 
+export function getDataWarna(property, value) {
+  return {
+    type: GET_DATA_WARNA
+  };
+}
+
+export function processData(property, value) {
+  return {
+    type: GET_PROCESS_DATA
+  };
+}
+
 export const actions = {
   getDataDetail,
-  GetAllAsk
+  GetAllAsk,
+  getDataWarna,
+  processData
 };

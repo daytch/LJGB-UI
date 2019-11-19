@@ -2,7 +2,8 @@ import {
   SET_DATA_DETAIL,
   SET_LOADER_DETAIL,
   HANDLE_CHANGE_DETAIL,
-  SET_DATA_ALL_ASK
+  SET_DATA_ALL_ASK,
+  SET_DATA_WARNA
 } from '../constants/index';
 
 const INIT_STATE = {
@@ -17,7 +18,8 @@ const INIT_STATE = {
     }
   },
   dataAllAsk: [],
-  dataAllBid: []
+  dataAllBid: [],
+  dataColor: []
 };
 
 export default (state = INIT_STATE, action) => {
@@ -47,6 +49,12 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         dataAllAsk: action.payload
+      };
+    }
+    case SET_DATA_WARNA: {
+      return {
+        ...state,
+        dataColor: action.payload
       };
     }
     default:

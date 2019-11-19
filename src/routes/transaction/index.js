@@ -1,0 +1,281 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Select, Modal, Table, Icon, Radio } from 'antd';
+import { Carousel } from 'react-bootstrap';
+
+import $ from 'jquery';
+import Slider from 'react-slick';
+import BreadCrumb from '../../components/layouts/common/breadcrumb';
+
+import Img1 from './../../images/color/black.jpeg';
+import Img2 from './../../images/color/black2.jpeg';
+import Img3 from './../../images/color/red.jpeg';
+import Img4 from './../../images/color/silver.jpeg';
+import Img5 from './../../images/color/white.jpeg';
+import Img6 from './../../images/color/yellow.jpeg';
+import { connect } from 'react-redux';
+import { actions } from '../../actions/detailAction';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Tooltip } from 'antd';
+import Product from '../../components/layouts/common/product';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+
+import BlockUi from 'react-block-ui';
+
+const { Option } = Select;
+
+class Transaction extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMore: false,
+      allAsk: false,
+      allBid: false,
+      allBid: false,
+      visibleAsk: false,
+      nav1: null,
+      nav2: null
+    };
+    this.onShowMore = this.onShowMore.bind(this);
+    this.showAllAsk = this.showAllAsk.bind(this);
+  }
+  componentWillMount() {
+    $('.navbar').removeClass('navbar-dark');
+    $('.navbar').addClass('bg-cl-white');
+
+    // let getData = this.props.location.search.replace('?id=', '');
+    this.props.getDataWarna();
+  }
+  componentDidMount() {
+    this.setState({
+      nav1: this.slider1,
+      nav2: this.slider2
+    });
+  }
+  onShowMore() {
+    this.setState({
+      showMore: !this.state.showMore
+    });
+  }
+  showAllAsk = () => {
+    let getData = this.props.location.search.replace('?id=', '');
+    this.props.GetAllAsk(getData);
+    this.setState({
+      visibleAsk: true
+    });
+  };
+  showAllBid = () => {
+    this.setState({
+      visible: true
+    });
+  };
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+      visibleAsk: false
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+      visibleAsk: false
+    });
+  };
+
+  numberWithCommas(x) {
+    let str = x === null || x === '' ? '' : x.toString();
+    if (str !== '' && str.length >= 7) {
+      str = str.substring(0, str.length - 6);
+      str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      return str + ' JT';
+    }
+  }
+
+  render() {
+    const settings = {
+      dots: false,
+      arrow: true,
+      infinite: true,
+      slidesToScroll: 1,
+      vertical: true,
+      verticalSwiping: true,
+      // nextArrow: <Icon type="caret-up" />,
+      // prevArrow: <Icon type="caret-down" />,
+      beforeChange: function(currentSlide, nextSlide) {
+        console.log('before change', currentSlide, nextSlide);
+      },
+      afterChange: function(currentSlide) {
+        console.log('after change', currentSlide);
+      }
+    };
+
+    const { detail } = this.props;
+    const columns = [
+      {
+        title: 'Nama',
+        dataIndex: 'name',
+        key: 'name'
+      },
+      {
+        title: 'Price',
+        dataIndex: 'price',
+        ke: 'price'
+      }
+    ];
+    const rowSelection = {
+      onChange: (selectedRowKeys, selectedRows) => {
+        console.log(
+          `selectedRowKeys: ${selectedRowKeys}`,
+          'selectedRows: ',
+          selectedRows
+        );
+      }
+    };
+    return (
+      <BlockUi tag="div" blocking={detail.isLoading} style={{ width: '100%' }}>
+        <main role="main">
+          <div className="container">
+            <BreadCrumb breadName={detail.dataDetail.carDetail.name} />
+
+            <div className="detail">
+              <div className="detail__body">
+                <div className="row">
+                  <div className="col-md-12 mb-4">
+                    <div className="row">
+                      <div className="col-md-9">
+                        <div className="detail__body__img">
+                          <Slider
+                            asNavFor={this.state.nav2}
+                            ref={slider => (this.slider1 = slider)}
+                            fade={true}
+                          >
+                            <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img1} alt="" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img2} alt="" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img3} alt="" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img4} alt="" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img5} alt="" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img6} alt="" />
+                              </div>
+                            </div>
+                          </Slider>
+                        </div>
+                      </div>
+                      <div className="col-3">
+                        <Slider
+                          asNavFor={this.state.nav1}
+                          ref={slider => (this.slider2 = slider)}
+                          slidesToShow={3}
+                          swipeToSlide={true}
+                          focusOnSelect={true}
+                          className="slideTrigger"
+                          {...settings}
+                        >
+                          <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img1} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img2} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img3} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img4} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img5} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img6} alt="" />
+                            </div>
+                          </div>
+                        </Slider>
+                      </div>
+                    </div>
+                    <div>
+                      Warna
+                      <Table
+                        dataSource={detail.dataColor}
+                        columns={columns}
+                        rowSelection={rowSelection}
+                        pagination={{
+                          pageSize: 5
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <Radio.Group
+                        // onChange={onChange}
+                        defaultValue="placeBid"
+                      >
+                        <Radio.Button lassName="btnGrey" value="placeBid">
+                          Place Bid
+                        </Radio.Button>
+                        <Radio.Button value="buyNow">Buy Now</Radio.Button>
+                      </Radio.Group>
+                    </div>
+                    <div className=" col-lg-4 field">
+                      <input type="text" name="price" id="price" />
+                    </div>
+                    <button
+                      className="btn btn-primary"
+                      onClick={this.props.processData.bind(this)}
+                    >
+                      Process
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </BlockUi>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  detail: state.detailReducer
+});
+export default connect(
+  mapStateToProps,
+  {
+    ...actions
+  }
+)(Transaction);
