@@ -95,11 +95,17 @@ class Detail extends Component {
   }
 
   render() {
+    const settingRow = {
+      row: 2,
+      slidesPerRow: 2
+    };
     const settings = {
       dots: false,
       arrow: true,
       infinite: true,
       slidesToScroll: 1,
+      // row:2,
+      // slidesPerRow: 2,
       vertical: true,
       verticalSwiping: true,
       // nextArrow: <Icon type="caret-up" />,
@@ -183,20 +189,22 @@ class Detail extends Component {
                 </div>
                 <div className="detail__market">
                   <div className="bid left">
-                    <button className="btn btn-success">
-                      <div className="bid__text left">
-                        <span className="bid__text--big">
-                          {this.numberWithCommas(
-                            detail.dataDetail.carDetail.lowestask
-                          )}
-                        </span>
-                        <span className="bid__text--small">Lowest Ask</span>
-                      </div>
-                      <Link to="/transaction" className="bid__text right">
-                        <span className="bid__text--big">Buy</span>
-                        <span className="bid__text--small">or Bid</span>
-                      </Link>
-                    </button>
+                    <Link to="/transaction">
+                      <button className="btn btn-success">
+                        <div className="bid__text left">
+                          <span className="bid__text--big">
+                            {this.numberWithCommas(
+                              detail.dataDetail.carDetail.lowestask
+                            )}
+                          </span>
+                          <span className="bid__text--small">Lowest Ask</span>
+                        </div>
+                        <div className="bid__text right">
+                          <span className="bid__text--big">Buy</span>
+                          <span className="bid__text--small">or Bid</span>
+                        </div>
+                      </button>
+                    </Link>
                     <a onClick={this.showAllAsk}>View All Asks</a>
                     <Modal
                       title="All Asks"
@@ -208,20 +216,22 @@ class Detail extends Component {
                     </Modal>
                   </div>
                   <div className="bid right">
-                    <button className="btn btn-danger">
-                      <div className="bid__text left">
-                        <span className="bid__text--big">
-                          {this.numberWithCommas(
-                            detail.dataDetail.carDetail.highestbid
-                          )}
-                        </span>
-                        <span className="bid__text--small">Highest Bid</span>
-                      </div>
-                      <div className="bid__text right">
-                        <span className="bid__text--big">Sell</span>
-                        <span className="bid__text--small">or Ask</span>
-                      </div>
-                    </button>
+                    <Link to="/transaction">
+                      <button className="btn btn-danger">
+                        <div className="bid__text left">
+                          <span className="bid__text--big">
+                            {this.numberWithCommas(
+                              detail.dataDetail.carDetail.highestbid
+                            )}
+                          </span>
+                          <span className="bid__text--small">Highest Bid</span>
+                        </div>
+                        <div className="bid__text right">
+                          <span className="bid__text--big">Sell</span>
+                          <span className="bid__text--small">or Ask</span>
+                        </div>
+                      </button>
+                    </Link>
                     <a onClick={this.showAllBid}>View All Bids</a>
                     <Modal
                       title="All Bids"
