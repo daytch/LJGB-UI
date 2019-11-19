@@ -101,11 +101,19 @@
       img {
         height: 100%;
       }
+      @media (max-width: 767px) {
+        height: auto;
+        img {
+          height: auto;
+          width: 100%;
+        }
+      }
     }
     &--small {
       height: 90px;
       border: 1px solid #dcdcdc;
       border-radius: 8px;
+      overflow: hidden;
       img {
         height: 100%;
         margin: auto;
@@ -113,6 +121,7 @@
     }
   }
   .slideTrigger {
+    // padding: 5px 0;
     .slick-prev:before,
     .slick-next:before {
       color: #444;

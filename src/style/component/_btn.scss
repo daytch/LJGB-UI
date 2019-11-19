@@ -51,4 +51,38 @@
   &-success {
     border-radius: 3px;
   }
+  &Radio {
+    &.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+      // border: none;
+      border-radius: 20px;
+      background: #1890ff;
+      color: #fff;
+      outline: none;
+      box-shadow: 0 0 black;
+    }
+    &.ant-radio-button-wrapper {
+      border: none;
+      height: auto;
+      background: transparent;
+      border-radius: 20px;
+      outline: none;
+      width: 50%;
+    }
+    // &.ant-radio-button-wrapper:hover{
+    //   color: #fff;
+    // }
+    &.ant-radio-button-wrapper:not(:first-child)::before {
+      display: none;
+    }
+    &__group {
+      border-radius: 20px;
+      border: 1px solid #dcdcdc;
+      background: #fff;
+      width: 100%;
+    }
+    span:last-child {
+      padding: 5px;
+      display: block;
+    }
+  }
 }

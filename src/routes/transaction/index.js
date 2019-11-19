@@ -144,10 +144,10 @@ class Transaction extends Component {
             <div className="detail">
               <div className="detail__body">
                 <div className="row">
-                  <div className="col-md-12 mb-4">
+                  <div className="col-md-8 mb-4">
                     <div className="row">
                       <div className="col-md-9">
-                        <div className="detail__body__img">
+                        <div className="detail__body__img transaction__img">
                           <Slider
                             asNavFor={this.state.nav2}
                             ref={slider => (this.slider1 = slider)}
@@ -190,7 +190,7 @@ class Transaction extends Component {
                         <Slider
                           asNavFor={this.state.nav1}
                           ref={slider => (this.slider2 = slider)}
-                          slidesToShow={3}
+                          slidesToShow={4}
                           swipeToSlide={true}
                           focusOnSelect={true}
                           className="slideTrigger"
@@ -229,7 +229,7 @@ class Transaction extends Component {
                         </Slider>
                       </div>
                     </div>
-                    <div>
+                    {/* <div>
                       Warna
                       <Table
                         dataSource={detail.dataColor}
@@ -239,27 +239,42 @@ class Transaction extends Component {
                           pageSize: 5
                         }}
                       />
+                    </div> */}
+                  </div>
+                  <div className="col-md-4">
+                    <div className="transaction">
+                      <div className="bgWhite">
+                        <div className="mb-4">
+                          <h4>Rp.999.999.999.999</h4>
+                        </div>
+
+                        <Radio.Group
+                          // onChange={onChange}
+                          defaultValue="placeBid"
+                          className="btnRadio__group mb-4"
+                        >
+                          <Radio.Button
+                            className="btn btnRadio"
+                            value="placeBid"
+                          >
+                            Place Bid
+                          </Radio.Button>
+                          <Radio.Button className="btn btnRadio" value="buyNow">
+                            Buy Now
+                          </Radio.Button>
+                        </Radio.Group>
+
+                        <div className="field mb-4">
+                          <input type="text" name="price" id="price" />
+                        </div>
+                        <button
+                          className="btn btn-primary w-100"
+                          onClick={this.props.processData.bind(this)}
+                        >
+                          Process
+                        </button>
+                      </div>
                     </div>
-                    <div>
-                      <Radio.Group
-                        // onChange={onChange}
-                        defaultValue="placeBid"
-                      >
-                        <Radio.Button lassName="btnGrey" value="placeBid">
-                          Place Bid
-                        </Radio.Button>
-                        <Radio.Button value="buyNow">Buy Now</Radio.Button>
-                      </Radio.Group>
-                    </div>
-                    <div className=" col-lg-4 field">
-                      <input type="text" name="price" id="price" />
-                    </div>
-                    <button
-                      className="btn btn-primary"
-                      onClick={this.props.processData.bind(this)}
-                    >
-                      Process
-                    </button>
                   </div>
                 </div>
               </div>

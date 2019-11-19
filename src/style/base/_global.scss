@@ -101,10 +101,14 @@ strong {
 .pd-t-30 {
   padding-top: 30px;
 }
+// .m-b-20{
+//   margin-bottom: 20px;
+// }
 
 main {
   margin-top: 60px;
-  min-height: calc(100vh - 50px);
+  // min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 130px);
 }
 
 .labelBlack .ant-select-selection__rendered {

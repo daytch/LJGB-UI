@@ -1,0 +1,19 @@
+.transaction {
+  background: #fafafa;
+  box-shadow: 0 0 10px #dcdcdc;
+  // padding: 20px;
+  text-align: center;
+  h4 {
+    color: #888;
+  }
+  .bgWhite {
+    background: #fff;
+    padding: 20px;
+    // margin: 10px 0;
+  }
+  &__img {
+    .detail__imgSlide--big {
+      height: 400px;
+    }
+  }
+}
