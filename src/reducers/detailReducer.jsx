@@ -16,7 +16,8 @@ const INIT_STATE = {
       highestbid: '',
       lowestask: '',
       year: ''
-    }
+    },
+    sP_GetPhotoAndWarnaByBarangIDS: []
   },
   dataAllAsk: [],
   dataAllBid: [],

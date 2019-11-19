@@ -34,7 +34,10 @@ class Detail extends Component {
       allBid: false,
       visibleAsk: false,
       nav1: null,
-      nav2: null
+      nav2: null,
+      lowestask: '',
+      highestbid: '',
+      year: ''
     };
     this.onShowMore = this.onShowMore.bind(this);
     this.showAllAsk = this.showAllAsk.bind(this);
@@ -92,6 +95,44 @@ class Detail extends Component {
       str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       return str + ' JT';
     }
+  }
+
+  sliderImage(datas) {
+    let image = datas.map((x, i) => {
+      return (
+        // <div>
+        <div className="detail__imgSlide--big">
+          <img src={x.photopath} alt="" />
+          <b>{x.color}</b>
+        </div>
+        // </div >
+      );
+    });
+    return image;
+  }
+
+  sliderImageKanan(datas) {
+    let image = datas.map((x, i) => {
+      return (
+        <div>
+          <div
+            className="detail__imgSlide--small"
+            onClick={this.setData.bind(this, x.lowestask, x.highestbid, x.year)}
+          >
+            <img src={x.photopath} alt="" />
+          </div>
+        </div>
+      );
+    });
+    return image;
+  }
+
+  setData(ask, bid, year) {
+    this.setState({
+      lowestask: ask,
+      highestbid: bid,
+      year: year
+    });
   }
 
   render() {
@@ -176,7 +217,8 @@ class Detail extends Component {
                       </div>
                       <div className="detail__header__item">
                         <p>
-                          Year: <span>{detail.dataDetail.carDetail.year}</span>
+                          Year: <span>{this.state.year}</span>
+                          {/* Year: <span>{detail.dataDetail.carDetail.year}</span> */}
                         </p>
                       </div>
                       <div className="detail__header__item">
@@ -193,9 +235,10 @@ class Detail extends Component {
                       <button className="btn btn-success">
                         <div className="bid__text left">
                           <span className="bid__text--big">
-                            {this.numberWithCommas(
+                            {this.numberWithCommas(this.state.lowestask)}
+                            {/* {this.numberWithCommas(
                               detail.dataDetail.carDetail.lowestask
-                            )}
+                            )} */}
                           </span>
                           <span className="bid__text--small">Lowest Ask</span>
                         </div>
@@ -220,9 +263,10 @@ class Detail extends Component {
                       <button className="btn btn-danger">
                         <div className="bid__text left">
                           <span className="bid__text--big">
-                            {this.numberWithCommas(
+                            {this.numberWithCommas(this.state.highestbid)}
+                            {/* {this.numberWithCommas(
                               detail.dataDetail.carDetail.highestbid
-                            )}
+                            )} */}
                           </span>
                           <span className="bid__text--small">Highest Bid</span>
                         </div>
@@ -256,8 +300,11 @@ class Detail extends Component {
                             ref={slider => (this.slider1 = slider)}
                             fade={true}
                           >
-                            <div>
-                              <div className="detail__imgSlide--big">
+                            {this.sliderImage(
+                              detail.dataDetail.sP_GetPhotoAndWarnaByBarangIDS
+                            )}
+                            {/* <div>
+                              <div className="detail__imgSlide--big" >
                                 <img src={Img1} alt="" />
                               </div>
                             </div>
@@ -285,7 +332,7 @@ class Detail extends Component {
                               <div className="detail__imgSlide--big">
                                 <img src={Img6} alt="" />
                               </div>
-                            </div>
+                            </div> */}
                           </Slider>
                         </div>
                       </div>
@@ -299,7 +346,10 @@ class Detail extends Component {
                           className="slideTrigger"
                           {...settings}
                         >
-                          <div>
+                          {this.sliderImageKanan(
+                            detail.dataDetail.sP_GetPhotoAndWarnaByBarangIDS
+                          )}
+                          {/* <div>
                             <div className="detail__imgSlide--small">
                               <img src={Img1} alt="" />
                             </div>
@@ -328,7 +378,7 @@ class Detail extends Component {
                             <div className="detail__imgSlide--small">
                               <img src={Img6} alt="" />
                             </div>
-                          </div>
+                          </div> */}
                         </Slider>
                       </div>
                     </div>
