@@ -15,7 +15,9 @@ import {
   SET_LOADER_DETAIL,
   GET_DATA_WARNA,
   SET_DATA_WARNA,
-  GET_PROCESS_DATA
+  GET_PROCESS_DATA,
+  GET_DATA_TRANSAKSI,
+  SET_DATA_TRANSAKSI
 } from '../constants/index';
 
 export function* getDataDetail(action) {
@@ -117,7 +119,7 @@ export function* getProcessData(action) {
       barangID: 1,
       typePenawaran: 'buy now',
       harga: 500000000000,
-      created: '2019-11-18T17:20:23.902Z',
+      created: new Date(),
       createdBy: 'string'
     };
     const data = yield call(
@@ -139,12 +141,42 @@ export function* getProcessData(action) {
   }
 }
 
+export function* getDataTransaction(action) {
+  try {
+    yield put({ type: SET_LOADER_DETAIL, payload: true });
+    let body = {
+      id: 1,
+      negoType: 'ask'
+    };
+    const data = yield call(
+      POST,
+      API_DATA + Endpoint.DATA_TRANSACTION,
+      body,
+      master.getHeader()
+    );
+    if (data.isSuccess) {
+      // success(data.message);
+      yield put({
+        type: SET_DATA_TRANSAKSI,
+        payload: data.sP_GetPhotoAndWarnaByBarangIDS
+      });
+    } else {
+      warning(data.message);
+    }
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+  } catch (err) {
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+    error(err);
+  }
+}
+
 export default function* rootSaga() {
   yield all([
     takeLatest(GET_DATA_DETAIL, getDataDetail),
     takeLatest(GET_DATA_ALL_ASK, getDataAllAsk),
     takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk),
     takeLatest(GET_DATA_WARNA, getDataWarna),
-    takeLatest(GET_PROCESS_DATA, getProcessData)
+    takeLatest(GET_PROCESS_DATA, getProcessData),
+    takeLatest(GET_DATA_TRANSAKSI, getDataTransaction)
   ]);
 }

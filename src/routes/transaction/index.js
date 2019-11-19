@@ -45,6 +45,7 @@ class Transaction extends Component {
 
     // let getData = this.props.location.search.replace('?id=', '');
     this.props.getDataWarna();
+    this.props.getDataTransaksi();
   }
   componentDidMount() {
     this.setState({

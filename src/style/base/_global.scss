@@ -106,3 +106,7 @@ main {
   margin-top: 60px;
   min-height: calc(100vh - 50px);
 }
+
+.labelBlack .ant-select-selection__rendered {
+  color: black !important;
+}

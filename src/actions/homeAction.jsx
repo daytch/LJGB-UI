@@ -5,7 +5,8 @@ import {
   GET_DATA_BRAND,
   GET_DATA_MODEL,
   GET_DATA_TYPE,
-  GET_DATA_SEARCH
+  GET_DATA_SEARCH,
+  GET_DATA_PROVINSI
 } from '../constants/index';
 
 export function getDataHome(property, index, value) {
@@ -52,6 +53,13 @@ export function getSearch(property, event, value) {
   };
 }
 
+export function getDataProvinsi(property, event, value) {
+  return {
+    type: GET_DATA_PROVINSI,
+    value
+  };
+}
+
 export const actions = {
   getDataHome,
   getDataKota,
@@ -59,5 +67,6 @@ export const actions = {
   getDataBrand,
   getDataModel,
   getDataType,
-  getSearch
+  getSearch,
+  getDataProvinsi
 };

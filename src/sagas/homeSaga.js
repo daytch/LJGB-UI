@@ -19,7 +19,9 @@ import {
   SET_DATA_TYPE,
   SET_LOADER_MINI,
   GET_DATA_SEARCH,
-  SET_DATA_SEARCH
+  SET_DATA_SEARCH,
+  SET_DATA_PROVINSI,
+  GET_DATA_PROVINSI
 } from '../constants/index';
 
 const getHome = state => state.homeReducer;
@@ -214,6 +216,28 @@ export function* getDataSearch(action) {
   }
 }
 
+export function* getDataProvinsi(action) {
+  try {
+    const home = yield select(getHome);
+    yield put({ type: SET_LOADER_HOME, payload: true });
+    const data = yield call(
+      GET,
+      API_DATA + Endpoint.DATA_PROVINSI,
+      master.getHeader()
+    );
+    if (data.isSuccess) {
+      yield put({ type: SET_DATA_PROVINSI, payload: data.listProvinces });
+    } else {
+      let message = data.message;
+      warning(message);
+    }
+    yield put({ type: SET_LOADER_HOME, payload: false });
+  } catch (err) {
+    yield put({ type: SET_LOADER_HOME, payload: false });
+    error(err);
+  }
+}
+
 export default function* rootSaga() {
   yield all([
     takeLatest(GET_DATA_HOME, getDataHome),
@@ -221,6 +245,7 @@ export default function* rootSaga() {
     takeLatest(GET_DATA_BRAND, getDataBrand),
     takeLatest(GET_DATA_MODEL, getDataModel),
     takeLatest(GET_DATA_SEARCH, getDataSearch),
-    takeLatest(GET_DATA_TYPE, getDataType)
+    takeLatest(GET_DATA_TYPE, getDataType),
+    takeLatest(GET_DATA_PROVINSI, getDataProvinsi)
   ]);
 }

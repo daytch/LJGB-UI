@@ -1,6 +1,7 @@
 const Endpoint = {
   DATA_HOME: '/Barang/GetAllForHomePage',
   DATA_KOTA: '/Kota/GetAllForDropdown',
+  DATA_PROVINSI: '/Provinsi/GetAllForDropdown',
   DATA_KOTA_ALL: '/Kota/GetAllKotaWithoutFilter',
   DATA_MERK: '/Merk/GetAll',
   DATA_BARANG: '/ModelBarang/GetAll',
@@ -15,7 +16,8 @@ const Endpoint = {
   DATA_ALL_ASK: '/Barang/GetAllAsksById',
   DATA_POSITION_ASK: '/Barang/GetAskPosition',
   DATA_WARNA_BY_ID: '/Warna/GetAllWithoutFilter',
-  PROCESS_DATA: '/NegoBarang/SubmitAsk'
+  PROCESS_DATA: '/NegoBarang/SubmitAsk',
+  DATA_TRANSACTION: '/Barang/GetPhotoAndWarnaByID'
 };
 
 export default Endpoint;

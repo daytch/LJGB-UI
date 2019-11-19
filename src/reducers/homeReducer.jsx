@@ -7,7 +7,8 @@ import {
   SET_DATA_MODEL,
   SET_DATA_TYPE,
   SET_LOADER_MINI,
-  SET_DATA_SEARCH
+  SET_DATA_SEARCH,
+  SET_DATA_PROVINSI
 } from '../constants/index';
 
 const INIT_STATE = {
@@ -43,6 +44,7 @@ const INIT_STATE = {
   dataBrand: [],
   dataModel: [],
   dataType: [],
+  dataProvinsi: [],
   search: {
     city: '',
     cityText: '',
@@ -50,7 +52,8 @@ const INIT_STATE = {
     model: '',
     type: '',
     dataNumber: 1,
-    pageSize: 10
+    pageSize: 10,
+    provinsi: ''
   },
   dataSearch: [
     { image: '', name: '', price: '' },
@@ -118,6 +121,12 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         dataSearch: action.payload
+      };
+    }
+    case SET_DATA_PROVINSI: {
+      return {
+        ...state,
+        dataProvinsi: action.payload
       };
     }
     default:

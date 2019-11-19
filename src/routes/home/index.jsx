@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from '../../actions/homeAction';
-import { Select, Tooltip } from 'antd';
-import Selected from './../../components/globalComponents/customSelect';
+import { Select, Tooltip, Modal } from 'antd';
 import BlockUi from 'react-block-ui';
 
 import Product from '../../components/layouts/common/product';
@@ -20,8 +19,10 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      scrollY: 0
+      scrollY: 0,
+      visible: false
     };
+    this.showModal = this.showModal.bind(this);
   }
 
   componentWillMount() {
@@ -30,11 +31,14 @@ class Home extends Component {
     localStorage.removeItem('model');
     localStorage.removeItem('type');
 
+    // this.props.getDataProvinsi();
     this.props.getDataHome();
     this.props.getDataKota();
 
     $('.navbar').addClass('navbar-dark');
     $('.navbar').removeClass('bg-cl-white');
+
+    // this.showModal()
   }
 
   componentDidMount() {
@@ -69,6 +73,26 @@ class Home extends Component {
       localStorage.setItem('type', data.type);
     }
   }
+
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
+
+  showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
 
   render() {
     const {
@@ -364,6 +388,40 @@ class Home extends Component {
               </div>
             </div>
           </div>
+          <Modal
+            title="Silahkan Pilih Provinsi Anda"
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+          >
+            <span className="search__label">Provinsi</span>
+            <Select
+              className="labelBlack"
+              showSearch
+              style={{ width: 200 }}
+              placeholder="Select Provinsi"
+              optionFilterProp="children"
+              value={home.search.provinsi}
+              onChange={event => {
+                handleChange('search', 'provinsi', event);
+              }}
+              filterOption={(input, option) =>
+                option.props.children
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {(home.dataProvinsi !== undefined ? home.dataProvinsi : []).map(
+                (x, index) => {
+                  return (
+                    <Option key={index} value={x.id}>
+                      {x.text}
+                    </Option>
+                  );
+                }
+              )}
+            </Select>
+          </Modal>
         </main>
       </BlockUi>
     );

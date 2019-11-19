@@ -3,7 +3,8 @@ import {
   SET_LOADER_DETAIL,
   HANDLE_CHANGE_DETAIL,
   SET_DATA_ALL_ASK,
-  SET_DATA_WARNA
+  SET_DATA_WARNA,
+  SET_DATA_TRANSAKSI
 } from '../constants/index';
 
 const INIT_STATE = {
@@ -19,7 +20,8 @@ const INIT_STATE = {
   },
   dataAllAsk: [],
   dataAllBid: [],
-  dataColor: []
+  dataColor: [],
+  dataTransaction: ''
 };
 
 export default (state = INIT_STATE, action) => {
@@ -55,6 +57,12 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         dataColor: action.payload
+      };
+    }
+    case SET_DATA_TRANSAKSI: {
+      return {
+        ...state,
+        dataTransaction: action.payload
       };
     }
     default:
