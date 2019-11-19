@@ -1,7 +1,9 @@
 import {
   SET_DATA_DETAIL,
   SET_LOADER_DETAIL,
-  HANDLE_CHANGE_DETAIL
+  HANDLE_CHANGE_DETAIL,
+  SET_DATA_ALL_ASK,
+  SET_DATA_WARNA
 } from '../constants/index';
 
 const INIT_STATE = {
@@ -15,18 +17,9 @@ const INIT_STATE = {
       year: ''
     }
   },
-  dataAllAsk: [
-    {
-      id: 1,
-      rank: 1,
-      price: 100
-    },
-    {
-      id: 2,
-      rank: 2,
-      price: 200
-    }
-  ]
+  dataAllAsk: [],
+  dataAllBid: [],
+  dataColor: []
 };
 
 export default (state = INIT_STATE, action) => {
@@ -50,6 +43,18 @@ export default (state = INIT_STATE, action) => {
           ...state[action.property],
           [action.index]: action.value
         }
+      };
+    }
+    case SET_DATA_ALL_ASK: {
+      return {
+        ...state,
+        dataAllAsk: action.payload
+      };
+    }
+    case SET_DATA_WARNA: {
+      return {
+        ...state,
+        dataColor: action.payload
       };
     }
     default:

@@ -90,7 +90,6 @@ class Search extends Component {
   };
 
   changePage(pagination, filters, sorter) {
-    console.log(pagination, filters, sorter);
     const { handleChange, getSearch } = this.props;
     handleChange('search', 'dataNumber', pagination * filters + 1);
     handleChange('search', 'pageSize', filters);
@@ -278,7 +277,7 @@ class Search extends Component {
                 <div className="row__header">
                   <span className="product__category-big">Hasil Pencarian</span>
                   <div className="see__all noArrow">
-                    Result {home.dataSearch.length}{' '}
+                    Result {home.dataSearch.total}
                   </div>
                   <div
                     style={{

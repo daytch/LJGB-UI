@@ -13,7 +13,9 @@ const Endpoint = {
   // DATA_DETAIL_: '/Barang/GetModelWithID',
   DATA_SEARCH: '/Barang/GetBarangByHomeParameter',
   DATA_ALL_ASK: '/Barang/GetAllAsksById',
-  DATA_POSITION_ASK: '/Barang/GetAskPosition'
+  DATA_POSITION_ASK: '/Barang/GetAskPosition',
+  DATA_WARNA_BY_ID: '/Warna/GetAllWithoutFilter',
+  PROCESS_DATA: '/NegoBarang/SubmitAsk'
 };
 
 export default Endpoint;

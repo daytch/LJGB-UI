@@ -2,7 +2,7 @@ import { call, put, all, select, takeLatest } from 'redux-saga/effects';
 // import { takeLatest } from 'redux-saga';
 import { master } from '../services/header';
 import Endpoint from '../services/endpoint';
-import { messages } from '../components/Message';
+import { warning, error, success } from '../components/Message';
 import { GET, POST } from '../services/api';
 import {
   API_DATA,
@@ -11,12 +11,16 @@ import {
   GET_DATA_ALL_ASK,
   GET_DATA_POSITON_ASK,
   SET_DATA_POSITON_ASK,
-  SET_DATA_ALL_ASK
+  SET_DATA_ALL_ASK,
+  SET_LOADER_DETAIL,
+  GET_DATA_WARNA,
+  SET_DATA_WARNA,
+  GET_PROCESS_DATA
 } from '../constants/index';
 
 export function* getDataDetail(action) {
   try {
-    // yield put({ type: SET_ISLOADING, payload: true });
+    yield put({ type: SET_LOADER_DETAIL, payload: true });
     let body = parseInt(action.property);
     const data = yield call(
       GET,
@@ -27,18 +31,18 @@ export function* getDataDetail(action) {
     if (data.isSuccess) {
       yield put({ type: SET_DATA_DETAIL, payload: data });
     } else {
-      messages('Warning', data.message, 'warning', false);
+      warning(data.message);
     }
-  } catch (error) {
-    console.log(error);
-    // yield put({ type: SET_LOADER, payload: false });
-    // messages('Info', error, 'info', false);
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+  } catch (err) {
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+    error(err);
   }
 }
 
 export function* getDataPositionAsk(action) {
   try {
-    // yield put({ type: SET_ISLOADING, payload: true });
+    yield put({ type: SET_LOADER_DETAIL, payload: true });
     let id = 1; //action.property
     let nominal = 2000; //action.value
     const data = yield call(
@@ -54,33 +58,84 @@ export function* getDataPositionAsk(action) {
     if (data.isSuccess) {
       // yield put({ type: SET_DATA_POSITON_ASK, payload: data });
     } else {
-      messages('Warning', data.message, 'warning', false);
+      warning(data.message);
     }
-  } catch (error) {
-    console.log(error);
-    // yield put({ type: SET_LOADER, payload: false });
-    // messages('Info', error, 'info', false);
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+  } catch (err) {
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+    error(err);
   }
 }
 
 export function* getDataAllAsk(action) {
   try {
-    // yield put({ type: SET_ISLOADING, payload: true });
-    let body = { postId: parseInt(action.property) };
+    yield put({ type: SET_LOADER_DETAIL, payload: true });
+    let body = parseInt(action.property);
     const data = yield call(
       GET,
-      API_DATA + Endpoint.DATA_ALL_ASK,
+      API_DATA + Endpoint.DATA_ALL_ASK + '?ID=' + body,
       master.getHeader()
     );
     if (data.isSuccess) {
-      // yield put({ type: SET_DATA_ALL_ASK, payload: data });
+      yield put({ type: SET_DATA_ALL_ASK, payload: data.listAsks });
     } else {
-      messages('Warning', data.message, 'warning', false);
+      warning(data.message);
     }
-  } catch (error) {
-    console.log(error);
-    // yield put({ type: SET_LOADER, payload: false });
-    // messages('Info', error, 'info', false);
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+  } catch (err) {
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+    error(err);
+  }
+}
+
+export function* getDataWarna(action) {
+  try {
+    yield put({ type: SET_LOADER_DETAIL, payload: true });
+    let body = parseInt(action.property);
+    const data = yield call(
+      GET,
+      API_DATA + Endpoint.DATA_WARNA_BY_ID,
+      master.getHeader()
+    );
+    if (data.isSuccess) {
+      yield put({ type: SET_DATA_WARNA, payload: data.data });
+    } else {
+      warning(data.message);
+    }
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+  } catch (err) {
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+    error(err);
+  }
+}
+
+export function* getProcessData(action) {
+  try {
+    yield put({ type: SET_LOADER_DETAIL, payload: true });
+    let body = {
+      userProfileID: 3,
+      barangID: 1,
+      typePenawaran: 'buy now',
+      harga: 500000000000,
+      created: '2019-11-18T17:20:23.902Z',
+      createdBy: 'string'
+    };
+    const data = yield call(
+      POST,
+      API_DATA + Endpoint.PROCESS_DATA,
+      body,
+      master.getHeader()
+    );
+    if (data.isSuccess) {
+      success(data.message);
+      // yield put({ type: SET_DATA_WARNA, payload: data.data });
+    } else {
+      warning(data.message);
+    }
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+  } catch (err) {
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+    error(err);
   }
 }
 
@@ -88,6 +143,8 @@ export default function* rootSaga() {
   yield all([
     takeLatest(GET_DATA_DETAIL, getDataDetail),
     takeLatest(GET_DATA_ALL_ASK, getDataAllAsk),
-    takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk)
+    takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk),
+    takeLatest(GET_DATA_WARNA, getDataWarna),
+    takeLatest(GET_PROCESS_DATA, getProcessData)
   ]);
 }
