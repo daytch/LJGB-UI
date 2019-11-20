@@ -21,6 +21,7 @@ import Product from '../../components/layouts/common/product';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import BlockUi from 'react-block-ui';
+import '../../style/component/select.scss';
 
 const { Option } = Select;
 
@@ -323,14 +324,15 @@ class Detail extends Component {
                         : []
                       ).map((x, index) => {
                         return (
-                          <Option key={index} value={x.barangID}>
+                          <Option
+                            key={index}
+                            value={x.barangID}
+                            className="model__select__option"
+                          >
                             {x.name}
                           </Option>
                         );
                       })}
-                      {/* <Option value="1">{detail.dataDetail.listModelForDetail.length > 0 ? detail.dataDetail.listModelForDetail[0].name : 'a'}</Option>
-                      <Option value="2">{detail.dataDetail.listModelForDetail.length > 0 ? detail.dataDetail.listModelForDetail[1].name : 'b'}</Option>
-                      <Option value="3">{detail.dataDetail.listModelForDetail.length > 0 ? detail.dataDetail.listModelForDetail[2].name: 'c'}</Option> */}
                     </Select>
                   </div>
                 </div>

@@ -276,4 +276,30 @@
   .ant-select-selection:active {
     box-shadow: none;
   }
+  &__select__option {
+    &.ant-select-dropdown-menu {
+      padding: 10px;
+    }
+    &.ant-select-dropdown-menu-item {
+      margin: 10px;
+    }
+    &.ant-select-dropdown-menu-item-selected,
+    &.ant-select-dropdown-menu-item-selected:hover {
+      background-color: $color-1;
+      color: #fff;
+    }
+    &.ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled),
+    &.ant-select-dropdown-menu-item-active:hover:not(.ant-select-dropdown-menu-item-disabled) {
+      background-color: $color-1;
+    }
+    &.ant-select-dropdown-menu-item:hover:not(.ant-select-dropdown-menu-item-disabled) {
+      background-color: #dcdcdc;
+      color: inherit;
+    }
+    &.ant-select-dropdown-menu-item:first-child,
+    &.ant-select-dropdown-menu-item:last-child {
+      border-radius: 3px;
+      min-width: 130px;
+    }
+  }
 }
