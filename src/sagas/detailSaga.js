@@ -10,8 +10,10 @@ import {
   SET_DATA_DETAIL,
   GET_DATA_ALL_ASK,
   GET_DATA_POSITON_ASK,
-  SET_DATA_POSITON_ASK,
+  // SET_DATA_POSITON_ASK,
   SET_DATA_ALL_ASK,
+  GET_DATA_ALL_BID,
+  SET_DATA_ALL_BID,
   SET_LOADER_DETAIL,
   GET_DATA_WARNA,
   SET_DATA_WARNA,
@@ -19,6 +21,8 @@ import {
   GET_DATA_TRANSAKSI,
   SET_DATA_TRANSAKSI
 } from '../constants/index';
+
+const getDetail = state => state.detailReducer;
 
 export function* getDataDetail(action) {
   try {
@@ -90,10 +94,31 @@ export function* getDataAllAsk(action) {
   }
 }
 
-export function* getDataWarna(action) {
+export function* getDataAllBid(action) {
   try {
     yield put({ type: SET_LOADER_DETAIL, payload: true });
     let body = parseInt(action.property);
+    const data = yield call(
+      GET,
+      API_DATA + Endpoint.DATA_ALL_BID + '?ID=' + body,
+      master.getHeader()
+    );
+    if (data.isSuccess) {
+      yield put({ type: SET_DATA_ALL_BID, payload: data.listBids });
+    } else {
+      warning(data.message);
+    }
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+  } catch (err) {
+    yield put({ type: SET_LOADER_DETAIL, payload: false });
+    error(err);
+  }
+}
+
+export function* getDataWarna(action) {
+  try {
+    yield put({ type: SET_LOADER_DETAIL, payload: true });
+    // let body = parseInt(action.property);
     const data = yield call(
       GET,
       API_DATA + Endpoint.DATA_WARNA_BY_ID,
@@ -113,12 +138,13 @@ export function* getDataWarna(action) {
 
 export function* getProcessData(action) {
   try {
+    const detail = yield select(getDetail);
     yield put({ type: SET_LOADER_DETAIL, payload: true });
     let body = {
       userProfileID: 3,
       barangID: 1,
-      typePenawaran: 'buy now',
-      harga: 500000000000,
+      typePenawaran: detail.type,
+      harga: detail.price,
       created: new Date(),
       createdBy: 'string'
     };
@@ -174,6 +200,7 @@ export default function* rootSaga() {
   yield all([
     takeLatest(GET_DATA_DETAIL, getDataDetail),
     takeLatest(GET_DATA_ALL_ASK, getDataAllAsk),
+    takeLatest(GET_DATA_ALL_BID, getDataAllBid),
     takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk),
     takeLatest(GET_DATA_WARNA, getDataWarna),
     takeLatest(GET_PROCESS_DATA, getProcessData),

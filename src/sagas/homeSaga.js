@@ -180,10 +180,10 @@ export function* getDataSearch(action) {
   try {
     const home = yield select(getHome);
     let body = {
-      kotaID: home.search.city == '' ? null : home.search.city,
-      merkID: home.search.brand == '' ? null : home.search.brand,
-      modelBarangID: home.search.model == '' ? null : home.search.model,
-      typeID: home.search.type == '' ? null : home.search.type,
+      kotaID: home.search.city === '' ? null : home.search.city,
+      merkID: home.search.brand === '' ? null : home.search.brand,
+      modelBarangID: home.search.model === '' ? null : home.search.model,
+      typeID: home.search.type === '' ? null : home.search.type,
       start: home.search.dataNumber,
       limit: home.search.pageSize
     };
@@ -200,7 +200,7 @@ export function* getDataSearch(action) {
         dataAll.push({
           image: x.photopath,
           name: x.name,
-          price: x.price == undefined ? '' : x.price,
+          price: x.price === undefined ? '' : x.price,
           id: x.id
         });
       });
@@ -218,7 +218,7 @@ export function* getDataSearch(action) {
 
 export function* getDataProvinsi(action) {
   try {
-    const home = yield select(getHome);
+    // const home = yield select(getHome);
     yield put({ type: SET_LOADER_HOME, payload: true });
     const data = yield call(
       GET,

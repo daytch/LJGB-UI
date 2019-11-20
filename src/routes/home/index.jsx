@@ -10,7 +10,7 @@ import Product from '../../components/layouts/common/product';
 import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import ImageLogo from './../../images/ljgb.png';
+// import ImageLogo from './../../images/ljgb.png';
 import Banner from '../../components/layouts/common/carousel/banner';
 
 const { Option } = Select;
@@ -130,8 +130,8 @@ class Home extends Component {
                           let name = 'city';
                           let nameKota;
                           home.dataKota.map((x, index) => {
-                            let name = 'brand';
-                            if (x.id == event) {
+                            // let name = 'brand';
+                            if (x.id === event) {
                               nameKota = x.text;
                             }
                           });

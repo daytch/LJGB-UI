@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-import { Link } from 'react-router-dom';
-import { Carousel } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
+// import { Carousel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { actions } from '../../actions/homeAction';
-import { Select, Tooltip, Pagination } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { Select, Pagination } from 'antd';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import $ from 'jquery';
 import BlockUi from 'react-block-ui';
-import Selected from './../../components/globalComponents/customSelect';
+// import Selected from './../../components/globalComponents/customSelect';
 import Product from '../../components/layouts/common/product';
 import Banner from '../../components/layouts/common/carousel/banner';
 
@@ -132,7 +132,7 @@ class Search extends Component {
                           let name = 'city';
                           let nameKota;
                           home.dataKota.map((x, index) => {
-                            if (x.id == event) {
+                            if (x.id === event) {
                               nameKota = x.text;
                             }
                           });

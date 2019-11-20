@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Select, Modal, Table, Icon, Radio } from 'antd';
-import { Carousel } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
+import { Radio } from 'antd';
+// import { Carousel } from 'react-bootstrap';
 
 import $ from 'jquery';
 import Slider from 'react-slick';
 import BreadCrumb from '../../components/layouts/common/breadcrumb';
 
-import Img1 from './../../images/color/black.jpeg';
-import Img2 from './../../images/color/black2.jpeg';
-import Img3 from './../../images/color/red.jpeg';
-import Img4 from './../../images/color/silver.jpeg';
-import Img5 from './../../images/color/white.jpeg';
-import Img6 from './../../images/color/yellow.jpeg';
+// import Img1 from './../../images/color/black.jpeg';
+// import Img2 from './../../images/color/black2.jpeg';
+// import Img3 from './../../images/color/red.jpeg';
+// import Img4 from './../../images/color/silver.jpeg';
+// import Img5 from './../../images/color/white.jpeg';
+// import Img6 from './../../images/color/yellow.jpeg';
 import { connect } from 'react-redux';
 import { actions } from '../../actions/detailAction';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Tooltip } from 'antd';
-import Product from '../../components/layouts/common/product';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { Tooltip } from 'antd';
+// import Product from '../../components/layouts/common/product';
+// import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import BlockUi from 'react-block-ui';
 
-const { Option } = Select;
+// const { Option } = Select;
 
 class Transaction extends Component {
   constructor(props) {
@@ -31,10 +31,12 @@ class Transaction extends Component {
       showMore: false,
       allAsk: false,
       allBid: false,
-      allBid: false,
       visibleAsk: false,
       nav1: null,
-      nav2: null
+      nav2: null,
+      lowestask: '',
+      highestbid: '',
+      year: ''
     };
     this.onShowMore = this.onShowMore.bind(this);
     this.showAllAsk = this.showAllAsk.bind(this);
@@ -42,10 +44,13 @@ class Transaction extends Component {
   componentWillMount() {
     $('.navbar').removeClass('navbar-dark');
     $('.navbar').addClass('bg-cl-white');
-
-    // let getData = this.props.location.search.replace('?id=', '');
+    let getData = this.props.location.search.replace('?', '');
+    let type = {
+      target: { value: getData === 'ask' ? 'place ask' : 'place bid' }
+    };
     this.props.getDataWarna();
     this.props.getDataTransaksi();
+    this.props.handleChange(type, 'type');
   }
   componentDidMount() {
     this.setState({
@@ -86,13 +91,50 @@ class Transaction extends Component {
     });
   };
 
+  sliderImage(datas) {
+    let image = datas.map((x, i) => {
+      return (
+        // <div>
+        <div className="detail__imgSlide--big">
+          <img src={x.photopath} alt="" />
+          <b>{x.color}</b>
+        </div>
+        // </div >
+      );
+    });
+    return image;
+  }
+
+  sliderImageKanan(datas) {
+    let image = datas.map((x, i) => {
+      return (
+        <div>
+          <div
+            className="detail__imgSlide--small"
+            onClick={this.setData.bind(this, x.lowestask, x.highestbid, x.year)}
+          >
+            <img src={x.photopath} alt="" />
+          </div>
+        </div>
+      );
+    });
+    return image;
+  }
+
+  setData(ask, bid, year) {
+    this.setState({
+      lowestask: ask,
+      highestbid: bid,
+      year: year
+    });
+  }
+
   numberWithCommas(x) {
     let str = x === null || x === '' ? '' : x.toString();
-    if (str !== '' && str.length >= 7) {
-      str = str.substring(0, str.length - 6);
-      str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-      return str + ' JT';
-    }
+    // if (str !== '' && str.length >= 7) {
+    //   str = str.substring(0, str.length - 6);
+    str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return str + ' JT';
   }
 
   render() {
@@ -113,28 +155,30 @@ class Transaction extends Component {
       }
     };
 
-    const { detail } = this.props;
-    const columns = [
-      {
-        title: 'Nama',
-        dataIndex: 'name',
-        key: 'name'
-      },
-      {
-        title: 'Price',
-        dataIndex: 'price',
-        ke: 'price'
-      }
-    ];
-    const rowSelection = {
-      onChange: (selectedRowKeys, selectedRows) => {
-        console.log(
-          `selectedRowKeys: ${selectedRowKeys}`,
-          'selectedRows: ',
-          selectedRows
-        );
-      }
-    };
+    const { detail, handleChange } = this.props;
+    // const columns = [
+    //   {
+    //     title: 'Nama',
+    //     dataIndex: 'name',
+    //     key: 'name'
+    //   },
+    //   {
+    //     title: 'Price',
+    //     dataIndex: 'price',
+    //     ke: 'price'
+    //   }
+    // ];
+    // const rowSelection = {
+    //   onChange: (selectedRowKeys, selectedRows) => {
+    //     console.log(
+    //       `selectedRowKeys: ${selectedRowKeys}`,
+    //       'selectedRows: ',
+    //       selectedRows
+    //     );
+    //   }
+    // };
+
+    let getData = this.props.location.search.replace('?', '');
     return (
       <BlockUi tag="div" blocking={detail.isLoading} style={{ width: '100%' }}>
         <main role="main">
@@ -153,7 +197,9 @@ class Transaction extends Component {
                             ref={slider => (this.slider1 = slider)}
                             fade={true}
                           >
-                            <div>
+                            {this.sliderImage(detail.dataTransaction)}
+
+                            {/* <div>
                               <div className="detail__imgSlide--big">
                                 <img src={Img1} alt="" />
                               </div>
@@ -182,7 +228,7 @@ class Transaction extends Component {
                               <div className="detail__imgSlide--big">
                                 <img src={Img6} alt="" />
                               </div>
-                            </div>
+                            </div> */}
                           </Slider>
                         </div>
                       </div>
@@ -196,7 +242,8 @@ class Transaction extends Component {
                           className="slideTrigger"
                           {...settings}
                         >
-                          <div>
+                          {this.sliderImageKanan(detail.dataTransaction)}
+                          {/* <div>
                             <div className="detail__imgSlide--small">
                               <img src={Img1} alt="" />
                             </div>
@@ -225,7 +272,7 @@ class Transaction extends Component {
                             <div className="detail__imgSlide--small">
                               <img src={Img6} alt="" />
                             </div>
-                          </div>
+                          </div> */}
                         </Slider>
                       </div>
                     </div>
@@ -245,27 +292,61 @@ class Transaction extends Component {
                     <div className="transaction">
                       <div className="bgWhite">
                         <div className="mb-4">
-                          <h4>Rp.999.999.999.999</h4>
+                          <h4>
+                            Rp. {this.numberWithCommas(this.state.lowestask)}
+                          </h4>
+                          {/* <h4>Rp.999.999.999.999</h4> */}
                         </div>
 
                         <Radio.Group
-                          // onChange={onChange}
-                          defaultValue="placeBid"
+                          onChange={e => {
+                            if (
+                              e.target.value === 'ask now' ||
+                              e.target.value === 'buy now'
+                            ) {
+                              handleChange('price', {
+                                target: { value: this.state.lowestask }
+                              });
+                            } else {
+                              handleChange('price', { target: { value: '' } });
+                            }
+                            handleChange(e, 'type');
+                          }}
+                          defaultValue={
+                            getData === 'ask' ? 'place ask' : 'place bid'
+                          }
                           className="btnRadio__group mb-4"
                         >
                           <Radio.Button
                             className="btn btnRadio"
-                            value="placeBid"
+                            value={
+                              getData === 'ask' ? 'place ask' : 'place bid'
+                            }
                           >
-                            Place Bid
+                            {getData === 'ask' ? 'Place Ask' : 'Place Bid'}
                           </Radio.Button>
-                          <Radio.Button className="btn btnRadio" value="buyNow">
-                            Buy Now
+                          <Radio.Button
+                            className="btn btnRadio"
+                            value="buy now"
+                          >
+                            {getData === 'ask' ? 'Ask Now' : 'Buy Now'}
                           </Radio.Button>
                         </Radio.Group>
 
                         <div className="field mb-4">
-                          <input type="text" name="price" id="price" />
+                          <input
+                            type="text"
+                            name="price"
+                            id="price"
+                            onChange={handleChange.bind(this, 'price')}
+                            value={detail.price}
+                            disabled={
+                              detail.type === 'ask now' ||
+                              detail.type === 'buy now'
+                                ? true
+                                : false
+                            }
+                          />
                         </div>
                         <button
                           className="btn btn-primary w-100"

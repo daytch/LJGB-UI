@@ -3,7 +3,9 @@ import {
   GET_DATA_ALL_ASK,
   GET_DATA_WARNA,
   GET_PROCESS_DATA,
-  GET_DATA_TRANSAKSI
+  GET_DATA_TRANSAKSI,
+  HANDLE_CHANGE_TRANSAKSI,
+  GET_DATA_ALL_BID
 } from '../constants/index';
 
 export function getDataDetail(property, value) {
@@ -16,6 +18,13 @@ export function getDataDetail(property, value) {
 export function GetAllAsk(property, value) {
   return {
     type: GET_DATA_ALL_ASK,
+    property
+  };
+}
+
+export function GetAllBid(property, value) {
+  return {
+    type: GET_DATA_ALL_BID,
     property
   };
 }
@@ -38,10 +47,22 @@ export function getDataTransaksi(property, value) {
   };
 }
 
+export function handleChange(property, value) {
+  let val = value === 'type' ? property.target.value : value.target.value;
+  let prop = value === 'type' ? value : property;
+  return {
+    type: HANDLE_CHANGE_TRANSAKSI,
+    prop,
+    val
+  };
+}
+
 export const actions = {
   getDataDetail,
   GetAllAsk,
+  GetAllBid,
   getDataWarna,
   processData,
-  getDataTransaksi
+  getDataTransaksi,
+  handleChange
 };

@@ -4,7 +4,9 @@ import {
   HANDLE_CHANGE_DETAIL,
   SET_DATA_ALL_ASK,
   SET_DATA_WARNA,
-  SET_DATA_TRANSAKSI
+  SET_DATA_TRANSAKSI,
+  HANDLE_CHANGE_TRANSAKSI,
+  SET_DATA_ALL_BID
 } from '../constants/index';
 
 const INIT_STATE = {
@@ -22,7 +24,9 @@ const INIT_STATE = {
   dataAllAsk: [],
   dataAllBid: [],
   dataColor: [],
-  dataTransaction: ''
+  dataTransaction: [],
+  price: '',
+  type: ''
 };
 
 export default (state = INIT_STATE, action) => {
@@ -54,6 +58,12 @@ export default (state = INIT_STATE, action) => {
         dataAllAsk: action.payload
       };
     }
+    case SET_DATA_ALL_BID: {
+      return {
+        ...state,
+        dataAllBid: action.payload
+      };
+    }
     case SET_DATA_WARNA: {
       return {
         ...state,
@@ -64,6 +74,12 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         dataTransaction: action.payload
+      };
+    }
+    case HANDLE_CHANGE_TRANSAKSI: {
+      return {
+        ...state,
+        [action.prop]: action.val
       };
     }
     default:

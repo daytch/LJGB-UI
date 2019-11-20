@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Select, Modal, Table, Icon } from 'antd';
-import { Carousel } from 'react-bootstrap';
+import { Modal, Table } from 'antd';
+// import { Carousel } from 'react-bootstrap';
 
 import $ from 'jquery';
 import Slider from 'react-slick';
 import BreadCrumb from '../../components/layouts/common/breadcrumb';
 
-import Img1 from './../../images/color/black.jpeg';
-import Img2 from './../../images/color/black2.jpeg';
-import Img3 from './../../images/color/red.jpeg';
-import Img4 from './../../images/color/silver.jpeg';
-import Img5 from './../../images/color/white.jpeg';
-import Img6 from './../../images/color/yellow.jpeg';
+// import Img1 from './../../images/color/black.jpeg';
+// import Img2 from './../../images/color/black2.jpeg';
+// import Img3 from './../../images/color/red.jpeg';
+// import Img4 from './../../images/color/silver.jpeg';
+// import Img5 from './../../images/color/white.jpeg';
+// import Img6 from './../../images/color/yellow.jpeg';
 import { connect } from 'react-redux';
 import { actions } from '../../actions/detailAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,7 +22,7 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import BlockUi from 'react-block-ui';
 
-const { Option } = Select;
+// const { Option } = Select;
 
 class Detail extends Component {
   constructor(props) {
@@ -30,7 +30,6 @@ class Detail extends Component {
     this.state = {
       showMore: false,
       allAsk: false,
-      allBid: false,
       allBid: false,
       visibleAsk: false,
       nav1: null,
@@ -68,6 +67,8 @@ class Detail extends Component {
     });
   };
   showAllBid = () => {
+    let getData = this.props.location.search.replace('?id=', '');
+    this.props.GetAllBid(getData);
     this.setState({
       visible: true
     });
@@ -136,10 +137,10 @@ class Detail extends Component {
   }
 
   render() {
-    const settingRow = {
-      row: 2,
-      slidesPerRow: 2
-    };
+    // const settingRow = {
+    //   row: 2,
+    //   slidesPerRow: 2
+    // };
     const settings = {
       dots: false,
       arrow: true,
@@ -231,7 +232,7 @@ class Detail extends Component {
                 </div>
                 <div className="detail__market">
                   <div className="bid left">
-                    <Link to="/transaction">
+                    <Link to="/transaction?bid">
                       <button className="btn btn-success">
                         <div className="bid__text left">
                           <span className="bid__text--big">
@@ -255,11 +256,17 @@ class Detail extends Component {
                       onOk={this.handleOk}
                       onCancel={this.handleCancel}
                     >
-                      <Table dataSource={detail.dataAllAsk} columns={columns} />
+                      <Table
+                        dataSource={detail.dataAllAsk}
+                        columns={columns}
+                        pagination={{
+                          pageSize: 5
+                        }}
+                      />
                     </Modal>
                   </div>
                   <div className="bid right">
-                    <Link to="/transaction">
+                    <Link to="/transaction?ask">
                       <button className="btn btn-danger">
                         <div className="bid__text left">
                           <span className="bid__text--big">
@@ -283,7 +290,13 @@ class Detail extends Component {
                       onOk={this.handleOk}
                       onCancel={this.handleCancel}
                     >
-                      <Table dataSource={detail.dataAllBid} columns={columns} />
+                      <Table
+                        dataSource={detail.dataAllBid}
+                        columns={columns}
+                        pagination={{
+                          pageSize: 5
+                        }}
+                      />
                     </Modal>
                   </div>
                 </div>
