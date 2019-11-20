@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Modal, Table } from 'antd';
+import { Modal, Table, Select } from 'antd';
 // import { Carousel } from 'react-bootstrap';
 
 import $ from 'jquery';
@@ -22,7 +22,7 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import BlockUi from 'react-block-ui';
 
-// const { Option } = Select;
+const { Option } = Select;
 
 class Detail extends Component {
   constructor(props) {
@@ -115,13 +115,12 @@ class Detail extends Component {
   sliderImageKanan(datas) {
     let image = datas.map((x, i) => {
       return (
-        <div>
-          <div
-            className="detail__imgSlide--small"
-            onClick={this.setData.bind(this, x.lowestask, x.highestbid, x.year)}
-          >
-            <img src={x.photopath} alt="" />
-          </div>
+        <div
+          className="detail__imgSlide--small"
+          onClick={this.setData.bind(this, x.lowestask, x.highestbid, x.year)}
+        >
+          <img src={x.photopath} alt="" />
+          <b>{x.color}</b>
         </div>
       );
     });
@@ -137,14 +136,14 @@ class Detail extends Component {
   }
 
   render() {
-    // const settingRow = {
-    //   row: 2,
-    //   slidesPerRow: 2
-    // };
-    const settings = {
+    const settingSlider1 = {
+      arrow: true,
+      dots: false
+    };
+    const settingSlider2 = {
       dots: false,
       arrow: true,
-      infinite: true,
+      infinite: false,
       slidesToScroll: 1,
       // row:2,
       // slidesPerRow: 2,
@@ -156,9 +155,10 @@ class Detail extends Component {
         {
           breakpoint: 767,
           settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2,
+            arrow: false,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            initialSlide: 1,
             vertical: false,
             verticalSwiping: false
           }
@@ -299,6 +299,13 @@ class Detail extends Component {
                       />
                     </Modal>
                   </div>
+                  <div className="model">
+                    <Select defaultValue="1" style={{ width: 120 }}>
+                      <Option value="1">Model 1</Option>
+                      <Option value="2">Model 2</Option>
+                      <Option value="3">Model 3</Option>
+                    </Select>
+                  </div>
                 </div>
               </div>
 
@@ -312,6 +319,7 @@ class Detail extends Component {
                             asNavFor={this.state.nav2}
                             ref={slider => (this.slider1 = slider)}
                             fade={true}
+                            {...settingSlider1}
                           >
                             {this.sliderImage(
                               detail.dataDetail.sP_GetPhotoAndWarnaByBarangIDS
@@ -349,7 +357,7 @@ class Detail extends Component {
                           </Slider>
                         </div>
                       </div>
-                      <div className="col-3">
+                      <div className="col-md-3">
                         <Slider
                           asNavFor={this.state.nav1}
                           ref={slider => (this.slider2 = slider)}
@@ -357,7 +365,7 @@ class Detail extends Component {
                           swipeToSlide={true}
                           focusOnSelect={true}
                           className="slideTrigger"
-                          {...settings}
+                          {...settingSlider2}
                         >
                           {this.sliderImageKanan(
                             detail.dataDetail.sP_GetPhotoAndWarnaByBarangIDS
@@ -397,7 +405,7 @@ class Detail extends Component {
                     </div>
                   </div>
 
-                  <div className="col-md-4">
+                  {/* <div className="col-md-4">
                     <div className="detail__product">
                       <p>
                         Sistem Bahan Bakar <span>Direct Injection</span>
@@ -425,7 +433,7 @@ class Detail extends Component {
                       }
                     >
                       <p>
-                        {/* {detail.dataDetail.carDetail.description} */}
+                        
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque a accumsan arcu. Proin eu efficitur risus.
                         Maecenas finibus porttitor orci sit amet mollis. Duis
@@ -541,7 +549,7 @@ class Detail extends Component {
                         {this.state.showMore ? 'View less' : 'View more'}
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-md-12">
                     <div className="product">
