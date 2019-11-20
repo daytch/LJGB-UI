@@ -5,7 +5,8 @@ import {
   GET_PROCESS_DATA,
   GET_DATA_TRANSAKSI,
   HANDLE_CHANGE_TRANSAKSI,
-  GET_DATA_ALL_BID
+  GET_DATA_ALL_BID,
+  HANDLE_CHANGE_DETAIL
 } from '../constants/index';
 
 export function getDataDetail(property, value) {
@@ -56,6 +57,13 @@ export function handleChange(property, value) {
     val
   };
 }
+export function handleChangeDetail(property, value) {
+  return {
+    type: HANDLE_CHANGE_DETAIL,
+    property,
+    value
+  };
+}
 
 export const actions = {
   getDataDetail,
@@ -64,5 +72,6 @@ export const actions = {
   getDataWarna,
   processData,
   getDataTransaksi,
-  handleChange
+  handleChange,
+  handleChangeDetail
 };

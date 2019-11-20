@@ -197,8 +197,8 @@ class Detail extends Component {
       }
     ];
 
-    const { detail } = this.props;
-    console.log(detail);
+    const { detail, handleChangeDetail } = this.props;
+    let getData = this.props.location.search.replace('?id=', '');
     return (
       <BlockUi tag="div" blocking={detail.isLoading} style={{ width: '100%' }}>
         <main role="main">
@@ -300,10 +300,37 @@ class Detail extends Component {
                     </Modal>
                   </div>
                   <div className="model">
-                    <Select defaultValue="1" style={{ width: 120 }}>
-                      <Option value="1">Model 1</Option>
-                      <Option value="2">Model 2</Option>
-                      <Option value="3">Model 3</Option>
+                    <Select
+                      defaultValue="1"
+                      style={{ width: 120 }}
+                      showSearch
+                      allowClear={true}
+                      style={{ width: 200 }}
+                      placeholder="Select Model"
+                      optionFilterProp="children"
+                      value={detail.model}
+                      onChange={event => {
+                        handleChangeDetail('model', event);
+                      }}
+                      filterOption={(input, option) =>
+                        option.props.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {(detail.dataDetail.listModelForDetail !== undefined
+                        ? detail.dataDetail.listModelForDetail
+                        : []
+                      ).map((x, index) => {
+                        return (
+                          <Option key={index} value={x.barangID}>
+                            {x.name}
+                          </Option>
+                        );
+                      })}
+                      {/* <Option value="1">{detail.dataDetail.listModelForDetail.length > 0 ? detail.dataDetail.listModelForDetail[0].name : 'a'}</Option>
+                      <Option value="2">{detail.dataDetail.listModelForDetail.length > 0 ? detail.dataDetail.listModelForDetail[1].name : 'b'}</Option>
+                      <Option value="3">{detail.dataDetail.listModelForDetail.length > 0 ? detail.dataDetail.listModelForDetail[2].name: 'c'}</Option> */}
                     </Select>
                   </div>
                 </div>

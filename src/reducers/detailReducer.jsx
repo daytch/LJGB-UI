@@ -19,17 +19,20 @@ const INIT_STATE = {
       lowestask: '',
       year: ''
     },
-    sP_GetPhotoAndWarnaByBarangIDS: []
+    sP_GetPhotoAndWarnaByBarangIDS: [],
+    listModelForDetail: []
   },
   dataAllAsk: [],
   dataAllBid: [],
   dataColor: [],
   dataTransaction: [],
+  dataModel: [],
   price: '',
   type: '',
   highestbid: '',
   lowestask: '',
-  year: ''
+  year: '',
+  model: ''
 };
 
 export default (state = INIT_STATE, action) => {
@@ -49,10 +52,7 @@ export default (state = INIT_STATE, action) => {
     case HANDLE_CHANGE_DETAIL: {
       return {
         ...state,
-        [action.property]: {
-          ...state[action.property],
-          [action.index]: action.value
-        }
+        [action.property]: action.value
       };
     }
     case SET_DATA_ALL_ASK: {
