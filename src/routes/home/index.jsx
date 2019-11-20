@@ -37,6 +37,8 @@ class Home extends Component {
 
     $('.navbar').addClass('navbar-dark');
     $('.navbar').removeClass('bg-cl-white');
+    $('#logoWhite').css({ display: 'block' });
+    $('#logoDark').css({ display: 'none' });
 
     // this.showModal()
   }
@@ -53,7 +55,11 @@ class Home extends Component {
     if (this.state.scrollY > 150) {
       $('.navbar').removeClass('navbar-dark');
       $('.navbar').addClass('bg-cl-white');
+      $('#logoWhite').css({ display: 'none' });
+      $('#logoDark').css({ display: 'block' });
     } else {
+      $('#logoWhite').css({ display: 'block' });
+      $('#logoDark').css({ display: 'none' });
       $('.navbar').addClass('navbar-dark');
       $('.navbar').removeClass('bg-cl-white');
     }
@@ -122,6 +128,7 @@ class Home extends Component {
                       <span className="search__label">Wilayah</span>
                       <Select
                         showSearch
+                        allowClear={true}
                         style={{ width: 200 }}
                         placeholder="Select Wilayah"
                         optionFilterProp="children"

@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faBars, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import ImageLogo from '../../../../images/ljgb.png';
+import ImageLogoWhite from '../../../../images/ljgb_white.png';
 
 class Header extends Component {
   constructor(props) {
@@ -44,11 +45,18 @@ class Header extends Component {
                 <FontAwesomeIcon icon={faSearch} className="iconSearch" />
               </div>
             ) : (
-              <Link to="/" className="">
+              <Link to="/">
                 <img
+                  id="logoDark"
                   src={ImageLogo}
                   alt="lojualguebeli.com"
                   style={{ height: '30px' }}
+                />
+                <img
+                  id="logoWhite"
+                  src={ImageLogoWhite}
+                  alt="lojualguebeli.com"
+                  style={{ height: '30px', display: 'none' }}
                 />
               </Link>
             )}

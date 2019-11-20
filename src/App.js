@@ -7,7 +7,8 @@ import {
   PageNotFound,
   Logout,
   Search,
-  Transaction
+  Transaction,
+  Profile
 } from './routes';
 import Detail from './routes/detail';
 
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/detail" component={Detail} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/transaction" component={Transaction} />
+          <Route exact path="/profile" component={Profile} />
           <Route path="*" component={PageNotFound} />
         </Switch>
         {/* </Container> */}
