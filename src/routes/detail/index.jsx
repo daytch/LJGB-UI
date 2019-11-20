@@ -21,6 +21,7 @@ import Product from '../../components/layouts/common/product';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import BlockUi from 'react-block-ui';
+import '../../style/component/select.scss';
 
 const { Option } = Select;
 
@@ -301,9 +302,15 @@ class Detail extends Component {
                   </div>
                   <div className="model">
                     <Select defaultValue="1" style={{ width: 120 }}>
-                      <Option value="1">Model 1</Option>
-                      <Option value="2">Model 2</Option>
-                      <Option value="3">Model 3</Option>
+                      <Option value="1" className="model__select__option">
+                        Model 1Model 1Model 1Model 1Model 1
+                      </Option>
+                      <Option value="2" className="model__select__option">
+                        Model 2
+                      </Option>
+                      <Option value="3" className="model__select__option">
+                        Model 3
+                      </Option>
                     </Select>
                   </div>
                 </div>

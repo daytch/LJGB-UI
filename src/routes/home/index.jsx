@@ -168,6 +168,7 @@ class Home extends Component {
                       <span className="search__label">Brand</span>
                       <Select
                         showSearch
+                        allowClear={true}
                         style={{ width: 200 }}
                         placeholder="Select Brand"
                         optionFilterProp="children"
@@ -200,6 +201,7 @@ class Home extends Component {
                       <span className="search__label">Model</span>
                       <Select
                         showSearch
+                        allowClear={true}
                         style={{ width: 200 }}
                         placeholder="Select Model"
                         optionFilterProp="children"
@@ -232,6 +234,7 @@ class Home extends Component {
                       <span className="search__label">Tipe</span>
                       <Select
                         showSearch
+                        allowClear={true}
                         style={{ width: 200 }}
                         placeholder="Select Tipe"
                         optionFilterProp="children"
