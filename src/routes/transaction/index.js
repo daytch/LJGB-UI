@@ -33,31 +33,35 @@ class Transaction extends Component {
       allBid: false,
       visibleAsk: false,
       nav1: null,
-      nav2: null,
-      lowestask: '',
-      highestbid: '',
-      year: ''
+      nav2: null
+      // lowestask: '',
+      // highestbid: '',
+      // year: ''
     };
     this.onShowMore = this.onShowMore.bind(this);
     this.showAllAsk = this.showAllAsk.bind(this);
   }
   componentWillMount() {
+    const { getDataWarna, getDataTransaksi, handleChange } = this.props;
     $('.navbar').removeClass('navbar-dark');
     $('.navbar').addClass('bg-cl-white');
     let getData = this.props.location.search.replace('?', '');
     let type = {
       target: { value: getData === 'ask' ? 'place ask' : 'place bid' }
     };
-    this.props.getDataWarna();
-    this.props.getDataTransaksi();
-    this.props.handleChange(type, 'type');
+    getDataWarna();
+    getDataTransaksi();
+    handleChange(type, 'type');
   }
+
   componentDidMount() {
+    const { detail } = this.props;
     this.setState({
       nav1: this.slider1,
       nav2: this.slider2
     });
   }
+
   onShowMore() {
     this.setState({
       showMore: !this.state.showMore
@@ -106,12 +110,26 @@ class Transaction extends Component {
   }
 
   sliderImageKanan(datas) {
+    const { handleChange } = this.props;
     let image = datas.map((x, i) => {
       return (
         <div>
           <div
             className="detail__imgSlide--small"
-            onClick={this.setData.bind(this, x.lowestask, x.highestbid, x.year)}
+            onClick={e => {
+              handleChange('price', {
+                target: { value: x.lowestask }
+              });
+              handleChange('lowestask', {
+                target: { value: x.lowestask }
+              });
+              handleChange('highestbid', {
+                target: { value: x.highestbid }
+              });
+              handleChange('year', {
+                target: { value: x.year }
+              });
+            }}
           >
             <img src={x.photopath} alt="" />
           </div>
@@ -121,20 +139,13 @@ class Transaction extends Component {
     return image;
   }
 
-  setData(ask, bid, year) {
-    this.setState({
-      lowestask: ask,
-      highestbid: bid,
-      year: year
-    });
-  }
-
   numberWithCommas(x) {
     let str = x === null || x === '' ? '' : x.toString();
-    // if (str !== '' && str.length >= 7) {
-    //   str = str.substring(0, str.length - 6);
-    str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    return str + ' JT';
+    if (str !== '' && str.length >= 7) {
+      str = str.substring(0, str.length - 6);
+      str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      return str + ' JT';
+    }
   }
 
   render() {
@@ -292,9 +303,7 @@ class Transaction extends Component {
                     <div className="transaction">
                       <div className="bgWhite">
                         <div className="mb-4">
-                          <h4>
-                            Rp. {this.numberWithCommas(this.state.lowestask)}
-                          </h4>
+                          <h4>Rp. {this.numberWithCommas(detail.lowestask)}</h4>
                           {/* <h4>Rp.999.999.999.999</h4> */}
                         </div>
 
@@ -305,7 +314,7 @@ class Transaction extends Component {
                               e.target.value === 'buy now'
                             ) {
                               handleChange('price', {
-                                target: { value: this.state.lowestask }
+                                target: { value: detail.lowestask }
                               });
                             } else {
                               handleChange('price', { target: { value: '' } });

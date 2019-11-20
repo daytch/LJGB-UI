@@ -21,7 +21,8 @@ import {
   GET_DATA_SEARCH,
   SET_DATA_SEARCH,
   SET_DATA_PROVINSI,
-  GET_DATA_PROVINSI
+  GET_DATA_PROVINSI,
+  HANDLE_CHANGE_HOME
 } from '../constants/index';
 
 const getHome = state => state.homeReducer;
@@ -205,6 +206,12 @@ export function* getDataSearch(action) {
         });
       });
       yield put({ type: SET_DATA_SEARCH, payload: dataAll });
+      yield put({
+        type: HANDLE_CHANGE_HOME,
+        property: 'search',
+        index: 'total',
+        value: data.total
+      });
     } else {
       let message = data.message;
       warning(message);

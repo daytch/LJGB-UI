@@ -51,9 +51,10 @@ const INIT_STATE = {
     brand: '',
     model: '',
     type: '',
-    dataNumber: 1,
-    pageSize: 10,
-    provinsi: ''
+    dataNumber: 0,
+    pageSize: 25,
+    provinsi: '',
+    total: 0
   },
   dataSearch: [
     { image: '', name: '', price: '' },

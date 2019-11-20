@@ -18,7 +18,10 @@ const Endpoint = {
   DATA_POSITION_ASK: '/Barang/GetAskPosition',
   DATA_WARNA_BY_ID: '/Warna/GetAllWithoutFilter',
   PROCESS_DATA: '/NegoBarang/SubmitAsk',
-  DATA_TRANSACTION: '/Barang/GetPhotoAndWarnaByID'
+  DATA_TRANSACTION: '/Barang/GetPhotoAndWarnaByID',
+
+  DATA_SIGNUP: '/Auth/Register',
+  DATA_LOGIN: '/Auth/Login'
 };
 
 export default Endpoint;

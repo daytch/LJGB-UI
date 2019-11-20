@@ -26,7 +26,10 @@ const INIT_STATE = {
   dataColor: [],
   dataTransaction: [],
   price: '',
-  type: ''
+  type: '',
+  highestbid: '',
+  lowestask: '',
+  year: ''
 };
 
 export default (state = INIT_STATE, action) => {

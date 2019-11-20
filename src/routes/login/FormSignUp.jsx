@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import LoginWith from './LoginWith';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { connect } from 'react-redux';
+import { actions } from '../../actions/loginAction';
 
 class FormSignUp extends Component {
   constructor(props) {
@@ -18,54 +20,74 @@ class FormSignUp extends Component {
     }));
   }
   render() {
+    const { login, handleState, getSignUp } = this.props;
     return (
       <div>
-        <LoginWith />
+        {/* <LoginWith />
         <p className="linedText">
           <span>OR</span>
-        </p>
-        <form>
-          <div className="field">
-            <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              placeholder="First Name"
-            />
-            <label htmlFor="firstName">First Name</label>
-          </div>
-          <div className="field">
-            <input
-              type="text"
-              name="lastName"
-              id="lastName"
-              placeholder="Last Name"
-            />
-            <label htmlFor="lastName">Last Name</label>
-          </div>
-          <div className="field">
-            <input
-              type="text"
-              name="email"
-              id="email"
-              placeholder="email.address@domain.com"
-            />
-            <label htmlFor="email">Email</label>
-          </div>
-          <div className="field">
-            <input
-              type={this.state.unSeen ? 'password' : 'text'}
-              name="password"
-              id="password"
-              placeholder="Password"
-              className="text-pass"
-            />
-            <label htmlFor="password">Password</label>
-            <span className="iconEye" onClick={this.toggleType}>
-              <FontAwesomeIcon icon={this.state.unSeen ? faEye : faEyeSlash} />
-            </span>
-          </div>
-          <div className="checkGo">
+        </p> */}
+        {/* <form> */}
+        <div className="field">
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            placeholder="First Name"
+            value={login.firstName}
+            onChange={handleState.bind(this, 'firstName')}
+          />
+          <label htmlFor="firstName">First Name</label>
+        </div>
+        <div className="field">
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            placeholder="Last Name"
+            value={login.lastName}
+            onChange={handleState.bind(this, 'lastName')}
+          />
+          <label htmlFor="lastName">Last Name</label>
+        </div>
+        <div className="field">
+          <input
+            type="text"
+            name="noHp"
+            id="noHp"
+            placeholder="Nomor Handphone"
+            value={login.noHp}
+            onChange={handleState.bind(this, 'noHp')}
+          />
+          <label htmlFor="noHp">Nomor Handphone</label>
+        </div>
+        <div className="field">
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="email.address@domain.com"
+            value={login.email}
+            onChange={handleState.bind(this, 'email')}
+          />
+          <label htmlFor="email">Email</label>
+        </div>
+        <div className="field">
+          <input
+            type={this.state.unSeen ? 'password' : 'text'}
+            name="password"
+            id="password"
+            placeholder="Password"
+            className="text-pass"
+            value={login.password}
+            onChange={handleState.bind(this, 'password')}
+          />
+          <label htmlFor="password">Password</label>
+          <span className="iconEye" onClick={this.toggleType}>
+            <FontAwesomeIcon icon={this.state.unSeen ? faEye : faEyeSlash} />
+          </span>
+        </div>
+        {/* <div className="checkGo">
             <input
               type="checkbox"
               className="checkInput"
@@ -77,12 +99,22 @@ class FormSignUp extends Component {
               and <a href="">Privacy Policy</a>
             </label>
             <span className="checkmark"></span>
-          </div>
-          <button className="btn btnGrey">Log In</button>
-        </form>
+          </div> */}
+        <button className="btn btnGrey" onClick={getSignUp.bind(this)}>
+          Sign Up
+        </button>
+        {/* </form> */}
       </div>
     );
   }
 }
 
-export default FormSignUp;
+const mapStateToProps = state => ({
+  login: state.loginReducer
+});
+export default connect(
+  mapStateToProps,
+  {
+    ...actions
+  }
+)(FormSignUp);

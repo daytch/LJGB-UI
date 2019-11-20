@@ -61,7 +61,7 @@ class Login extends Component {
 
   render() {
     var log = this.state;
-    const { login, handleState } = this.props;
+    const { login, handleState, getLogin } = this.props;
     return (
       <main role="main">
         <div className="container">
@@ -101,7 +101,7 @@ class Login extends Component {
 
               {/* s: Login form */}
               <div className={log.isLoginForm === true ? '' : 'formLoginHide'}>
-                <LoginWith />
+                {/* <LoginWith /> */}
                 {/* <GoogleLogin
                   clientId="206275678690-iia8vnbt1sep36v2tiebqmqs1i5uu4h1.apps.googleusercontent.com"
                   buttonText="Login"
@@ -116,42 +116,42 @@ class Login extends Component {
                   onClick={responseFacebook}
                   callback={responseFacebook} /> */}
 
-                <p className="linedText">
+                {/* <p className="linedText">
                   <span>OR</span>
-                </p>
+                </p> */}
 
-                <form>
-                  <div className="field">
-                    <input
-                      type="text"
-                      name="email"
-                      id="email"
-                      placeholder="email.address@domain.com"
-                      value={login.name}
-                      onChange={handleState.bind(this, 'name')}
+                {/* <form> */}
+                <div className="field">
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    placeholder="email.address@domain.com"
+                    value={login.nameLogin}
+                    onChange={handleState.bind(this, 'nameLogin')}
+                  />
+                  <label htmlFor="email">Email</label>
+                </div>
+
+                <div className="field">
+                  <input
+                    type={this.state.unSeen ? 'password' : 'text'}
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    className="text-pass"
+                    value={login.passwordLogin}
+                    onChange={handleState.bind(this, 'passwordLogin')}
+                  />
+                  <label htmlFor="password">Password</label>
+                  <span className="iconEye" onClick={this.toggleType}>
+                    <FontAwesomeIcon
+                      icon={this.state.unSeen ? faEye : faEyeSlash}
                     />
-                    <label htmlFor="email">Email</label>
-                  </div>
+                  </span>
+                </div>
 
-                  <div className="field">
-                    <input
-                      type={this.state.unSeen ? 'password' : 'text'}
-                      name="password"
-                      id="password"
-                      placeholder="Password"
-                      className="text-pass"
-                      value={login.password}
-                      onChange={handleState.bind(this, 'password')}
-                    />
-                    <label htmlFor="password">Password</label>
-                    <span className="iconEye" onClick={this.toggleType}>
-                      <FontAwesomeIcon
-                        icon={this.state.unSeen ? faEye : faEyeSlash}
-                      />
-                    </span>
-                  </div>
-
-                  <p
+                {/* <p
                     onClick={this.handleForget}
                     style={{
                       fontSize: '12px',
@@ -162,9 +162,9 @@ class Login extends Component {
                     }}
                   >
                     Forgot Password?
-                  </p>
+                  </p> */}
 
-                  <div className="checkGo">
+                {/* <div className="checkGo">
                     <input
                       type="checkbox"
                       className="checkInput"
@@ -175,27 +175,24 @@ class Login extends Component {
                       Keep me logged in
                     </label>
                     <span className="checkmark"></span>
-                  </div>
+                  </div> */}
 
-                  <button
-                    className="btn btnGrey"
-                    onClick={this.onLogin.bind(this)}
-                  >
-                    Log In
-                  </button>
+                <button className="btn btnGrey" onClick={getLogin.bind(this)}>
+                  Log In
+                </button>
 
-                  <p
-                    style={{
-                      fontSize: '12px',
-                      textAlign: 'center',
-                      margin: '10px 0 0'
-                    }}
-                  >
-                    By Logging in, you agree to the{' '}
-                    <a href="">Terms of Service</a> and{' '}
-                    <a href="">Privacy Policy</a>
-                  </p>
-                </form>
+                <p
+                  style={{
+                    fontSize: '12px',
+                    textAlign: 'center',
+                    margin: '10px 0 0'
+                  }}
+                >
+                  By Logging in, you agree to the{' '}
+                  <a href="">Terms of Service</a> and{' '}
+                  <a href="">Privacy Policy</a>
+                </p>
+                {/* </form> */}
               </div>
               {/* e: Login form */}
 

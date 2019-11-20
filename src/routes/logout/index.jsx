@@ -10,6 +10,9 @@ class Logout extends Component {
   componentWillMount() {
     localStorage.removeItem('idToken');
   }
+  componentDidMount() {
+    window.location.reload();
+  }
 
   render() {
     var token = localStorage.getItem('idToken');

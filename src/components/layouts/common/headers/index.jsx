@@ -73,8 +73,17 @@ class Header extends Component {
                 </Link>
               </Nav>
               <Nav>
-                <Link to="/login" className="nav-link">
-                  Login
+                <Link
+                  to={
+                    localStorage.getItem('idToken') === null
+                      ? '/login'
+                      : '/logout'
+                  }
+                  className="nav-link"
+                >
+                  {localStorage.getItem('idToken') === null
+                    ? 'Login'
+                    : 'Logout'}
                 </Link>
               </Nav>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
