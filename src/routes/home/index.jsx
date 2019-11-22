@@ -66,22 +66,22 @@ class Home extends Component {
   };
 
   setVar(data) {
-    if (data.city !== '' && data.city !== null) {
+    if (data.city !== undefined) {
       localStorage.setItem('city', data.city);
     }
-    if (data.brand !== '' && data.brand !== null) {
+    if (data.brand !== undefined) {
       localStorage.setItem('brand', data.brand);
     }
-    if (data.model !== '' && data.model !== null) {
+    if (data.model !== undefined) {
       localStorage.setItem('model', data.model);
     }
-    if (data.type !== '' && data.type !== null) {
+    if (data.type !== undefined) {
       localStorage.setItem('type', data.type);
     }
-    this.props.handleChange('search', 'city', '');
-    this.props.handleChange('search', 'brand', '');
-    this.props.handleChange('search', 'model', '');
-    this.props.handleChange('search', 'type', '');
+    this.props.handleChange('search', 'city', []);
+    this.props.handleChange('search', 'brand', []);
+    this.props.handleChange('search', 'model', []);
+    this.props.handleChange('search', 'type', []);
   }
 
   handleOk = e => {
