@@ -66,18 +66,22 @@ class Home extends Component {
   };
 
   setVar(data) {
-    if (data.city !== '') {
+    if (data.city !== '' && data.city !== null) {
       localStorage.setItem('city', data.city);
     }
-    if (data.brand !== '') {
+    if (data.brand !== '' && data.brand !== null) {
       localStorage.setItem('brand', data.brand);
     }
-    if (data.model !== '') {
+    if (data.model !== '' && data.model !== null) {
       localStorage.setItem('model', data.model);
     }
-    if (data.type !== '') {
+    if (data.type !== '' && data.type !== null) {
       localStorage.setItem('type', data.type);
     }
+    this.props.handleChange('search', 'city', '');
+    this.props.handleChange('search', 'brand', '');
+    this.props.handleChange('search', 'model', '');
+    this.props.handleChange('search', 'type', '');
   }
 
   handleOk = e => {
@@ -144,7 +148,9 @@ class Home extends Component {
                           });
                           handleChange(form, name, event);
                           handleChange(form, 'cityText', nameKota);
-                          getDataBrand(form, name, event);
+                          if (event !== undefined) {
+                            getDataBrand(form, name, event);
+                          }
                         }}
                         filterOption={(input, option) =>
                           option.props.children
@@ -176,7 +182,9 @@ class Home extends Component {
                         onChange={event => {
                           let name = 'brand';
                           handleChange(form, name, event);
-                          getDataModel(form, name, event);
+                          if (event !== undefined) {
+                            getDataModel(form, name, event);
+                          }
                         }}
                         filterOption={(input, option) =>
                           option.props.children
@@ -209,7 +217,9 @@ class Home extends Component {
                         onChange={event => {
                           let name = 'model';
                           handleChange(form, name, event);
-                          getDataType(form, name, event);
+                          if (event !== undefined) {
+                            getDataType(form, name, event);
+                          }
                         }}
                         filterOption={(input, option) =>
                           option.props.children

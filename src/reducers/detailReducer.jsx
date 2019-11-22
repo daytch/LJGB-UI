@@ -6,7 +6,8 @@ import {
   SET_DATA_WARNA,
   SET_DATA_TRANSAKSI,
   HANDLE_CHANGE_TRANSAKSI,
-  SET_DATA_ALL_BID
+  SET_DATA_ALL_BID,
+  SET_DATA_DETAIL_1
 } from '../constants/index';
 
 const INIT_STATE = {
@@ -32,7 +33,11 @@ const INIT_STATE = {
   highestbid: '',
   lowestask: '',
   year: '',
-  model: ''
+  model: 1,
+  yearDetail: '',
+  colorDetail: '',
+  ask: '',
+  bid: ''
 };
 
 export default (state = INIT_STATE, action) => {

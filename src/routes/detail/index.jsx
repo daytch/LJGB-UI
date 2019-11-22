@@ -118,7 +118,13 @@ class Detail extends Component {
       return (
         <div
           className="detail__imgSlide--small"
-          onClick={this.setData.bind(this, x.lowestask, x.highestbid, x.year)}
+          onClick={this.setData.bind(
+            this,
+            x.lowestask,
+            x.highestbid,
+            x.year,
+            x.color
+          )}
         >
           <img src={x.photopath} alt="" />
           <b>{x.color}</b>
@@ -128,7 +134,11 @@ class Detail extends Component {
     return image;
   }
 
-  setData(ask, bid, year) {
+  setData(ask, bid, year, color) {
+    this.props.handleChangeDetail('ask', ask);
+    this.props.handleChangeDetail('bid', bid);
+    this.props.handleChangeDetail('yearDetail', year);
+    this.props.handleChangeDetail('colorDetail', color);
     this.setState({
       lowestask: ask,
       highestbid: bid,
@@ -219,7 +229,7 @@ class Detail extends Component {
                       </div>
                       <div className="detail__header__item">
                         <p>
-                          Year: <span>{this.state.year}</span>
+                          Year: <span>{detail.yearDetail}</span>
                           {/* Year: <span>{detail.dataDetail.carDetail.year}</span> */}
                         </p>
                       </div>
@@ -237,7 +247,7 @@ class Detail extends Component {
                       <button className="btn btn-success">
                         <div className="bid__text left">
                           <span className="bid__text--big">
-                            {this.numberWithCommas(this.state.lowestask)}
+                            {this.numberWithCommas(detail.ask)}
                             {/* {this.numberWithCommas(
                               detail.dataDetail.carDetail.lowestask
                             )} */}
@@ -271,7 +281,7 @@ class Detail extends Component {
                       <button className="btn btn-danger">
                         <div className="bid__text left">
                           <span className="bid__text--big">
-                            {this.numberWithCommas(this.state.highestbid)}
+                            {this.numberWithCommas(detail.bid)}
                             {/* {this.numberWithCommas(
                               detail.dataDetail.carDetail.highestbid
                             )} */}
@@ -302,16 +312,17 @@ class Detail extends Component {
                   </div>
                   <div className="model">
                     <Select
-                      defaultValue="1"
                       style={{ width: 120 }}
                       showSearch
-                      allowClear={true}
+                      // allowClear={true}
                       style={{ width: 200 }}
                       placeholder="Select Model"
                       optionFilterProp="children"
                       value={detail.model}
                       onChange={event => {
                         handleChangeDetail('model', event);
+                        window.location.href = '/detail?id=' + event;
+                        // this.props.getDataDetail(event);
                       }}
                       filterOption={(input, option) =>
                         option.props.children

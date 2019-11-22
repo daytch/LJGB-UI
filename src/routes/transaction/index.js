@@ -109,6 +109,14 @@ class Transaction extends Component {
     return image;
   }
 
+  validateProcess() {
+    if (localStorage.getItem('idToken') === null) {
+      window.location.href = '/login';
+    } else {
+      this.props.processData();
+    }
+  }
+
   sliderImageKanan(datas) {
     const { handleChange } = this.props;
     let image = datas.map((x, i) => {
@@ -359,7 +367,7 @@ class Transaction extends Component {
                         </div>
                         <button
                           className="btn btn-primary w-100"
-                          onClick={this.props.processData.bind(this)}
+                          onClick={this.validateProcess.bind(this)}
                         >
                           Process
                         </button>

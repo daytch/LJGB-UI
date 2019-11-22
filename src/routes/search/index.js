@@ -69,10 +69,16 @@ class Search extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-    // localStorage.removeItem('city')
-    // localStorage.removeItem('brand')
-    // localStorage.removeItem('model')
-    // localStorage.removeItem('type')
+  }
+  componentWillUnmount() {
+    this.props.handleChange('search', 'city', '');
+    this.props.handleChange('search', 'brand', '');
+    this.props.handleChange('search', 'model', '');
+    this.props.handleChange('search', 'type', '');
+    localStorage.removeItem('city');
+    localStorage.removeItem('brand');
+    localStorage.removeItem('model');
+    localStorage.removeItem('type');
   }
 
   handleScroll = event => {
@@ -139,7 +145,9 @@ class Search extends Component {
                           });
                           handleChange(form, name, event);
                           handleChange(form, 'cityText', nameKota);
-                          getDataBrand(form, name, event);
+                          if (event !== undefined) {
+                            getDataBrand(form, name, event);
+                          }
                         }}
                         filterOption={(input, option) =>
                           option.props.children
@@ -170,7 +178,9 @@ class Search extends Component {
                         onChange={event => {
                           let name = 'brand';
                           handleChange(form, name, event);
-                          getDataModel(form, name, event);
+                          if (event !== undefined) {
+                            getDataModel(form, name, event);
+                          }
                         }}
                         filterOption={(input, option) =>
                           option.props.children
@@ -202,7 +212,9 @@ class Search extends Component {
                         onChange={event => {
                           let name = 'model';
                           handleChange(form, name, event);
-                          getDataType(form, name, event);
+                          if (event !== undefined) {
+                            getDataType(form, name, event);
+                          }
                         }}
                         filterOption={(input, option) =>
                           option.props.children
@@ -257,8 +269,8 @@ class Search extends Component {
                         <button
                           className="btn btn-success"
                           onClick={e => {
-                            handleChange('search', 'dataNumber', 1);
-                            handleChange('search', 'pageSize', 10);
+                            handleChange('search', 'dataNumber', 0);
+                            handleChange('search', 'pageSize', 25);
                             getSearch();
                           }}
                         >

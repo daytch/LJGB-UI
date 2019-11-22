@@ -94,7 +94,14 @@ class Header extends Component {
                     : 'Logout'}
                 </Link>
               </Nav>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+              <Nav>
+                <span className="nav-link">
+                  {localStorage.getItem('idToken') === null
+                    ? ''
+                    : 'Welcome User'}
+                </span>
+              </Nav>
+              {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
@@ -106,7 +113,7 @@ class Header extends Component {
                 <NavDropdown.Item href="#action/3.4">
                   Separated link
                 </NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown> */}
             </Nav>
             {/* <Form inline>
               <FormControl type="text" placeholder="Search" className="mr-sm-2" />

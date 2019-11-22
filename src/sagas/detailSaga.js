@@ -19,7 +19,8 @@ import {
   SET_DATA_WARNA,
   GET_PROCESS_DATA,
   GET_DATA_TRANSAKSI,
-  SET_DATA_TRANSAKSI
+  SET_DATA_TRANSAKSI,
+  HANDLE_CHANGE_DETAIL
 } from '../constants/index';
 
 const getDetail = state => state.detailReducer;
@@ -36,6 +37,28 @@ export function* getDataDetail(action) {
     );
     if (data.isSuccess) {
       yield put({ type: SET_DATA_DETAIL, payload: data });
+      if (data.sP_GetPhotoAndWarnaByBarangIDS.length > 0) {
+        yield put({
+          type: HANDLE_CHANGE_DETAIL,
+          value: data.sP_GetPhotoAndWarnaByBarangIDS[0].color,
+          property: 'colorDetail'
+        });
+        yield put({
+          type: HANDLE_CHANGE_DETAIL,
+          value: data.sP_GetPhotoAndWarnaByBarangIDS[0].year,
+          property: 'yearDetail'
+        });
+        yield put({
+          type: HANDLE_CHANGE_DETAIL,
+          value: data.sP_GetPhotoAndWarnaByBarangIDS[0].lowestask,
+          property: 'ask'
+        });
+        yield put({
+          type: HANDLE_CHANGE_DETAIL,
+          value: data.sP_GetPhotoAndWarnaByBarangIDS[0].highestbid,
+          property: 'bid'
+        });
+      }
     } else {
       warning(data.message);
     }

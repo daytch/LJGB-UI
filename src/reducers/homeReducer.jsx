@@ -48,9 +48,9 @@ const INIT_STATE = {
   search: {
     city: '',
     cityText: '',
-    brand: '',
-    model: '',
-    type: '',
+    brand: null,
+    model: null,
+    type: null,
     dataNumber: 0,
     pageSize: 25,
     provinsi: '',
