@@ -25,7 +25,10 @@ class Search extends Component {
 
   componentWillMount() {
     // this.props.getDataHome();
-    if (localStorage.getItem('city') !== null) {
+    if (
+      localStorage.getItem('city') !== '' &&
+      localStorage.getItem('city') !== null
+    ) {
       this.props.getDataBrand(this, '', parseInt(localStorage.getItem('city')));
       this.props.handleChange(
         'search',
@@ -33,7 +36,10 @@ class Search extends Component {
         parseInt(localStorage.getItem('city'))
       );
     }
-    if (localStorage.getItem('brand') !== null) {
+    if (
+      localStorage.getItem('brand') !== '' &&
+      localStorage.getItem('brand') !== null
+    ) {
       this.props.getDataBrand(this, '', parseInt(localStorage.getItem('city')));
       this.props.handleChange(
         'search',
@@ -42,7 +48,10 @@ class Search extends Component {
       );
       this.props.getDataModel();
     }
-    if (localStorage.getItem('model') !== null) {
+    if (
+      localStorage.getItem('model') !== '' &&
+      localStorage.getItem('model') !== null
+    ) {
       this.props.getDataModel();
       this.props.handleChange(
         'search',
@@ -51,7 +60,10 @@ class Search extends Component {
       );
       this.props.getDataType();
     }
-    if (localStorage.getItem('type') !== null) {
+    if (
+      localStorage.getItem('type') !== '' &&
+      localStorage.getItem('type') !== null
+    ) {
       this.props.getDataType();
       this.props.handleChange(
         'search',
@@ -73,10 +85,10 @@ class Search extends Component {
     window.addEventListener('scroll', this.handleScroll);
   }
   componentWillUnmount() {
-    this.props.handleChange('search', 'city', '');
-    this.props.handleChange('search', 'brand', '');
-    this.props.handleChange('search', 'model', '');
-    this.props.handleChange('search', 'type', '');
+    this.props.handleChange('search', 'city', []);
+    this.props.handleChange('search', 'brand', []);
+    this.props.handleChange('search', 'model', []);
+    this.props.handleChange('search', 'type', []);
     localStorage.removeItem('city');
     localStorage.removeItem('brand');
     localStorage.removeItem('model');
@@ -137,6 +149,7 @@ class Search extends Component {
                       <span className="search__label">Wilayah</span>
                       <Select
                         showSearch
+                        allowClear={true}
                         style={{ width: 200 }}
                         placeholder="Select Wilayah"
                         optionFilterProp="children"
@@ -177,6 +190,7 @@ class Search extends Component {
                       <span className="search__label">Brand</span>
                       <Select
                         showSearch
+                        allowClear={true}
                         style={{ width: 200 }}
                         placeholder="Select Brand"
                         optionFilterProp="children"
@@ -211,6 +225,7 @@ class Search extends Component {
                       <span className="search__label">Model</span>
                       <Select
                         showSearch
+                        allowClear={true}
                         style={{ width: 200 }}
                         placeholder="Select Model"
                         optionFilterProp="children"
@@ -245,6 +260,7 @@ class Search extends Component {
                       <span className="search__label">Tipe</span>
                       <Select
                         showSearch
+                        allowClear={true}
                         style={{ width: 200 }}
                         placeholder="Select Tipe"
                         optionFilterProp="children"

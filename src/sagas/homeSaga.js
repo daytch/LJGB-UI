@@ -181,10 +181,10 @@ export function* getDataSearch(action) {
   try {
     const home = yield select(getHome);
     let body = {
-      kotaID: home.search.city === '' ? null : home.search.city,
-      merkID: home.search.brand === '' ? null : home.search.brand,
-      modelBarangID: home.search.model === '' ? null : home.search.model,
-      typeID: home.search.type === '' ? null : home.search.type,
+      kotaID: home.search.city.length === 0 ? null : home.search.city,
+      merkID: home.search.brand.length === 0 ? null : home.search.brand,
+      modelBarangID: home.search.model.length === 0 ? null : home.search.model,
+      typeID: home.search.type.length === 0 ? null : home.search.type,
       start: home.search.dataNumber,
       limit: home.search.pageSize
     };
