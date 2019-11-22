@@ -28,11 +28,11 @@ const Footer = () => {
             <div className="socmed">
               <h4>Ikuti kami di</h4>
               <div className="socmed__wrapper">
-                <span class="socmed__icon icon-facebook"></span>
-                <span class="socmed__icon icon-twitter"></span>
-                <span class="socmed__icon icon-youtube"></span>
-                <span class="socmed__icon icon-google-plus"></span>
-                <span class="socmed__icon icon-instagram"></span>
+                <span className="socmed__icon icon-facebook"></span>
+                <span className="socmed__icon icon-twitter"></span>
+                <span className="socmed__icon icon-youtube"></span>
+                <span className="socmed__icon icon-google-plus"></span>
+                <span className="socmed__icon icon-instagram"></span>
               </div>
             </div>
           </div> */}
@@ -126,11 +126,11 @@ const Footer = () => {
             <div className="socmed">
               <h4>Ikuti kami di</h4>
               <div className="socmed__wrapper">
-                <span class="socmed__icon icon-facebook"></span>
-                <span class="socmed__icon icon-twitter"></span>
-                <span class="socmed__icon icon-youtube"></span>
-                <span class="socmed__icon icon-google-plus"></span>
-                <span class="socmed__icon icon-instagram"></span>
+                <span className="socmed__icon icon-facebook"></span>
+                <span className="socmed__icon icon-twitter"></span>
+                <span className="socmed__icon icon-youtube"></span>
+                <span className="socmed__icon icon-google-plus"></span>
+                <span className="socmed__icon icon-instagram"></span>
               </div>
             </div>
             <div className="customercare">

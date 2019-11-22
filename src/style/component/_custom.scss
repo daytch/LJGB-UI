@@ -12,6 +12,13 @@
 .ant-tooltip-inner {
   margin-right: 15px;
 }
+.ant-table-thead > tr > th .ant-table-header-column {
+  text-transform: capitalize;
+}
+.ant-table-thead > tr > th:first-child,
+.ant-table-tbody > tr > td:first-child {
+  text-align: center;
+}
 @media (max-width: 767px) {
   .ant-breadcrumb {
     display: none;
