@@ -65,6 +65,8 @@ class Search extends Component {
 
     $('.navbar').addClass('navbar-dark');
     $('.navbar').removeClass('bg-cl-white');
+    $('#logoWhite').css({ display: 'block' });
+    $('#logoDark').css({ display: 'none' });
   }
 
   componentDidMount() {
@@ -89,7 +91,11 @@ class Search extends Component {
     if (this.state.scrollY > 150) {
       $('.navbar').removeClass('navbar-dark');
       $('.navbar').addClass('bg-cl-white');
+      $('#logoWhite').css({ display: 'none' });
+      $('#logoDark').css({ display: 'block' });
     } else {
+      $('#logoWhite').css({ display: 'block' });
+      $('#logoDark').css({ display: 'none' });
       $('.navbar').addClass('navbar-dark');
       $('.navbar').removeClass('bg-cl-white');
     }
@@ -286,7 +292,7 @@ class Search extends Component {
 
           <div>
             <div className="container pd-t-30">
-              <div className="product">
+              <div className="product search__result">
                 <div className="row__header">
                   <span className="product__category-big">Hasil Pencarian</span>
                   <div className="see__all noArrow">

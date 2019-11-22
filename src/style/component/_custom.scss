@@ -12,3 +12,8 @@
 .ant-tooltip-inner {
   margin-right: 15px;
 }
+@media (max-width: 767px) {
+  .ant-breadcrumb {
+    display: none;
+  }
+}

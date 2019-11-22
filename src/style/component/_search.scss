@@ -30,4 +30,23 @@
   &__label {
     font-weight: 700;
   }
+  &__result {
+    @media (max-width: 767px) {
+      .product__wrapper .row {
+        flex-wrap: wrap;
+      }
+      .product__wrapper .col-3 {
+        width: calc(100% / 4) !important;
+        flex: unset;
+      }
+      .product__item {
+        margin-bottom: 15px;
+      }
+    }
+    @media (max-width: 426px) {
+      .product__wrapper .col-3 {
+        width: calc(100% / 2) !important;
+      }
+    }
+  }
 }

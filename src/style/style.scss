@@ -7,18 +7,19 @@
 // layout style
 @import 'layout/header';
 @import 'layout/footer';
-@import 'layout/navbar.scss';
+@import 'layout/navbar';
+@import 'layout/sider';
 
 // component style
 @import 'component/btn';
 @import 'component/login';
 @import 'component/product';
 @import 'component/pilihLjgb';
-@import 'component/slidertop.scss';
-@import 'component/search.scss';
-@import 'component/detail.scss';
-@import 'component/socmed.scss';
-@import 'component/transaction.scss';
+@import 'component/slidertop';
+@import 'component/search';
+@import 'component/detail';
+@import 'component/socmed';
+@import 'component/transaction';
 
 // plugin custom style
-@import 'component/custom.scss';
+@import 'component/custom';

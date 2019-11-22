@@ -1,0 +1,9 @@
+.ant-layout-sider {
+  background: $color-2;
+}
+.ant-menu-inline .ant-menu-item,
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
