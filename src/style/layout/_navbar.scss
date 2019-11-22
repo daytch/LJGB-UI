@@ -71,6 +71,11 @@
           color: #444;
         }
       }
+      img {
+        @media (max-width: 767px) {
+          margin: auto;
+        }
+      }
     }
   }
   // .navbar-light .navbar-toggler{

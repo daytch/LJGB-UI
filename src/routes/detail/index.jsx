@@ -105,7 +105,10 @@ class Detail extends Component {
         // <div>
         <div className="detail__imgSlide--big">
           <img src={x.photopath} alt="" />
-          <b>{x.color}</b>
+          <b>
+            <span style={{ color: '#999' }}>Color&nbsp;:</span>&nbsp;&nbsp;
+            {x.color}
+          </b>
         </div>
         // </div >
       );
@@ -138,20 +141,25 @@ class Detail extends Component {
 
   render() {
     const settingSlider1 = {
-      arrow: true,
-      dots: false
+      arrow: false,
+      dots: false,
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            arrow: false,
+            dots: false
+          }
+        }
+      ]
     };
     const settingSlider2 = {
       dots: false,
       arrow: true,
       infinite: false,
       slidesToScroll: 1,
-      // row:2,
-      // slidesPerRow: 2,
       vertical: true,
       verticalSwiping: true,
-      // nextArrow: <Icon type="caret-up" />,
-      // prevArrow: <Icon type="caret-down" />,
       responsive: [
         {
           breakpoint: 767,
@@ -203,12 +211,12 @@ class Detail extends Component {
     return (
       <BlockUi tag="div" blocking={detail.isLoading} style={{ width: '100%' }}>
         <main role="main">
-          <div className="container">
+          <div className="container detail__container">
             <BreadCrumb breadName={detail.dataDetail.carDetail.name} />
 
             <div className="detail">
               <div className="detail__header">
-                <div className="row">
+                <div className="row detail__title">
                   <div className="col-md-12">
                     <h1>{detail.dataDetail.carDetail.name}</h1>
                     <div className="detail__header__small">
@@ -348,42 +356,36 @@ class Detail extends Component {
                             asNavFor={this.state.nav2}
                             ref={slider => (this.slider1 = slider)}
                             fade={true}
+                            className="slideShow"
                             {...settingSlider1}
                           >
                             {this.sliderImage(
                               detail.dataDetail.sP_GetPhotoAndWarnaByBarangIDS
                             )}
-                            {/* <div>
-                              <div className="detail__imgSlide--big" >
-                                <img src={Img1} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img2} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img3} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img4} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img5} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img6} alt="" />
-                              </div>
-                            </div> */}
                           </Slider>
+                          <div className="row detail__title--mob">
+                            <div className="col-md-12">
+                              <h1>{detail.dataDetail.carDetail.name}</h1>
+                              <div className="detail__header__small">
+                                <div className="detail__header__item">
+                                  <p>
+                                    Condition: <span>New</span>
+                                  </p>
+                                </div>
+                                <div className="detail__header__item">
+                                  <p>
+                                    Year: <span>{this.state.year}</span>
+                                    {/* Year: <span>{detail.dataDetail.carDetail.year}</span> */}
+                                  </p>
+                                </div>
+                                <div className="detail__header__item">
+                                  <p>
+                                    <span>100% Authentic</span>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className="col-md-3">
@@ -399,36 +401,6 @@ class Detail extends Component {
                           {this.sliderImageKanan(
                             detail.dataDetail.sP_GetPhotoAndWarnaByBarangIDS
                           )}
-                          {/* <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img1} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img2} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img3} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img4} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img5} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img6} alt="" />
-                            </div>
-                          </div> */}
                         </Slider>
                       </div>
                     </div>
