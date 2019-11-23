@@ -95,6 +95,11 @@ class Header extends Component {
                 </Link>
               </Nav>
               <Nav>
+                <Link className="nav-link" to={'/profile'}>
+                  {localStorage.getItem('idToken') === null ? '' : 'Profile'}
+                </Link>
+              </Nav>
+              <Nav>
                 <span className="nav-link">
                   {localStorage.getItem('idToken') === null
                     ? ''
