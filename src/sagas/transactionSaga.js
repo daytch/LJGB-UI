@@ -164,18 +164,20 @@ export function* getProcessData(action) {
     const detail = yield select(getDetail);
     yield put({ type: SET_LOADER_DETAIL, payload: true });
     let body = {
-      userProfileID: 3,
-      barangID: 1,
-      typePenawaran: detail.type,
-      harga: detail.price,
-      created: new Date(),
-      createdBy: 'string'
+      barangID: parseInt(action.value),
+      // typePenawaran: detail.type,
+      harga: detail.price
     };
     let askBid =
       action.property == 'bid'
         ? Endpoint.PROCESS_DATA_BID
         : Endpoint.PROCESS_DATA_ASK;
-    const data = yield call(POST, API_DATA + askBid, body, master.getHeader());
+    const data = yield call(
+      POST,
+      API_DATA + askBid,
+      body,
+      master.getHeaderToken()
+    );
     debugger;
     if (data.isSuccess) {
       success(data.message);
@@ -221,10 +223,10 @@ export function* getDataTransaction(action) {
 
 export default function* rootSaga() {
   yield all([
-    takeLatest(GET_DATA_DETAIL, getDataDetail),
-    takeLatest(GET_DATA_ALL_ASK, getDataAllAsk),
-    takeLatest(GET_DATA_ALL_BID, getDataAllBid),
-    takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk),
+    // takeLatest(GET_DATA_DETAIL, getDataDetail),
+    // takeLatest(GET_DATA_ALL_ASK, getDataAllAsk),
+    // takeLatest(GET_DATA_ALL_BID, getDataAllBid),
+    // takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk),
     takeLatest(GET_DATA_WARNA, getDataWarna),
     takeLatest(GET_PROCESS_DATA, getProcessData),
     takeLatest(GET_DATA_TRANSAKSI, getDataTransaction)

@@ -3,6 +3,7 @@ import swals from 'sweetalert2';
 // import { actionLogout } from './../routes/Login/action/Login';
 
 export function POST(url, body, header) {
+  debugger;
   return axios
     .post(url, body, header)
     .then(res => {

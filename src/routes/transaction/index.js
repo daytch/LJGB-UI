@@ -45,9 +45,11 @@ class Transaction extends Component {
     const { getDataWarna, getDataTransaksi, handleChange } = this.props;
     $('.navbar').removeClass('navbar-dark');
     $('.navbar').addClass('bg-cl-white');
-    let getData = this.props.location.search.replace('?', '');
+    let getData = this.props.location.search.replace('?id=', '');
+    var status = getData.replace(/[0-9]/g, '');
+    var id = getData.replace(/[a-z]/g, '');
     let type = {
-      target: { value: getData === 'ask' ? 'place ask' : 'place bid' }
+      target: { value: status === 'ask' ? 'place ask' : 'place bid' }
     };
     getDataWarna();
     getDataTransaksi();
@@ -69,7 +71,8 @@ class Transaction extends Component {
   }
   showAllAsk = () => {
     let getData = this.props.location.search.replace('?id=', '');
-    this.props.GetAllAsk(getData);
+    var id = getData.replace(/[a-z]/g, '');
+    this.props.GetAllAsk(id);
     this.setState({
       visibleAsk: true
     });
@@ -110,27 +113,37 @@ class Transaction extends Component {
   }
 
   validateProcess() {
-    let getData = this.props.location.search.replace('?', '');
+    let getData = this.props.location.search.replace('?id=', '');
+    var status = getData.replace(/[0-9]/g, '');
+    var id = getData.replace(/[a-z]/g, '');
     if (localStorage.getItem('idToken') === null) {
       let getLast = this.props.location.search;
       localStorage.setItem('path', getLast);
       window.location.href = '/login';
     } else {
-      this.props.processData(getData);
+      this.props.processData(status, id);
     }
   }
 
   sliderImageKanan(datas) {
-    const { handleChange } = this.props;
+    const { handleChange, transaction } = this.props;
     let image = datas.map((x, i) => {
+      let getData = transaction;
       return (
         <div>
           <div
             className="detail__imgSlide--small"
             onClick={e => {
-              handleChange('price', {
-                target: { value: x.lowestask }
-              });
+              let getType = getData.type;
+              if (getType == 'sell now' || getType == 'buy now') {
+                handleChange('price', {
+                  target: { value: x.lowestask }
+                });
+              } else {
+                handleChange('price', {
+                  target: { value: x.highestbid == null ? '' : x.highestbid }
+                });
+              }
               handleChange('lowestask', {
                 target: { value: x.lowestask }
               });
@@ -200,7 +213,8 @@ class Transaction extends Component {
     //   }
     // };
 
-    let getData = this.props.location.search.replace('?', '');
+    let getD = this.props.location.search.replace('?', '');
+    var getData = getD.replace(/[0-9]/g, '');
     return (
       <BlockUi
         tag="div"
@@ -373,6 +387,13 @@ class Transaction extends Component {
                                 : false
                             }
                           />
+                          {transaction.type == 'place ask' ||
+                          transaction.type == 'place bid' ? (
+                            <span>
+                              minimum Rp.{' '}
+                              {this.numberWithCommas(transaction.price)}{' '}
+                            </span>
+                          ) : null}
                         </div>
                         <button
                           className="btn btn-primary w-100"
