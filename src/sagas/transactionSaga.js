@@ -171,12 +171,12 @@ export function* getProcessData(action) {
       created: new Date(),
       createdBy: 'string'
     };
-    const data = yield call(
-      POST,
-      API_DATA + Endpoint.PROCESS_DATA,
-      body,
-      master.getHeader()
-    );
+    let askBid =
+      action.property == 'bid'
+        ? Endpoint.PROCESS_DATA_BID
+        : Endpoint.PROCESS_DATA_ASK;
+    const data = yield call(POST, API_DATA + askBid, body, master.getHeader());
+    debugger;
     if (data.isSuccess) {
       success(data.message);
       // yield put({ type: SET_DATA_WARNA, payload: data.data });

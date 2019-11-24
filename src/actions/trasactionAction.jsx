@@ -38,7 +38,8 @@ export function getDataWarna(property, value) {
 
 export function processData(property, value) {
   return {
-    type: GET_PROCESS_DATA
+    type: GET_PROCESS_DATA,
+    property
   };
 }
 

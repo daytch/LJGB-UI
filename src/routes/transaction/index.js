@@ -110,10 +110,13 @@ class Transaction extends Component {
   }
 
   validateProcess() {
+    let getData = this.props.location.search.replace('?', '');
     if (localStorage.getItem('idToken') === null) {
+      let getLast = this.props.location.search;
+      localStorage.setItem('path', getLast);
       window.location.href = '/login';
     } else {
-      this.props.processData();
+      this.props.processData(getData);
     }
   }
 
@@ -324,7 +327,7 @@ class Transaction extends Component {
                         <Radio.Group
                           onChange={e => {
                             if (
-                              e.target.value === 'ask now' ||
+                              e.target.value === 'sell now' ||
                               e.target.value === 'buy now'
                             ) {
                               handleChange('price', {
@@ -352,7 +355,7 @@ class Transaction extends Component {
                             className="btn btnRadio"
                             value="buy now"
                           >
-                            {getData === 'ask' ? 'Ask Now' : 'Buy Now'}
+                            {getData === 'ask' ? 'Sell Now' : 'Buy Now'}
                           </Radio.Button>
                         </Radio.Group>
 
@@ -364,7 +367,7 @@ class Transaction extends Component {
                             onChange={handleChange.bind(this, 'price')}
                             value={transaction.price}
                             disabled={
-                              transaction.type === 'ask now' ||
+                              transaction.type === 'sell now' ||
                               transaction.type === 'buy now'
                                 ? true
                                 : false

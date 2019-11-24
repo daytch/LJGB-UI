@@ -34,7 +34,12 @@ export function* getDataLogin(action) {
     if (data.isSuccess) {
       localStorage.setItem('idToken', data.token);
       yield put({ type: SET_DATA_LOGIN, payload: data.token });
-      window.location.href = '/';
+      debugger;
+      if (localStorage.getItem('path') !== undefined) {
+        window.location.href = '/transaction' + localStorage.getItem('path');
+      } else {
+        window.location.href = '/';
+      }
     } else {
       let message = data.message;
       warning(message);

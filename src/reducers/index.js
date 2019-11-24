@@ -3,12 +3,14 @@ import loginReducer from './loginReducer';
 import homeReducer from './homeReducer';
 import detailReducer from './detailReducer';
 import transactionReducer from './transactionReducer';
+import profileReducer from './profileReducer';
 
 const rootReducer = combineReducers({
   loginReducer,
   homeReducer,
   detailReducer,
-  transactionReducer
+  transactionReducer,
+  profileReducer
 });
 
 export default rootReducer;
