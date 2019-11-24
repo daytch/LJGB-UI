@@ -50,12 +50,14 @@ class Header extends Component {
                   id="logoDark"
                   src={ImageLogo}
                   alt="lojualguebeli.com"
+                  title="Lojualguebeli.com"
                   style={{ height: '30px' }}
                 />
                 <img
                   id="logoWhite"
                   src={ImageLogoWhite}
                   alt="lojualguebeli.com"
+                  title="Lojualguebeli.com"
                   style={{ height: '30px', display: 'none' }}
                 />
               </Link>

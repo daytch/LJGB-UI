@@ -41,10 +41,14 @@ class Home extends Component {
     $('#logoDark').css({ display: 'none' });
 
     // this.showModal()
+    window.addEventListener('scroll', this.handleScroll);
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+  componentWillUnmount() {
+    $('.navbar').removeClass('navbar-dark');
+    $('.navbar').addClass('bg-cl-white');
+    $('#logoWhite').css({ display: 'none' });
+    $('#logoDark').css({ display: 'block' });
   }
 
   handleScroll = event => {
@@ -115,179 +119,177 @@ class Home extends Component {
 
     let form = 'search';
     return (
-      <BlockUi
-        tag="div"
-        blocking={home.isLoadingHome}
-        style={{ width: '100%' }}
-      >
-        <main role="main" style={{ marginTop: '0' }}>
-          <div className="slider__top">
-            <Banner />
+      <main role="main" style={{ marginTop: '0' }}>
+        <div className="slider__top">
+          <Banner />
 
-            <div className="search">
-              <div className="container">
-                <div className="select__wrapper">
-                  <div className="row">
-                    <div className="col-6 col-md">
-                      <span className="search__label">Wilayah</span>
-                      <Select
-                        showSearch
-                        allowClear={true}
-                        style={{ width: 200 }}
-                        placeholder="Select Wilayah"
-                        optionFilterProp="children"
-                        value={home.search.city}
-                        onChange={event => {
-                          let name = 'city';
-                          let nameKota;
-                          home.dataKota.map((x, index) => {
-                            // let name = 'brand';
-                            if (x.id === event) {
-                              nameKota = x.text;
-                            }
-                          });
-                          handleChange(form, name, event);
-                          handleChange(form, 'cityText', nameKota);
-                          if (event !== undefined) {
-                            getDataBrand(form, name, event);
+          <div className="search">
+            <div className="container">
+              <div className="select__wrapper">
+                <div className="row">
+                  <div className="col-6 col-md">
+                    <span className="search__label">Wilayah</span>
+                    <Select
+                      showSearch
+                      allowClear={true}
+                      style={{ width: 200 }}
+                      placeholder="Select Wilayah"
+                      optionFilterProp="children"
+                      value={home.search.city}
+                      onChange={event => {
+                        let name = 'city';
+                        let nameKota;
+                        home.dataKota.map((x, index) => {
+                          // let name = 'brand';
+                          if (x.id === event) {
+                            nameKota = x.text;
                           }
-                        }}
-                        filterOption={(input, option) =>
-                          option.props.children
-                            .toLowerCase()
-                            .indexOf(input.toLowerCase()) >= 0
+                        });
+                        handleChange(form, name, event);
+                        handleChange(form, 'cityText', nameKota);
+                        if (event !== undefined) {
+                          getDataBrand(form, name, event);
                         }
-                      >
-                        {(home.dataKota !== undefined ? home.dataKota : []).map(
-                          (x, index) => {
-                            return (
-                              <Option key={index} value={x.id}>
-                                {x.text}
-                              </Option>
-                            );
-                          }
-                        )}
-                      </Select>
-                    </div>
-
-                    <div className="col-6 col-md">
-                      <span className="search__label">Brand</span>
-                      <Select
-                        showSearch
-                        allowClear={true}
-                        style={{ width: 200 }}
-                        placeholder="Select Brand"
-                        optionFilterProp="children"
-                        value={home.search.brand}
-                        onChange={event => {
-                          let name = 'brand';
-                          handleChange(form, name, event);
-                          if (event !== undefined) {
-                            getDataModel(form, name, event);
-                          }
-                        }}
-                        filterOption={(input, option) =>
-                          option.props.children
-                            .toLowerCase()
-                            .indexOf(input.toLowerCase()) >= 0
-                        }
-                      >
-                        {(home.dataBrand !== undefined
-                          ? home.dataBrand
-                          : []
-                        ).map((x, index) => {
+                      }}
+                      filterOption={(input, option) =>
+                        option.props.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {(home.dataKota !== undefined ? home.dataKota : []).map(
+                        (x, index) => {
                           return (
                             <Option key={index} value={x.id}>
                               {x.text}
                             </Option>
                           );
-                        })}
-                      </Select>
-                    </div>
-
-                    <div className="col-6 col-md">
-                      <span className="search__label">Model</span>
-                      <Select
-                        showSearch
-                        allowClear={true}
-                        style={{ width: 200 }}
-                        placeholder="Select Model"
-                        optionFilterProp="children"
-                        value={home.search.model}
-                        onChange={event => {
-                          let name = 'model';
-                          handleChange(form, name, event);
-                          if (event !== undefined) {
-                            getDataType(form, name, event);
-                          }
-                        }}
-                        filterOption={(input, option) =>
-                          option.props.children
-                            .toLowerCase()
-                            .indexOf(input.toLowerCase()) >= 0
                         }
-                      >
-                        {(home.dataModel !== undefined
-                          ? home.dataModel
-                          : []
-                        ).map((x, index) => {
+                      )}
+                    </Select>
+                  </div>
+
+                  <div className="col-6 col-md">
+                    <span className="search__label">Brand</span>
+                    <Select
+                      showSearch
+                      allowClear={true}
+                      style={{ width: 200 }}
+                      placeholder="Select Brand"
+                      optionFilterProp="children"
+                      value={home.search.brand}
+                      onChange={event => {
+                        let name = 'brand';
+                        handleChange(form, name, event);
+                        if (event !== undefined) {
+                          getDataModel(form, name, event);
+                        }
+                      }}
+                      filterOption={(input, option) =>
+                        option.props.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {(home.dataBrand !== undefined ? home.dataBrand : []).map(
+                        (x, index) => {
                           return (
                             <Option key={index} value={x.id}>
                               {x.text}
                             </Option>
                           );
-                        })}
-                      </Select>
-                    </div>
-
-                    <div className="col-6 col-md">
-                      <span className="search__label">Tipe</span>
-                      <Select
-                        showSearch
-                        allowClear={true}
-                        style={{ width: 200 }}
-                        placeholder="Select Tipe"
-                        optionFilterProp="children"
-                        value={home.search.type}
-                        onChange={event => {
-                          let name = 'type';
-                          handleChange(form, name, event);
-                        }}
-                        filterOption={(input, option) =>
-                          option.props.children
-                            .toLowerCase()
-                            .indexOf(input.toLowerCase()) >= 0
                         }
-                      >
-                        {(home.dataType !== undefined ? home.dataType : []).map(
-                          (x, index) => {
-                            return (
-                              <Option key={index} value={x.id}>
-                                {x.text}
-                              </Option>
-                            );
-                          }
-                        )}
-                      </Select>
-                    </div>
-                    <div className="col-md-12 col-md">
-                      <div className="btn-center" style={{ marginTop: '15px' }}>
-                        <Link to="/search">
-                          <button
-                            className="btn btn-success"
-                            onClick={this.setVar.bind(this, home.search)}
-                          >
-                            Search
-                          </button>
-                        </Link>
-                      </div>
+                      )}
+                    </Select>
+                  </div>
+
+                  <div className="col-6 col-md">
+                    <span className="search__label">Model</span>
+                    <Select
+                      showSearch
+                      allowClear={true}
+                      style={{ width: 200 }}
+                      placeholder="Select Model"
+                      optionFilterProp="children"
+                      value={home.search.model}
+                      onChange={event => {
+                        let name = 'model';
+                        handleChange(form, name, event);
+                        if (event !== undefined) {
+                          getDataType(form, name, event);
+                        }
+                      }}
+                      filterOption={(input, option) =>
+                        option.props.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {(home.dataModel !== undefined ? home.dataModel : []).map(
+                        (x, index) => {
+                          return (
+                            <Option key={index} value={x.id}>
+                              {x.text}
+                            </Option>
+                          );
+                        }
+                      )}
+                    </Select>
+                  </div>
+
+                  <div className="col-6 col-md">
+                    <span className="search__label">Tipe</span>
+                    <Select
+                      showSearch
+                      allowClear={true}
+                      style={{ width: 200 }}
+                      placeholder="Select Tipe"
+                      optionFilterProp="children"
+                      value={home.search.type}
+                      onChange={event => {
+                        let name = 'type';
+                        handleChange(form, name, event);
+                      }}
+                      filterOption={(input, option) =>
+                        option.props.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {(home.dataType !== undefined ? home.dataType : []).map(
+                        (x, index) => {
+                          return (
+                            <Option key={index} value={x.id}>
+                              {x.text}
+                            </Option>
+                          );
+                        }
+                      )}
+                    </Select>
+                  </div>
+                  <div className="col-md-12 col-md">
+                    <div className="btn-center" style={{ marginTop: '15px' }}>
+                      <Link to="/search">
+                        <button
+                          className="btn btn-success"
+                          onClick={this.setVar.bind(this, home.search)}
+                        >
+                          Search
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
+        <BlockUi
+          tag="div"
+          blocking={home.isLoadingHome}
+          style={{ width: '100%' }}
+        >
           <div>
             <div className="container pd-t-30">
               <div className="product">
@@ -352,7 +354,7 @@ class Home extends Component {
                 </div>
                 <Product data={home.dataHome.listNormal} title={'Other'} />
                 {/* <Product
-                data={home.dataHome.highestBids} /> /> */}
+                  data={home.dataHome.highestBids} /> /> */}
               </div>
 
               <div className="pilihLjgb">
@@ -364,6 +366,7 @@ class Home extends Component {
                       <img
                         src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/lengkap.svg"
                         alt=""
+                        title="Lojualguebeli.com"
                       />
                     </div>
                     <div className="pilihLjgb__item__caption">
@@ -380,6 +383,7 @@ class Home extends Component {
                       <img
                         src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/promo-harga-bersaing.svg"
                         alt=""
+                        title="Lojualguebeli.com"
                       />
                     </div>
                     <div className="pilihLjgb__item__caption">
@@ -396,6 +400,7 @@ class Home extends Component {
                       <img
                         src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/aman-terpecaya.svg"
                         alt=""
+                        title="Lojualguebeli.com"
                       />
                     </div>
                     <div className="pilihLjgb__item__caption">
@@ -408,42 +413,42 @@ class Home extends Component {
               </div>
             </div>
           </div>
-          <Modal
-            title="Silahkan Pilih Provinsi Anda"
-            visible={this.state.visible}
-            onOk={this.handleOk}
-            onCancel={this.handleCancel}
+        </BlockUi>
+        <Modal
+          title="Silahkan Pilih Provinsi Anda"
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <span className="search__label">Provinsi</span>
+          <Select
+            className="labelBlack"
+            showSearch
+            style={{ width: 200 }}
+            placeholder="Select Provinsi"
+            optionFilterProp="children"
+            value={home.search.provinsi}
+            onChange={event => {
+              handleChange('search', 'provinsi', event);
+            }}
+            filterOption={(input, option) =>
+              option.props.children
+                .toLowerCase()
+                .indexOf(input.toLowerCase()) >= 0
+            }
           >
-            <span className="search__label">Provinsi</span>
-            <Select
-              className="labelBlack"
-              showSearch
-              style={{ width: 200 }}
-              placeholder="Select Provinsi"
-              optionFilterProp="children"
-              value={home.search.provinsi}
-              onChange={event => {
-                handleChange('search', 'provinsi', event);
-              }}
-              filterOption={(input, option) =>
-                option.props.children
-                  .toLowerCase()
-                  .indexOf(input.toLowerCase()) >= 0
+            {(home.dataProvinsi !== undefined ? home.dataProvinsi : []).map(
+              (x, index) => {
+                return (
+                  <Option key={index} value={x.id}>
+                    {x.text}
+                  </Option>
+                );
               }
-            >
-              {(home.dataProvinsi !== undefined ? home.dataProvinsi : []).map(
-                (x, index) => {
-                  return (
-                    <Option key={index} value={x.id}>
-                      {x.text}
-                    </Option>
-                  );
-                }
-              )}
-            </Select>
-          </Modal>
-        </main>
-      </BlockUi>
+            )}
+          </Select>
+        </Modal>
+      </main>
     );
   }
 }

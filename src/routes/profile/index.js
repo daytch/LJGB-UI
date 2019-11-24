@@ -43,6 +43,7 @@ class Profile extends Component {
               <img
                 src="https://www.ayobogor.com/images-bogor/post/articles/2019/08/29/4131/66100743_467711664065817_4828107924256841603_n.jpg"
                 alt=""
+                title="Lojualguebeli.com"
               />
             </div>
             <h3 className="profile__name">Novia Venessa</h3>

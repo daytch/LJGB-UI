@@ -104,7 +104,7 @@ class Detail extends Component {
       return (
         // <div>
         <div className="detail__imgSlide--big">
-          <img src={x.photopath} alt="" />
+          <img src={x.photopath} alt="" title="Lojualguebeli.com" />
           <b>
             <span style={{ color: '#999' }}>Color&nbsp;:</span>&nbsp;&nbsp;
             {x.color}
@@ -129,7 +129,7 @@ class Detail extends Component {
             x.color
           )}
         >
-          <img src={x.photopath} alt="" />
+          <img src={x.photopath} alt="" title="Lojualguebeli.com" />
           <b>{x.color}</b>
         </div>
       );
@@ -153,6 +153,7 @@ class Detail extends Component {
     const settingSlider1 = {
       arrow: false,
       dots: false,
+      initialSlide: 0,
       responsive: [
         {
           breakpoint: 767,
@@ -166,7 +167,8 @@ class Detail extends Component {
     const settingSlider2 = {
       dots: false,
       arrow: true,
-      infinite: false,
+      initialSlide: 0,
+      infinite: true,
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
@@ -175,9 +177,9 @@ class Detail extends Component {
           breakpoint: 767,
           settings: {
             arrow: false,
+            initialSlide: 0,
             slidesToShow: 3,
             slidesToScroll: 1,
-            initialSlide: 1,
             vertical: false,
             verticalSwiping: false
           }
