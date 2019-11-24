@@ -17,8 +17,10 @@ const Endpoint = {
   DATA_ALL_BID: '/Barang/GetAllBidsById',
   DATA_POSITION_ASK: '/Barang/GetAskPosition',
   DATA_WARNA_BY_ID: '/Warna/GetAllWithoutFilter',
-  PROCESS_DATA: '/NegoBarang/SubmitAsk',
+  PROCESS_DATA_ASK: '/NegoBarang/SubmitAsk',
+  PROCESS_DATA_BID: '/NegoBarang/SubmitBid',
   DATA_TRANSACTION: '/Barang/GetPhotoAndWarnaByID',
+  DATA_TRX: '/Transaction/GetListBidAndBuy',
 
   DATA_SIGNUP: '/Auth/Register',
   DATA_LOGIN: '/Auth/Login'

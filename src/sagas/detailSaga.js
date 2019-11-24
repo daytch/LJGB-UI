@@ -224,9 +224,9 @@ export default function* rootSaga() {
     takeLatest(GET_DATA_DETAIL, getDataDetail),
     takeLatest(GET_DATA_ALL_ASK, getDataAllAsk),
     takeLatest(GET_DATA_ALL_BID, getDataAllBid),
-    takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk),
-    takeLatest(GET_DATA_WARNA, getDataWarna),
-    takeLatest(GET_PROCESS_DATA, getProcessData),
-    takeLatest(GET_DATA_TRANSAKSI, getDataTransaction)
+    takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk)
+    // takeLatest(GET_DATA_WARNA, getDataWarna),
+    // takeLatest(GET_PROCESS_DATA, getProcessData),
+    // takeLatest(GET_DATA_TRANSAKSI, getDataTransaction)
   ]);
 }

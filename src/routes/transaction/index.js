@@ -14,7 +14,7 @@ import BreadCrumb from '../../components/layouts/common/breadcrumb';
 // import Img5 from './../../images/color/white.jpeg';
 // import Img6 from './../../images/color/yellow.jpeg';
 import { connect } from 'react-redux';
-import { actions } from '../../actions/detailAction';
+import { actions } from '../../actions/trasactionAction';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { Tooltip } from 'antd';
 // import Product from '../../components/layouts/common/product';
@@ -55,7 +55,7 @@ class Transaction extends Component {
   }
 
   componentDidMount() {
-    const { detail } = this.props;
+    const { transaction } = this.props;
     this.setState({
       nav1: this.slider1,
       nav2: this.slider2
@@ -110,10 +110,13 @@ class Transaction extends Component {
   }
 
   validateProcess() {
+    let getData = this.props.location.search.replace('?', '');
     if (localStorage.getItem('idToken') === null) {
+      let getLast = this.props.location.search;
+      localStorage.setItem('path', getLast);
       window.location.href = '/login';
     } else {
-      this.props.processData();
+      this.props.processData(getData);
     }
   }
 
@@ -174,7 +177,7 @@ class Transaction extends Component {
       }
     };
 
-    const { detail, handleChange } = this.props;
+    const { transaction, handleChange } = this.props;
     // const columns = [
     //   {
     //     title: 'Nama',
@@ -199,10 +202,14 @@ class Transaction extends Component {
 
     let getData = this.props.location.search.replace('?', '');
     return (
-      <BlockUi tag="div" blocking={detail.isLoading} style={{ width: '100%' }}>
+      <BlockUi
+        tag="div"
+        blocking={transaction.isLoading}
+        style={{ width: '100%' }}
+      >
         <main role="main">
           <div className="container">
-            <BreadCrumb breadName={detail.dataDetail.carDetail.name} />
+            <BreadCrumb breadName={transaction.dataDetail.carDetail.name} />
 
             <div className="detail">
               <div className="detail__body">
@@ -216,7 +223,38 @@ class Transaction extends Component {
                             ref={slider => (this.slider1 = slider)}
                             fade={true}
                           >
-                            {this.sliderImage(detail.dataTransaction)}
+                            {this.sliderImage(transaction.dataTransaction)}
+
+                            {/* <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img1} alt="" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img2} alt="" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img3} alt="" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img4} alt="" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img5} alt="" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="detail__imgSlide--big">
+                                <img src={Img6} alt="" />
+                              </div>
+                            </div> */}
                           </Slider>
                         </div>
                       </div>
@@ -230,7 +268,37 @@ class Transaction extends Component {
                           className="slideTrigger"
                           {...settings}
                         >
-                          {this.sliderImageKanan(detail.dataTransaction)}
+                          {this.sliderImageKanan(transaction.dataTransaction)}
+                          {/* <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img1} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img2} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img3} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img4} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img5} alt="" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="detail__imgSlide--small">
+                              <img src={Img6} alt="" />
+                            </div>
+                          </div> */}
                         </Slider>
                       </div>
                     </div>
@@ -239,18 +307,20 @@ class Transaction extends Component {
                     <div className="transaction">
                       <div className="bgWhite">
                         <div className="mb-4">
-                          <h4>Rp. {this.numberWithCommas(detail.lowestask)}</h4>
+                          <h4>
+                            Rp. {this.numberWithCommas(transaction.lowestask)}
+                          </h4>
                           {/* <h4>Rp.999.999.999.999</h4> */}
                         </div>
 
                         <Radio.Group
                           onChange={e => {
                             if (
-                              e.target.value === 'ask now' ||
+                              e.target.value === 'sell now' ||
                               e.target.value === 'buy now'
                             ) {
                               handleChange('price', {
-                                target: { value: detail.lowestask }
+                                target: { value: transaction.lowestask }
                               });
                             } else {
                               handleChange('price', { target: { value: '' } });
@@ -274,7 +344,7 @@ class Transaction extends Component {
                             className="btn btnRadio"
                             value="buy now"
                           >
-                            {getData === 'ask' ? 'Ask Now' : 'Buy Now'}
+                            {getData === 'ask' ? 'Sell Now' : 'Buy Now'}
                           </Radio.Button>
                         </Radio.Group>
 
@@ -284,10 +354,10 @@ class Transaction extends Component {
                             name="price"
                             id="price"
                             onChange={handleChange.bind(this, 'price')}
-                            value={detail.price}
+                            value={transaction.price}
                             disabled={
-                              detail.type === 'ask now' ||
-                              detail.type === 'buy now'
+                              transaction.type === 'sell now' ||
+                              transaction.type === 'buy now'
                                 ? true
                                 : false
                             }
@@ -313,7 +383,7 @@ class Transaction extends Component {
 }
 
 const mapStateToProps = state => ({
-  detail: state.detailReducer
+  transaction: state.transactionReducer
 });
 export default connect(
   mapStateToProps,

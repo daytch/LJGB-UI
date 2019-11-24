@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
+import { connect } from 'react-redux';
+import { actions } from '../../actions/profileAction';
+import BlockUi from 'react-block-ui';
+import '../../style/component/select.scss';
 
 class Tracking extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  componentWillMount() {
+    this.props.getDataTrx();
+  }
   render() {
+    const { profile } = this.props;
     const dataSource = [
       {
         key: '1',
@@ -27,14 +36,14 @@ class Tracking extends Component {
     const columns = [
       {
         title: 'no',
-        dataIndex: 'key',
-        key: 'key',
+        dataIndex: 'id',
+        key: 'id',
         width: 80
       },
       {
         title: 'produk',
-        dataIndex: 'produk',
-        key: 'produk'
+        dataIndex: 'barangName',
+        key: 'barangName'
       },
       {
         title: 'price',
@@ -53,12 +62,26 @@ class Tracking extends Component {
       }
     ];
     return (
-      <div>
-        <h3>Tracking</h3>
-        <Table columns={columns} dataSource={dataSource} pagination={false} />
-      </div>
+      <BlockUi tag="div" blocking={profile.isLoading} style={{ width: '100%' }}>
+        <div>
+          <h3>Tracking</h3>
+          <Table
+            columns={columns}
+            dataSource={profile.trx}
+            pagination={false}
+          />
+        </div>
+      </BlockUi>
     );
   }
 }
 
-export default Tracking;
+const mapStateToProps = state => ({
+  profile: state.profileReducer
+});
+export default connect(
+  mapStateToProps,
+  {
+    ...actions
+  }
+)(Tracking);
