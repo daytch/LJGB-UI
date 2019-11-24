@@ -153,6 +153,7 @@ class Detail extends Component {
     const settingSlider1 = {
       arrow: false,
       dots: false,
+      initialSlide: 0,
       responsive: [
         {
           breakpoint: 767,
@@ -166,7 +167,8 @@ class Detail extends Component {
     const settingSlider2 = {
       dots: false,
       arrow: true,
-      infinite: false,
+      initialSlide: 0,
+      infinite: true,
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
@@ -175,9 +177,9 @@ class Detail extends Component {
           breakpoint: 767,
           settings: {
             arrow: false,
+            initialSlide: 0,
             slidesToShow: 3,
             slidesToScroll: 1,
-            initialSlide: 1,
             vertical: false,
             verticalSwiping: false
           }

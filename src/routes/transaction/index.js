@@ -46,6 +46,7 @@ class Transaction extends Component {
     $('.navbar').removeClass('navbar-dark');
     $('.navbar').addClass('bg-cl-white');
     let getData = this.props.location.search.replace('?', '');
+    this.props.getDataDetail(getData);
     let type = {
       target: { value: getData === 'ask' ? 'place ask' : 'place bid' }
     };
@@ -176,6 +177,48 @@ class Transaction extends Component {
         console.log('after change', currentSlide);
       }
     };
+    const settingSlider1 = {
+      arrow: false,
+      dots: false,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            arrow: false,
+            dots: false
+          }
+        }
+      ]
+    };
+    const settingSlider2 = {
+      dots: false,
+      arrow: true,
+      initialSlide: 0,
+      infinite: true,
+      slidesToScroll: 1,
+      vertical: true,
+      verticalSwiping: true,
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            arrow: false,
+            initialSlide: 0,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            vertical: false,
+            verticalSwiping: false
+          }
+        }
+      ],
+      beforeChange: function(currentSlide, nextSlide) {
+        console.log('before change', currentSlide, nextSlide);
+      },
+      afterChange: function(currentSlide) {
+        console.log('after change', currentSlide);
+      }
+    };
 
     const { transaction, handleChange } = this.props;
     // const columns = [
@@ -222,39 +265,9 @@ class Transaction extends Component {
                             asNavFor={this.state.nav2}
                             ref={slider => (this.slider1 = slider)}
                             fade={true}
+                            {...settingSlider1}
                           >
                             {this.sliderImage(transaction.dataTransaction)}
-
-                            {/* <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img1} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img2} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img3} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img4} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img5} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img6} alt="" />
-                              </div>
-                            </div> */}
                           </Slider>
                         </div>
                       </div>
@@ -266,39 +279,9 @@ class Transaction extends Component {
                           swipeToSlide={true}
                           focusOnSelect={true}
                           className="slideTrigger"
-                          {...settings}
+                          {...settingSlider2}
                         >
                           {this.sliderImageKanan(transaction.dataTransaction)}
-                          {/* <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img1} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img2} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img3} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img4} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img5} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img6} alt="" />
-                            </div>
-                          </div> */}
                         </Slider>
                       </div>
                     </div>
@@ -310,7 +293,6 @@ class Transaction extends Component {
                           <h4>
                             Rp. {this.numberWithCommas(transaction.lowestask)}
                           </h4>
-                          {/* <h4>Rp.999.999.999.999</h4> */}
                         </div>
 
                         <Radio.Group

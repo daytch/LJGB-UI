@@ -132,180 +132,178 @@ class Search extends Component {
     } = this.props;
     let form = 'search';
     return (
-      <BlockUi
-        tag="div"
-        blocking={home.isLoadingHome}
-        style={{ width: '100%' }}
-      >
-        <main role="main" style={{ marginTop: '0' }}>
-          <div className="slider__top pageSearch">
-            <Banner />
+      <main role="main" style={{ marginTop: '0' }}>
+        <div className="slider__top pageSearch">
+          <Banner />
 
-            <div className="search">
-              <div className="container">
-                <div className="select__wrapper">
-                  <div className="row">
-                    <div className="col-6 col-md">
-                      <span className="search__label">Wilayah</span>
-                      <Select
-                        showSearch
-                        allowClear={true}
-                        style={{ width: 200 }}
-                        placeholder="Select Wilayah"
-                        optionFilterProp="children"
-                        value={home.search.city}
-                        onChange={event => {
-                          let name = 'city';
-                          let nameKota;
-                          home.dataKota.map((x, index) => {
-                            if (x.id === event) {
-                              nameKota = x.text;
-                            }
-                          });
-                          handleChange(form, name, event);
-                          handleChange(form, 'cityText', nameKota);
-                          if (event !== undefined) {
-                            getDataBrand(form, name, event);
+          <div className="search">
+            <div className="container">
+              <div className="select__wrapper">
+                <div className="row">
+                  <div className="col-6 col-md">
+                    <span className="search__label">Wilayah</span>
+                    <Select
+                      showSearch
+                      allowClear={true}
+                      style={{ width: 200 }}
+                      placeholder="Select Wilayah"
+                      optionFilterProp="children"
+                      value={home.search.city}
+                      onChange={event => {
+                        let name = 'city';
+                        let nameKota;
+                        home.dataKota.map((x, index) => {
+                          if (x.id === event) {
+                            nameKota = x.text;
                           }
-                        }}
-                        filterOption={(input, option) =>
-                          option.props.children
-                            .toLowerCase()
-                            .indexOf(input.toLowerCase()) >= 0
+                        });
+                        handleChange(form, name, event);
+                        handleChange(form, 'cityText', nameKota);
+                        if (event !== undefined) {
+                          getDataBrand(form, name, event);
                         }
-                      >
-                        {(home.dataKota !== undefined ? home.dataKota : []).map(
-                          (x, index) => {
-                            return (
-                              <Option key={index} value={x.id}>
-                                {x.text}
-                              </Option>
-                            );
-                          }
-                        )}
-                      </Select>
-                    </div>
-
-                    <div className="col-6 col-md">
-                      <span className="search__label">Brand</span>
-                      <Select
-                        showSearch
-                        allowClear={true}
-                        style={{ width: 200 }}
-                        placeholder="Select Brand"
-                        optionFilterProp="children"
-                        value={home.search.brand}
-                        onChange={event => {
-                          let name = 'brand';
-                          handleChange(form, name, event);
-                          if (event !== undefined) {
-                            getDataModel(form, name, event);
-                          }
-                        }}
-                        filterOption={(input, option) =>
-                          option.props.children
-                            .toLowerCase()
-                            .indexOf(input.toLowerCase()) >= 0
-                        }
-                      >
-                        {(home.dataBrand !== undefined
-                          ? home.dataBrand
-                          : []
-                        ).map((x, index) => {
+                      }}
+                      filterOption={(input, option) =>
+                        option.props.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {(home.dataKota !== undefined ? home.dataKota : []).map(
+                        (x, index) => {
                           return (
                             <Option key={index} value={x.id}>
                               {x.text}
                             </Option>
                           );
-                        })}
-                      </Select>
-                    </div>
-
-                    <div className="col-6 col-md">
-                      <span className="search__label">Model</span>
-                      <Select
-                        showSearch
-                        allowClear={true}
-                        style={{ width: 200 }}
-                        placeholder="Select Model"
-                        optionFilterProp="children"
-                        value={home.search.model}
-                        onChange={event => {
-                          let name = 'model';
-                          handleChange(form, name, event);
-                          if (event !== undefined) {
-                            getDataType(form, name, event);
-                          }
-                        }}
-                        filterOption={(input, option) =>
-                          option.props.children
-                            .toLowerCase()
-                            .indexOf(input.toLowerCase()) >= 0
                         }
-                      >
-                        {(home.dataModel !== undefined
-                          ? home.dataModel
-                          : []
-                        ).map((x, index) => {
+                      )}
+                    </Select>
+                  </div>
+
+                  <div className="col-6 col-md">
+                    <span className="search__label">Brand</span>
+                    <Select
+                      showSearch
+                      allowClear={true}
+                      style={{ width: 200 }}
+                      placeholder="Select Brand"
+                      optionFilterProp="children"
+                      value={home.search.brand}
+                      onChange={event => {
+                        let name = 'brand';
+                        handleChange(form, name, event);
+                        if (event !== undefined) {
+                          getDataModel(form, name, event);
+                        }
+                      }}
+                      filterOption={(input, option) =>
+                        option.props.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {(home.dataBrand !== undefined ? home.dataBrand : []).map(
+                        (x, index) => {
                           return (
                             <Option key={index} value={x.id}>
                               {x.text}
                             </Option>
                           );
-                        })}
-                      </Select>
-                    </div>
-
-                    <div className="col-6 col-md">
-                      <span className="search__label">Tipe</span>
-                      <Select
-                        showSearch
-                        allowClear={true}
-                        style={{ width: 200 }}
-                        placeholder="Select Tipe"
-                        optionFilterProp="children"
-                        value={home.search.type}
-                        onChange={event => {
-                          let name = 'type';
-                          handleChange(form, name, event);
-                        }}
-                        filterOption={(input, option) =>
-                          option.props.children
-                            .toLowerCase()
-                            .indexOf(input.toLowerCase()) >= 0
                         }
+                      )}
+                    </Select>
+                  </div>
+
+                  <div className="col-6 col-md">
+                    <span className="search__label">Model</span>
+                    <Select
+                      showSearch
+                      allowClear={true}
+                      style={{ width: 200 }}
+                      placeholder="Select Model"
+                      optionFilterProp="children"
+                      value={home.search.model}
+                      onChange={event => {
+                        let name = 'model';
+                        handleChange(form, name, event);
+                        if (event !== undefined) {
+                          getDataType(form, name, event);
+                        }
+                      }}
+                      filterOption={(input, option) =>
+                        option.props.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {(home.dataModel !== undefined ? home.dataModel : []).map(
+                        (x, index) => {
+                          return (
+                            <Option key={index} value={x.id}>
+                              {x.text}
+                            </Option>
+                          );
+                        }
+                      )}
+                    </Select>
+                  </div>
+
+                  <div className="col-6 col-md">
+                    <span className="search__label">Tipe</span>
+                    <Select
+                      showSearch
+                      allowClear={true}
+                      style={{ width: 200 }}
+                      placeholder="Select Tipe"
+                      optionFilterProp="children"
+                      value={home.search.type}
+                      onChange={event => {
+                        let name = 'type';
+                        handleChange(form, name, event);
+                      }}
+                      filterOption={(input, option) =>
+                        option.props.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {(home.dataType !== undefined ? home.dataType : []).map(
+                        (x, index) => {
+                          return (
+                            <Option key={index} value={x.id}>
+                              {x.text}
+                            </Option>
+                          );
+                        }
+                      )}
+                    </Select>
+                  </div>
+                  <div className="col-md-12 col-md">
+                    <div className="btn-center" style={{ marginTop: '15px' }}>
+                      <button
+                        className="btn btn-success"
+                        onClick={e => {
+                          handleChange('search', 'dataNumber', 0);
+                          handleChange('search', 'pageSize', 25);
+                          getSearch();
+                        }}
                       >
-                        {(home.dataType !== undefined ? home.dataType : []).map(
-                          (x, index) => {
-                            return (
-                              <Option key={index} value={x.id}>
-                                {x.text}
-                              </Option>
-                            );
-                          }
-                        )}
-                      </Select>
-                    </div>
-                    <div className="col-md-12 col-md">
-                      <div className="btn-center" style={{ marginTop: '15px' }}>
-                        <button
-                          className="btn btn-success"
-                          onClick={e => {
-                            handleChange('search', 'dataNumber', 0);
-                            handleChange('search', 'pageSize', 25);
-                            getSearch();
-                          }}
-                        >
-                          Search
-                        </button>
-                      </div>
+                        Search
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
+        <BlockUi
+          tag="div"
+          blocking={home.isLoadingHome}
+          style={{ width: '100%' }}
+        >
           <div>
             <div className="container pd-t-30">
               <div className="product search__result">
@@ -315,26 +313,26 @@ class Search extends Component {
                     Result {home.search.total}
                   </div>
                   {/* <div
-                    style={{
-                      float: 'right',
-                      width: '200px',
-                      marginRight: '20px'
-                    }}
-                  >
-                    <Select defaultValue="1" style={{ width: 120 }}>
-                      <Option value="1">Featured</Option>
-                      <Option value="2">Most Popular</Option>
-                      <Option value="3">New Lowest Asks</Option>
-                      <Option value="3">New Highest Bids</Option>
-                      <Option value="3">Average Sale Price</Option>
-                      <Option value="3">Total Sold</Option>
-                      <Option value="3">Volatility</Option>
-                      <Option value="3">Price Premium</Option>
-                      <Option value="3">Lowest Ask</Option>
-                      <Option value="3">Highest Bid</Option>
-                      <Option value="3">Released Date</Option>
-                    </Select>
-                  </div> */}
+                      style={{
+                        float: 'right',
+                        width: '200px',
+                        marginRight: '20px'
+                      }}
+                    >
+                      <Select defaultValue="1" style={{ width: 120 }}>
+                        <Option value="1">Featured</Option>
+                        <Option value="2">Most Popular</Option>
+                        <Option value="3">New Lowest Asks</Option>
+                        <Option value="3">New Highest Bids</Option>
+                        <Option value="3">Average Sale Price</Option>
+                        <Option value="3">Total Sold</Option>
+                        <Option value="3">Volatility</Option>
+                        <Option value="3">Price Premium</Option>
+                        <Option value="3">Lowest Ask</Option>
+                        <Option value="3">Highest Bid</Option>
+                        <Option value="3">Released Date</Option>
+                      </Select>
+                    </div> */}
                   <Product data={home.dataSearch} title={''} />
                 </div>
                 <Pagination
@@ -346,8 +344,8 @@ class Search extends Component {
               </div>
             </div>
           </div>
-        </main>
-      </BlockUi>
+        </BlockUi>
+      </main>
     );
   }
 }
