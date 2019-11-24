@@ -16,6 +16,7 @@ class Banner extends Component {
               <img
                 src="https://www.toyotajogjadealer.com/wp-content/uploads/2017/07/490.jpg"
                 alt="banner 1"
+                title="Lojualguebeli.com"
               />
             </div>
             <div className="slider__caption">
@@ -40,6 +41,7 @@ class Banner extends Component {
               <img
                 src="https://images.seva.id/sys-master/images/hff/hf1/8814513717278/main_galery_toyota_new_alphard_interior_1.png"
                 alt="banner 2"
+                title="Lojualguebeli.com"
               />
             </div>
             <div className="slider__caption">

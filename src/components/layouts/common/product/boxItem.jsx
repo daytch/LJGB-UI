@@ -23,7 +23,7 @@ class BoxItem extends Component {
         <Link to={'/detail?id=' + id}>
           <div className="product__item">
             <div className="product__image__small">
-              <img src={image} alt="" />
+              <img src={image} alt="" title="Lojualguebeli.com" />
               {/* <p className="product__category">Lowest Ask</p> */}
             </div>
             <div className="product__caption">

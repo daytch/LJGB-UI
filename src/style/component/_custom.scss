@@ -19,6 +19,10 @@
 .ant-table-tbody > tr > td:first-child {
   text-align: center;
 }
+.ant-select-selection__clear {
+  background: transparent;
+  color: #fff;
+}
 @media (max-width: 767px) {
   .ant-breadcrumb {
     display: none;

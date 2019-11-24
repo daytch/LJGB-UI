@@ -104,7 +104,7 @@ class Detail extends Component {
       return (
         // <div>
         <div className="detail__imgSlide--big">
-          <img src={x.photopath} alt="" />
+          <img src={x.photopath} alt="" title="Lojualguebeli.com" />
           <b>
             <span style={{ color: '#999' }}>Color&nbsp;:</span>&nbsp;&nbsp;
             {x.color}
@@ -129,7 +129,7 @@ class Detail extends Component {
             x.color
           )}
         >
-          <img src={x.photopath} alt="" />
+          <img src={x.photopath} alt="" title="Lojualguebeli.com" />
           <b>{x.color}</b>
         </div>
       );

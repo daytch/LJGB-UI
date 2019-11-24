@@ -41,10 +41,14 @@ class Home extends Component {
     $('#logoDark').css({ display: 'none' });
 
     // this.showModal()
+    window.addEventListener('scroll', this.handleScroll);
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+  componentWillUnmount() {
+    $('.navbar').removeClass('navbar-dark');
+    $('.navbar').addClass('bg-cl-white');
+    $('#logoWhite').css({ display: 'none' });
+    $('#logoDark').css({ display: 'block' });
   }
 
   handleScroll = event => {
@@ -364,6 +368,7 @@ class Home extends Component {
                       <img
                         src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/lengkap.svg"
                         alt=""
+                        title="Lojualguebeli.com"
                       />
                     </div>
                     <div className="pilihLjgb__item__caption">
@@ -380,6 +385,7 @@ class Home extends Component {
                       <img
                         src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/promo-harga-bersaing.svg"
                         alt=""
+                        title="Lojualguebeli.com"
                       />
                     </div>
                     <div className="pilihLjgb__item__caption">
@@ -396,6 +402,7 @@ class Home extends Component {
                       <img
                         src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/aman-terpecaya.svg"
                         alt=""
+                        title="Lojualguebeli.com"
                       />
                     </div>
                     <div className="pilihLjgb__item__caption">

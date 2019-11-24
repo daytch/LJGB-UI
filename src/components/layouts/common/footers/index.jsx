@@ -12,6 +12,7 @@ const Footer = () => {
                 <img
                   src="https://www.rajamobil.com/themes/rmperjuangan/images/logo/logo-footer-new.svg"
                   alt=""
+                  title="Lojualguebeli.com"
                 />
               </div>
               <p>
@@ -138,6 +139,7 @@ const Footer = () => {
                 <img
                   src="https://www.rajamobil.com/themes/rmperjuangan/images/footer/customer-service.svg"
                   alt=""
+                  title="Lojualguebeli.com"
                 />
               </div>
               <div>

@@ -100,7 +100,7 @@ class Transaction extends Component {
       return (
         // <div>
         <div className="detail__imgSlide--big">
-          <img src={x.photopath} alt="" />
+          <img src={x.photopath} alt="" title="Lojualguebeli.com" />
           <b>{x.color}</b>
         </div>
         // </div >
@@ -217,37 +217,6 @@ class Transaction extends Component {
                             fade={true}
                           >
                             {this.sliderImage(detail.dataTransaction)}
-
-                            {/* <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img1} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img2} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img3} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img4} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img5} alt="" />
-                              </div>
-                            </div>
-                            <div>
-                              <div className="detail__imgSlide--big">
-                                <img src={Img6} alt="" />
-                              </div>
-                            </div> */}
                           </Slider>
                         </div>
                       </div>
@@ -262,50 +231,9 @@ class Transaction extends Component {
                           {...settings}
                         >
                           {this.sliderImageKanan(detail.dataTransaction)}
-                          {/* <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img1} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img2} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img3} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img4} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img5} alt="" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="detail__imgSlide--small">
-                              <img src={Img6} alt="" />
-                            </div>
-                          </div> */}
                         </Slider>
                       </div>
                     </div>
-                    {/* <div>
-                      Warna
-                      <Table
-                        dataSource={detail.dataColor}
-                        columns={columns}
-                        rowSelection={rowSelection}
-                        pagination={{
-                          pageSize: 5
-                        }}
-                      />
-                    </div> */}
                   </div>
                   <div className="col-md-4">
                     <div className="transaction">
