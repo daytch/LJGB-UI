@@ -116,6 +116,18 @@ class Detail extends Component {
     return image;
   }
 
+  sliderColor(datas) {
+    let color = datas.map((x, i) => {
+      return (
+        <b>
+          <span>Color&nbsp;:</span>&nbsp;&nbsp;
+          <span style={{ color: '#509e2f' }}>{x.color}</span>
+        </b>
+      );
+    });
+    return color;
+  }
+
   sliderImageKanan(datas) {
     let image = datas.map((x, i) => {
       return (
@@ -130,7 +142,7 @@ class Detail extends Component {
           )}
         >
           <img src={x.photopath} alt="" title="Lojualguebeli.com" />
-          <b>{x.color}</b>
+          {/* <b>{x.color}</b> */}
         </div>
       );
     });
@@ -157,6 +169,7 @@ class Detail extends Component {
       responsive: [
         {
           breakpoint: 767,
+          initialSlide: 0,
           settings: {
             arrow: false,
             dots: false
@@ -178,7 +191,7 @@ class Detail extends Component {
           settings: {
             arrow: false,
             initialSlide: 0,
-            slidesToShow: 3,
+            slidesToShow: 4,
             slidesToScroll: 1,
             vertical: false,
             verticalSwiping: false
@@ -322,10 +335,8 @@ class Detail extends Component {
                   </div>
                   <div className="model">
                     <Select
-                      style={{ width: 120 }}
                       showSearch
                       // allowClear={true}
-                      style={{ width: 200 }}
                       placeholder="Select Model"
                       optionFilterProp="children"
                       value={detail.model}
@@ -376,31 +387,31 @@ class Detail extends Component {
                               detail.dataDetail.sP_GetPhotoAndWarnaByBarangIDS
                             )}
                           </Slider>
-                          <div className="row detail__title--mob">
-                            <div className="col-md-12">
-                              <h1>{detail.dataDetail.carDetail.name}</h1>
-                              <div className="detail__header__small">
-                                <div className="detail__header__item">
-                                  <p>
-                                    Condition: <span>New</span>
-                                  </p>
-                                </div>
-                                <div className="detail__header__item">
-                                  <p>
-                                    Year: <span>{this.state.year}</span>
-                                    {/* Year: <span>{detail.dataDetail.carDetail.year}</span> */}
-                                  </p>
-                                </div>
-                                <div className="detail__header__item">
-                                  <p>
-                                    <span>100% Authentic</span>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
+                        </div>
+                      </div>
+
+                      <div className="col-md-12 detail__title--mob">
+                        <h1>{detail.dataDetail.carDetail.name}</h1>
+                        <div className="detail__header__small">
+                          <div className="detail__header__item">
+                            <p>
+                              Condition: <span>New</span>
+                            </p>
+                          </div>
+                          <div className="detail__header__item">
+                            <p>
+                              Year: <span>{this.state.year}</span>
+                              {/* Year: <span>{detail.dataDetail.carDetail.year}</span> */}
+                            </p>
+                          </div>
+                          <div className="detail__header__item">
+                            <p>
+                              <span>100% Authentic</span>
+                            </p>
                           </div>
                         </div>
                       </div>
+
                       <div className="col-md-3">
                         <Slider
                           asNavFor={this.state.nav1}
@@ -416,6 +427,53 @@ class Detail extends Component {
                           )}
                         </Slider>
                       </div>
+
+                      <div className="col-md-12">
+                        <div className="model model--mob mt-2">
+                          <Select
+                            showSearch
+                            // allowClear={true}
+                            placeholder="Select Model"
+                            optionFilterProp="children"
+                            value={detail.model}
+                            onChange={event => {
+                              handleChangeDetail('model', event);
+                              window.location.href = '/detail?id=' + event;
+                              // this.props.getDataDetail(event);
+                            }}
+                            filterOption={(input, option) =>
+                              option.props.children
+                                .toLowerCase()
+                                .indexOf(input.toLowerCase()) >= 0
+                            }
+                          >
+                            {(detail.dataDetail.listModelForDetail !== undefined
+                              ? detail.dataDetail.listModelForDetail
+                              : []
+                            ).map((x, index) => {
+                              return (
+                                <Option
+                                  key={index}
+                                  value={x.barangID}
+                                  className="model__select__option"
+                                >
+                                  {x.name}
+                                </Option>
+                              );
+                            })}
+                          </Select>
+                        </div>
+                      </div>
+
+                      {/* <div className="col-md-12">
+                        <div>
+                          {/* {this.sliderColor(detail.dataDetail.sP_GetPhotoAndWarnaByBarangIDS, [1])}
+                          <b>
+                            <span>Color&nbsp;:</span>&nbsp;&nbsp;
+                              <span style={{color:'#509e2f'}}>White Pearl C.S.</span>
+                          </b>
+                        </div>
+                      </div> */}
                     </div>
                   </div>
 

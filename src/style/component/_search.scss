@@ -29,6 +29,12 @@
   }
   &__label {
     font-weight: 700;
+    padding-top: 7px;
+    display: block;
+  }
+  @media (max-width: 767px) {
+    width: 100vw;
+    overflow: hidden;
   }
   &__result {
     @media (max-width: 767px) {

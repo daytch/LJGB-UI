@@ -140,7 +140,7 @@ class Search extends Component {
             <div className="container">
               <div className="select__wrapper">
                 <div className="row">
-                  <div className="col-6 col-md">
+                  <div className="col-md-3 col-sm-6 col-6">
                     <span className="search__label">Wilayah</span>
                     <Select
                       showSearch
@@ -181,7 +181,7 @@ class Search extends Component {
                     </Select>
                   </div>
 
-                  <div className="col-6 col-md">
+                  <div className="col-md-3 col-sm-6 col-6">
                     <span className="search__label">Brand</span>
                     <Select
                       showSearch
@@ -215,7 +215,7 @@ class Search extends Component {
                     </Select>
                   </div>
 
-                  <div className="col-6 col-md">
+                  <div className="col-md-3 col-sm-6 col-6">
                     <span className="search__label">Model</span>
                     <Select
                       showSearch
@@ -249,7 +249,7 @@ class Search extends Component {
                     </Select>
                   </div>
 
-                  <div className="col-6 col-md">
+                  <div className="col-md-3 col-sm-6 col-6">
                     <span className="search__label">Tipe</span>
                     <Select
                       showSearch

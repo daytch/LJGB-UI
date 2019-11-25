@@ -125,7 +125,7 @@ class Transaction extends Component {
     const { handleChange } = this.props;
     let image = datas.map((x, i) => {
       return (
-        <div>
+        <div className="pad-0-5">
           <div
             className="detail__imgSlide--small"
             onClick={e => {
@@ -151,6 +151,32 @@ class Transaction extends Component {
     return image;
   }
 
+  // sliderImageBottom(datas) {
+  //   const { handleChange } = this.props;
+  //   let image = datas.map((x, i) => {
+  //     return (
+  //           <img
+  //             src={x.photopath} alt=""
+  //             // onClick={e => {
+  //             //  handleChange('price', {
+  //             //    target: { value: x.lowestask }
+  //             //  });
+  //             //  handleChange('lowestask', {
+  //             //    target: { value: x.lowestask }
+  //             //  });
+  //             //  handleChange('highestbid', {
+  //             //    target: { value: x.highestbid }
+  //             //  });
+  //             //  handleChange('year', {
+  //             //    target: { value: x.year }yarn
+  //             //  });
+  //             //}}
+  //           />
+  //     );
+  //   });
+  //   return image;
+  // }
+
   numberWithCommas(x) {
     let str = x === null || x === '' ? '' : x.toString();
     if (str !== '' && str.length >= 7) {
@@ -161,26 +187,40 @@ class Transaction extends Component {
   }
 
   render() {
-    const settings = {
-      dots: false,
-      arrow: true,
-      infinite: true,
-      slidesToScroll: 1,
-      vertical: true,
-      verticalSwiping: true,
-      // nextArrow: <Icon type="caret-up" />,
-      // prevArrow: <Icon type="caret-down" />,
-      beforeChange: function(currentSlide, nextSlide) {
-        console.log('before change', currentSlide, nextSlide);
-      },
-      afterChange: function(currentSlide) {
-        console.log('after change', currentSlide);
-      }
-    };
+    // const settings = {
+    //   dots: false,
+    //   arrow: true,
+    //   infinite: true,
+    //   slidesToScroll: 1,
+    //   vertical: true,
+    //   verticalSwiping: true,
+    //   // nextArrow: <Icon type="caret-up" />,
+    //   // prevArrow: <Icon type="caret-down" />,
+    //   beforeChange: function(currentSlide, nextSlide) {
+    //     console.log('before change', currentSlide, nextSlide);
+    //   },
+    //   afterChange: function(currentSlide) {
+    //     console.log('after change', currentSlide);
+    //   }
+    // };
     const settingSlider1 = {
       arrow: false,
       dots: false,
       initialSlide: 0,
+      // appendDots: dots => (
+      //   <div
+      //     style={{
+      //       bottom: "-40px",
+      //     }}
+      //   >
+      //     <ul style={{ margin: "0px" }}> {dots} </ul>
+      //   </div>
+      // ),
+      // customPaging: i => (
+      //   <div className="small-img" >
+      //     {this.sliderImageBottom(transaction.dataTransaction)}
+      //   </div>
+      // ),
       responsive: [
         {
           breakpoint: 767,
@@ -197,15 +237,16 @@ class Transaction extends Component {
       initialSlide: 0,
       infinite: true,
       slidesToScroll: 1,
-      vertical: true,
-      verticalSwiping: true,
+      // slidesToShow:10,
+      rows: 1,
+      slidesPerRow: 1,
       responsive: [
         {
           breakpoint: 767,
           settings: {
             arrow: false,
             initialSlide: 0,
-            slidesToShow: 3,
+            slidesToShow: 4,
             slidesToScroll: 1,
             vertical: false,
             verticalSwiping: false
@@ -254,47 +295,42 @@ class Transaction extends Component {
           <div className="container">
             <BreadCrumb breadName={transaction.dataDetail.carDetail.name} />
 
-            <div className="detail">
+            <div className="detail pt-3">
               <div className="detail__body">
                 <div className="row">
                   <div className="col-md-8 mb-4">
-                    <div className="row">
-                      <div className="col-md-9">
-                        <div className="detail__body__img transaction__img">
-                          <Slider
-                            asNavFor={this.state.nav2}
-                            ref={slider => (this.slider1 = slider)}
-                            fade={true}
-                            {...settingSlider1}
-                          >
-                            {this.sliderImage(transaction.dataTransaction)}
-                          </Slider>
-                        </div>
-                      </div>
-                      <div className="col-3">
-                        <Slider
-                          asNavFor={this.state.nav1}
-                          ref={slider => (this.slider2 = slider)}
-                          slidesToShow={4}
-                          swipeToSlide={true}
-                          focusOnSelect={true}
-                          className="slideTrigger"
-                          {...settingSlider2}
-                        >
-                          {this.sliderImageKanan(transaction.dataTransaction)}
-                        </Slider>
-                      </div>
+                    <div className="detail__body__img transaction__img">
+                      <Slider
+                        asNavFor={this.state.nav2}
+                        ref={slider => (this.slider1 = slider)}
+                        fade={true}
+                        initialSlide={0}
+                        {...settingSlider1}
+                      >
+                        {this.sliderImage(transaction.dataTransaction)}
+                      </Slider>
                     </div>
+                    <Slider
+                      asNavFor={this.state.nav1}
+                      ref={slider => (this.slider2 = slider)}
+                      slidesToShow={4}
+                      initialSlide={0}
+                      swipeToSlide={true}
+                      focusOnSelect={true}
+                      className="slideTrigger"
+                      {...settingSlider2}
+                    >
+                      {this.sliderImageKanan(transaction.dataTransaction)}
+                    </Slider>
                   </div>
                   <div className="col-md-4">
                     <div className="transaction">
+                      <div className="mb-4">
+                        <h4>
+                          Rp. {this.numberWithCommas(transaction.lowestask)}
+                        </h4>
+                      </div>
                       <div className="bgWhite">
-                        <div className="mb-4">
-                          <h4>
-                            Rp. {this.numberWithCommas(transaction.lowestask)}
-                          </h4>
-                        </div>
-
                         <Radio.Group
                           onChange={e => {
                             if (
@@ -331,10 +367,12 @@ class Transaction extends Component {
                         </Radio.Group>
 
                         <div className="field mb-4">
+                          <span>Rp.</span>
                           <input
                             type="text"
                             name="price"
                             id="price"
+                            placeholder="Enter Bid"
                             onChange={handleChange.bind(this, 'price')}
                             value={transaction.price}
                             disabled={
