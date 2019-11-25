@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import { Radio } from 'antd';
+import { Radio, InputNumber } from 'antd';
 // import { Carousel } from 'react-bootstrap';
 
 import $ from 'jquery';
@@ -42,13 +42,20 @@ class Transaction extends Component {
     this.showAllAsk = this.showAllAsk.bind(this);
   }
   componentWillMount() {
+    $('.navbar').removeClass('navbar-dark');
+    $('.navbar').addClass('bg-cl-white');
+    $('#logoWhite').css({ display: 'none' });
+    $('#logoDark').css({ display: 'block' });
+
     const { getDataWarna, getDataTransaksi, handleChange } = this.props;
     $('.navbar').removeClass('navbar-dark');
     $('.navbar').addClass('bg-cl-white');
-    let getData = this.props.location.search.replace('?', '');
-    this.props.getDataDetail(getData);
+    let getData = this.props.location.search.replace('?id=', '');
+    var status = getData.replace(/[0-9]/g, '');
+    var id = getData.replace(/[a-z]/g, '');
+    this.props.getDataDetail(id);
     let type = {
-      target: { value: getData === 'ask' ? 'place ask' : 'place bid' }
+      target: { value: status === 'ask' ? 'place ask' : 'place bid' }
     };
     getDataWarna();
     getDataTransaksi();
@@ -70,7 +77,8 @@ class Transaction extends Component {
   }
   showAllAsk = () => {
     let getData = this.props.location.search.replace('?id=', '');
-    this.props.GetAllAsk(getData);
+    var id = getData.replace(/[a-z]/g, '');
+    this.props.GetAllAsk(id);
     this.setState({
       visibleAsk: true
     });
@@ -111,27 +119,37 @@ class Transaction extends Component {
   }
 
   validateProcess() {
-    let getData = this.props.location.search.replace('?', '');
+    let getData = this.props.location.search.replace('?id=', '');
+    var status = getData.replace(/[0-9]/g, '');
+    var id = getData.replace(/[a-z]/g, '');
     if (localStorage.getItem('idToken') === null) {
       let getLast = this.props.location.search;
       localStorage.setItem('path', getLast);
       window.location.href = '/login';
     } else {
-      this.props.processData(getData);
+      this.props.processData(status, id);
     }
   }
 
   sliderImageKanan(datas) {
-    const { handleChange } = this.props;
+    const { handleChange, transaction } = this.props;
     let image = datas.map((x, i) => {
+      let getData = transaction;
       return (
         <div className="pad-0-5">
           <div
             className="detail__imgSlide--small"
             onClick={e => {
-              handleChange('price', {
-                target: { value: x.lowestask }
-              });
+              let getType = getData.type;
+              if (getType == 'sell now' || getType == 'buy now') {
+                handleChange('price', {
+                  target: { value: x.lowestask }
+                });
+              } else {
+                handleChange('price', {
+                  target: { value: x.highestbid == null ? '' : x.highestbid }
+                });
+              }
               handleChange('lowestask', {
                 target: { value: x.lowestask }
               });
@@ -151,77 +169,64 @@ class Transaction extends Component {
     return image;
   }
 
-  sliderImageBottom(datas) {
-    const { handleChange } = this.props;
-    let image = datas.map((x, i) => {
-      return (
-        <img
-          src={x.photopath}
-          alt=""
-          // onClick={e => {
-          //  handleChange('price', {
-          //    target: { value: x.lowestask }
-          //  });
-          //  handleChange('lowestask', {
-          //    target: { value: x.lowestask }
-          //  });
-          //  handleChange('highestbid', {
-          //    target: { value: x.highestbid }
-          //  });
-          //  handleChange('year', {
-          //    target: { value: x.year }
-          //  });
-          //}}
-        />
-      );
-    });
-    return image;
-  }
-
   numberWithCommas(x) {
     let str = x === null || x === '' ? '' : x.toString();
-    if (str !== '' && str.length >= 7) {
+    if (str !== '' && str.length > 9) {
+      str = str.substring(0, str.length - 6);
+      let get2 = str.substring(1, 4);
+      let get1 = str.substring(0, 1);
+      if (get2.substring(0, 1) == 0) {
+        get2 = get2.substring(1, 4);
+      }
+      if (get2.substring(0, 1) == 0) {
+        get2 = get2.substring(1, 4);
+      }
+      let get3 = get2 == 0 ? '' : get2 + ' JT';
+      str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      return get1 + ' M ' + get3;
+    } else if (str !== '' && str.length >= 7) {
       str = str.substring(0, str.length - 6);
       str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       return str + ' JT';
+    } else {
+      return '';
     }
+    // let str = x === null || x === '' ? '' : x.toString();
+    // if (str !== '' && str.length >= 7) {
+    //   str = str.substring(0, str.length - 6);
+    //   str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    //   return str + ' JT';
+    // }
+  }
+
+  changeFormat(x) {
+    let str = x.toString();
+    str = str.replace(/\$\s?|(,*)/g, '');
+    str = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return str;
   }
 
   render() {
-    // const settings = {
-    //   dots: false,
-    //   arrow: true,
-    //   infinite: true,
-    //   slidesToScroll: 1,
-    //   vertical: true,
-    //   verticalSwiping: true,
-    //   // nextArrow: <Icon type="caret-up" />,
-    //   // prevArrow: <Icon type="caret-down" />,
-    //   beforeChange: function(currentSlide, nextSlide) {
-    //     console.log('before change', currentSlide, nextSlide);
-    //   },
-    //   afterChange: function(currentSlide) {
-    //     console.log('after change', currentSlide);
-    //   }
-    // };
     const settingSlider1 = {
       arrow: false,
-      dots: true,
+      dots: false,
       initialSlide: 0,
-      appendDots: dots => (
-        <div
-          style={{
-            bottom: '-40px'
-          }}
-        >
-          <ul style={{ margin: '0px' }}> {dots} </ul>
-        </div>
-      ),
-      customPaging: i => (
-        <div className="small-img">
-          {this.sliderImageBottom(transaction.dataTransaction)}
-        </div>
-      ),
+      infinite: true,
+      slidesToScroll: 1,
+      // appendDots: dots => (
+      //   <div
+      //     style={{
+      //       bottom: "-40px",
+      //     }}
+      //   >
+      //     <ul style={{ margin: "0px" }}> {dots} </ul>
+      //   </div>
+      // ),
+      // customPaging: i => (
+      //   <div className="small-img" >
+      //     {this.sliderImageBottom(transaction.dataTransaction)}
+      //   </div>
+      // ),
       responsive: [
         {
           breakpoint: 767,
@@ -247,7 +252,7 @@ class Transaction extends Component {
           settings: {
             arrow: false,
             initialSlide: 0,
-            slidesToShow: 3,
+            slidesToShow: 4,
             slidesToScroll: 1,
             vertical: false,
             verticalSwiping: false
@@ -285,7 +290,8 @@ class Transaction extends Component {
     //   }
     // };
 
-    let getData = this.props.location.search.replace('?', '');
+    let getD = this.props.location.search.replace('?id=', '');
+    var getData = getD.replace(/[0-9]/g, '');
     return (
       <BlockUi
         tag="div"
@@ -302,8 +308,8 @@ class Transaction extends Component {
                   <div className="col-md-8 mb-4">
                     <div className="detail__body__img transaction__img">
                       <Slider
-                        //asNavFor={this.state.nav2}
-                        //ref={slider => (this.slider1 = slider)}
+                        asNavFor={this.state.nav2}
+                        ref={slider => (this.slider1 = slider)}
                         fade={true}
                         initialSlide={0}
                         {...settingSlider1}
@@ -311,18 +317,18 @@ class Transaction extends Component {
                         {this.sliderImage(transaction.dataTransaction)}
                       </Slider>
                     </div>
-                    {/* <Slider
-                          asNavFor={this.state.nav1}
-                          ref={slider => (this.slider2 = slider)}
-                          slidesToShow={10}
-                          initialSlide={0}
-                          swipeToSlide={true}
-                          focusOnSelect={true}
-                          className="slideTrigger"
-                          {...settingSlider2}
-                        >
-                          {this.sliderImageKanan(transaction.dataTransaction)}
-                        </Slider> */}
+                    <Slider
+                      asNavFor={this.state.nav1}
+                      ref={slider => (this.slider2 = slider)}
+                      slidesToShow={4}
+                      initialSlide={0}
+                      swipeToSlide={true}
+                      focusOnSelect={true}
+                      className="slideTrigger"
+                      {...settingSlider2}
+                    >
+                      {this.sliderImageKanan(transaction.dataTransaction)}
+                    </Slider>
                   </div>
                   <div className="col-md-4">
                     <div className="transaction">
@@ -361,28 +367,39 @@ class Transaction extends Component {
                           </Radio.Button>
                           <Radio.Button
                             className="btn btnRadio"
-                            value="buy now"
+                            value={getData === 'ask' ? 'sell now' : 'buy now'}
                           >
                             {getData === 'ask' ? 'Sell Now' : 'Buy Now'}
                           </Radio.Button>
                         </Radio.Group>
 
                         <div className="field mb-4">
-                          <span>Rp.</span>
-                          <input
-                            type="text"
-                            name="price"
-                            id="price"
-                            placeholder="Enter Bid"
-                            onChange={handleChange.bind(this, 'price')}
-                            value={transaction.price}
-                            disabled={
-                              transaction.type === 'sell now' ||
-                              transaction.type === 'buy now'
-                                ? true
-                                : false
-                            }
-                          />
+                          <div class="input-group">
+                            {/* <span class="input-group-addon form-control">Rp</span> */}
+                            <input
+                              type="text"
+                              name="price"
+                              id="price"
+                              // pattern="^\[0-9]\g"
+                              // className="form-control"
+                              onChange={handleChange.bind(this, 'price')}
+                              value={this.changeFormat(transaction.price)}
+                              disabled={
+                                transaction.type === 'sell now' ||
+                                transaction.type === 'buy now'
+                                  ? true
+                                  : false
+                              }
+                            />
+
+                            {transaction.type == 'place ask' ||
+                            transaction.type == 'place bid' ? (
+                              <span className="minimum">
+                                Minimum Rp.{' '}
+                                {this.numberWithCommas(transaction.price)}
+                              </span>
+                            ) : null}
+                          </div>
                         </div>
                         <button
                           className="btn btn-primary w-100"
