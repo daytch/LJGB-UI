@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { actions } from '../../actions/homeAction';
 import { Select, Tooltip, Modal } from 'antd';
 import BlockUi from 'react-block-ui';
+import '../../style/component/select.scss';
 
 import Product from '../../components/layouts/common/product';
 import $ from 'jquery';

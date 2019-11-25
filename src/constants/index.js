@@ -1,4 +1,5 @@
 export const API_DATA = 'http://5.189.160.92:999/api';
+// export const API_DATA = 'http://144.91.102.148/api';
 
 export const GET_DATA_HOME = 'GET_DATA_HOME';
 export const HANDLE_CHANGE_LOGIN = 'HANDLE_CHANGE_LOGIN';

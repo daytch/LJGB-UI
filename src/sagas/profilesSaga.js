@@ -52,14 +52,11 @@ export function* getDataTrx(action) {
     yield put({ type: SET_LOADER_PROFILE, payload: true });
     const Login = yield select(getLogin);
     let body = {
-      token: localStorage.getItem('idToken')
+      //   token: localStorage.getItem('idToken')
     };
-    const data = yield call(
-      POST,
-      API_DATA + Endpoint.DATA_TRX,
-      body,
-      master.getHeader()
-    );
+    const data = yield call(POST, API_DATA + Endpoint.DATA_TRX, body, {
+      headers: master.getHeaderToken()
+    });
     if (data.isSuccess) {
       yield put({ type: SET_DATA_TRX, payload: data.listBidAndBuy });
     } else {

@@ -151,31 +151,32 @@ class Transaction extends Component {
     return image;
   }
 
-  // sliderImageBottom(datas) {
-  //   const { handleChange } = this.props;
-  //   let image = datas.map((x, i) => {
-  //     return (
-  //           <img
-  //             src={x.photopath} alt=""
-  //             // onClick={e => {
-  //             //  handleChange('price', {
-  //             //    target: { value: x.lowestask }
-  //             //  });
-  //             //  handleChange('lowestask', {
-  //             //    target: { value: x.lowestask }
-  //             //  });
-  //             //  handleChange('highestbid', {
-  //             //    target: { value: x.highestbid }
-  //             //  });
-  //             //  handleChange('year', {
-  //             //    target: { value: x.year }yarn
-  //             //  });
-  //             //}}
-  //           />
-  //     );
-  //   });
-  //   return image;
-  // }
+  sliderImageBottom(datas) {
+    const { handleChange } = this.props;
+    let image = datas.map((x, i) => {
+      return (
+        <img
+          src={x.photopath}
+          alt=""
+          // onClick={e => {
+          //  handleChange('price', {
+          //    target: { value: x.lowestask }
+          //  });
+          //  handleChange('lowestask', {
+          //    target: { value: x.lowestask }
+          //  });
+          //  handleChange('highestbid', {
+          //    target: { value: x.highestbid }
+          //  });
+          //  handleChange('year', {
+          //    target: { value: x.year }
+          //  });
+          //}}
+        />
+      );
+    });
+    return image;
+  }
 
   numberWithCommas(x) {
     let str = x === null || x === '' ? '' : x.toString();
@@ -205,22 +206,22 @@ class Transaction extends Component {
     // };
     const settingSlider1 = {
       arrow: false,
-      dots: false,
+      dots: true,
       initialSlide: 0,
-      // appendDots: dots => (
-      //   <div
-      //     style={{
-      //       bottom: "-40px",
-      //     }}
-      //   >
-      //     <ul style={{ margin: "0px" }}> {dots} </ul>
-      //   </div>
-      // ),
-      // customPaging: i => (
-      //   <div className="small-img" >
-      //     {this.sliderImageBottom(transaction.dataTransaction)}
-      //   </div>
-      // ),
+      appendDots: dots => (
+        <div
+          style={{
+            bottom: '-40px'
+          }}
+        >
+          <ul style={{ margin: '0px' }}> {dots} </ul>
+        </div>
+      ),
+      customPaging: i => (
+        <div className="small-img">
+          {this.sliderImageBottom(transaction.dataTransaction)}
+        </div>
+      ),
       responsive: [
         {
           breakpoint: 767,
@@ -246,7 +247,7 @@ class Transaction extends Component {
           settings: {
             arrow: false,
             initialSlide: 0,
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1,
             vertical: false,
             verticalSwiping: false
@@ -301,8 +302,8 @@ class Transaction extends Component {
                   <div className="col-md-8 mb-4">
                     <div className="detail__body__img transaction__img">
                       <Slider
-                        asNavFor={this.state.nav2}
-                        ref={slider => (this.slider1 = slider)}
+                        //asNavFor={this.state.nav2}
+                        //ref={slider => (this.slider1 = slider)}
                         fade={true}
                         initialSlide={0}
                         {...settingSlider1}
@@ -310,18 +311,18 @@ class Transaction extends Component {
                         {this.sliderImage(transaction.dataTransaction)}
                       </Slider>
                     </div>
-                    <Slider
-                      asNavFor={this.state.nav1}
-                      ref={slider => (this.slider2 = slider)}
-                      slidesToShow={4}
-                      initialSlide={0}
-                      swipeToSlide={true}
-                      focusOnSelect={true}
-                      className="slideTrigger"
-                      {...settingSlider2}
-                    >
-                      {this.sliderImageKanan(transaction.dataTransaction)}
-                    </Slider>
+                    {/* <Slider
+                          asNavFor={this.state.nav1}
+                          ref={slider => (this.slider2 = slider)}
+                          slidesToShow={10}
+                          initialSlide={0}
+                          swipeToSlide={true}
+                          focusOnSelect={true}
+                          className="slideTrigger"
+                          {...settingSlider2}
+                        >
+                          {this.sliderImageKanan(transaction.dataTransaction)}
+                        </Slider> */}
                   </div>
                   <div className="col-md-4">
                     <div className="transaction">

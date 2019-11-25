@@ -82,6 +82,12 @@ class Header extends Component {
                   Home
                 </Link>
               </Nav>
+
+              <Nav>
+                <Link className="nav-link" to={'/profile'}>
+                  {localStorage.getItem('idToken') === null ? '' : 'Profile'}
+                </Link>
+              </Nav>
               <Nav>
                 <Link
                   to={
@@ -94,11 +100,6 @@ class Header extends Component {
                   {localStorage.getItem('idToken') === null
                     ? 'Login'
                     : 'Logout'}
-                </Link>
-              </Nav>
-              <Nav>
-                <Link className="nav-link" to={'/profile'}>
-                  {localStorage.getItem('idToken') === null ? '' : 'Profile'}
                 </Link>
               </Nav>
               <Nav>

@@ -45,6 +45,8 @@ class Detail extends Component {
   componentWillMount() {
     $('.navbar').removeClass('navbar-dark');
     $('.navbar').addClass('bg-cl-white');
+    $('#logoWhite').css({ display: 'none' });
+    $('#logoDark').css({ display: 'block' });
 
     let getData = this.props.location.search.replace('?id=', '');
     this.props.getDataDetail(getData);
@@ -166,10 +168,15 @@ class Detail extends Component {
       arrow: false,
       dots: false,
       initialSlide: 0,
+      infinite: true,
+      slidesToScroll: 1,
+      swipeToSlide: true,
       responsive: [
         {
           breakpoint: 767,
           initialSlide: 0,
+          infinite: true,
+          slidesToScroll: 1,
           settings: {
             arrow: false,
             dots: false
@@ -233,6 +240,7 @@ class Detail extends Component {
 
     const { detail, handleChangeDetail } = this.props;
     let getData = this.props.location.search.replace('?id=', '');
+
     return (
       <BlockUi tag="div" blocking={detail.isLoading} style={{ width: '100%' }}>
         <main role="main">
@@ -266,7 +274,7 @@ class Detail extends Component {
                 </div>
                 <div className="detail__market">
                   <div className="bid left">
-                    <Link to="/transaction?bid">
+                    <Link to={'/transaction?id=' + getData + 'bid'}>
                       <button className="btn btn-success">
                         <div className="bid__text left">
                           <span className="bid__text--big">
@@ -300,7 +308,7 @@ class Detail extends Component {
                     </Modal>
                   </div>
                   <div className="bid right">
-                    <Link to="/transaction?ask">
+                    <Link to={'/transaction?id=' + getData + 'ask'}>
                       <button className="btn btn-danger">
                         <div className="bid__text left">
                           <span className="bid__text--big">

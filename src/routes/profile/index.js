@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon, Form } from 'antd';
+import $ from 'jquery';
 import ProfileContent from './profileContent';
 import Tracking from './tracking';
 
@@ -12,6 +13,12 @@ class Profile extends Component {
     };
     this.handleProfile = this.handleProfile.bind(this);
     this.handleTracking = this.handleTracking.bind(this);
+  }
+  componentWillMount() {
+    $('.navbar').removeClass('navbar-dark');
+    $('.navbar').addClass('bg-cl-white');
+    $('#logoWhite').css({ display: 'none' });
+    $('#logoDark').css({ display: 'block' });
   }
   handleProfile() {
     this.setState({

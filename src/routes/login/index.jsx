@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import $ from 'jquery';
 import ForgetPassword from './ForgetPassword';
 import FormSignUp from './FormSignUp';
 import LoginWith from './LoginWith';
@@ -32,6 +33,13 @@ class Login extends Component {
     this.toggleType = this.toggleType.bind(this);
     this.handleForget = this.handleForget.bind(this);
     this.onLogin = this.onLogin.bind(this);
+  }
+
+  componentWillMount() {
+    $('.navbar').removeClass('navbar-dark');
+    $('.navbar').addClass('bg-cl-white');
+    $('#logoWhite').css({ display: 'none' });
+    $('#logoDark').css({ display: 'block' });
   }
 
   toggleForm() {

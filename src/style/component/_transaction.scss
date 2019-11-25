@@ -5,23 +5,34 @@
   background: #fff;
   // padding: 20px;
   text-align: center;
-  height: calc(100% - 120px);
+  height: calc(100% - 112px);
   h4 {
-    color: #888;
-    background: #eee;
+    color: #1890ff;
+    // background: #eee;
     padding: 10px;
   }
   .bgWhite {
     // background: #fff;
     padding: 20px;
     // margin: 10px 0;
+    @media (max-width: 767px) {
+      padding: 0 20px 20px;
+    }
+  }
+  .minimum {
+    text-align: center;
+    display: block;
+    padding: 0;
+    margin: auto;
+    font-size: 0.7em;
+    color: $color-3;
   }
   &__img {
     margin-bottom: 20px;
     .detail__imgSlide--big {
       height: 400px;
       @media (max-width: 767px) {
-        height: auto;
+        height: 160px;
       }
     }
     ~ .slideTrigger {
@@ -31,6 +42,9 @@
       }
       .slick-slide {
         width: 70px !important;
+        @media screen {
+          width: 60px !important;
+        }
       }
       .slick-track {
         display: flex;
@@ -66,10 +80,27 @@
       font-weight: 700;
       padding-right: 10px;
     }
+    .ant-input-number,
+    .ant-input-number:hover,
+    .ant-input-number:focus,
+    .ant-input-number-input-wrap {
+      border: none;
+      outline: none;
+    }
   }
   button {
     border-radius: 20px;
     padding: 7px;
+  }
+  .bid {
+    &__price {
+      position: relative;
+    }
+    &__curr {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
   }
   @media (max-width: 767px) {
     height: auto;
