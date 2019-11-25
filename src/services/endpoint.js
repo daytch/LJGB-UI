@@ -19,6 +19,8 @@ const Endpoint = {
   DATA_WARNA_BY_ID: '/Warna/GetAllWithoutFilter',
   PROCESS_DATA_ASK: '/NegoBarang/SubmitAsk',
   PROCESS_DATA_BID: '/NegoBarang/SubmitBid',
+  PROCESS_DATA_SELL: '/Transaction/SubmitSell',
+  PROCESS_DATA_BUY: '/Transaction/SubmitBuy',
   DATA_TRANSACTION: '/Barang/GetPhotoAndWarnaByID',
   DATA_TRX: '/Transaction/GetListBidAndBuy',
 

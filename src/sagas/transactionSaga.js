@@ -168,17 +168,23 @@ export function* getProcessData(action) {
       // typePenawaran: detail.type,
       harga: detail.price
     };
-    let askBid =
-      action.property == 'bid'
-        ? Endpoint.PROCESS_DATA_BID
-        : Endpoint.PROCESS_DATA_ASK;
-    const data = yield call(
-      POST,
-      API_DATA + askBid,
-      body,
-      master.getHeaderToken()
-    );
-    debugger;
+    // let askBid =
+    //   action.property == 'bid'
+    //     ? Endpoint.PROCESS_DATA_BID
+    //     : Endpoint.PROCESS_DATA_ASK;
+    let end;
+    if (detail.type == 'place bid') {
+      end = Endpoint.PROCESS_DATA_BID;
+    } else if (detail.type == 'place ask') {
+      end = Endpoint.PROCESS_DATA_ASK;
+    } else if (detail.type == 'sell now') {
+      end = Endpoint.PROCESS_DATA_SELL;
+    } else {
+      end = Endpoint.PROCESS_DATA_BUY;
+    }
+    const data = yield call(POST, API_DATA + end, body, {
+      headers: master.getHeaderToken()
+    });
     if (data.isSuccess) {
       success(data.message);
       // yield put({ type: SET_DATA_WARNA, payload: data.data });

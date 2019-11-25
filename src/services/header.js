@@ -1,6 +1,5 @@
 function getToken() {
   const token = localStorage.getItem('idToken');
-  debugger;
   if (token === undefined || token === '') {
     window.location.href = '/';
     // window.URL = 'views/login/index.html';
