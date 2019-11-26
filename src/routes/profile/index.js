@@ -15,10 +15,10 @@ class Profile extends Component {
     this.handleTracking = this.handleTracking.bind(this);
   }
   componentWillMount() {
-    $('.navbar').removeClass('navbar-dark');
-    $('.navbar').addClass('bg-cl-white');
-    $('#logoWhite').css({ display: 'none' });
-    $('#logoDark').css({ display: 'block' });
+    // $('.navbar').removeClass('navbar-dark');
+    // $('.navbar').addClass('bg-cl-white');
+    // $('#logoWhite').css({ display: 'none' });
+    // $('#logoDark').css({ display: 'block' });
   }
   handleProfile() {
     this.setState({

@@ -50,6 +50,7 @@ class Home extends Component {
     $('.navbar').addClass('bg-cl-white');
     $('#logoWhite').css({ display: 'none' });
     $('#logoDark').css({ display: 'block' });
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   handleScroll = event => {
@@ -311,7 +312,7 @@ class Home extends Component {
                         />
                       </Tooltip>
                     </span>
-                    <Link className="see__all">See all </Link>
+                    {/* <Link className="see__all">See all </Link> */}
                   </div>
                   <Product
                     data={home.dataHome.lowestAsks}
@@ -334,7 +335,7 @@ class Home extends Component {
                         />
                       </Tooltip>
                     </span>
-                    <Link className="see__all">See all </Link>
+                    {/* <Link className="see__all">See all </Link> */}
                   </div>
                   <Product
                     data={home.dataHome.highestBids}
@@ -357,7 +358,7 @@ class Home extends Component {
                         />
                       </Tooltip>
                     </span>
-                    <Link className="see__all">See all </Link>
+                    {/* <Link className="see__all">See all </Link> */}
                   </div>
                   <Product data={home.dataHome.listNormal} title={'Other'} />
                   {/* <Product

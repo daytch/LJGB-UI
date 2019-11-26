@@ -43,10 +43,10 @@ class Detail extends Component {
     this.showAllAsk = this.showAllAsk.bind(this);
   }
   componentWillMount() {
-    $('.navbar').removeClass('navbar-dark');
-    $('.navbar').addClass('bg-cl-white');
-    $('#logoWhite').css({ display: 'none' });
-    $('#logoDark').css({ display: 'block' });
+    // $('.navbar').removeClass('navbar-dark');
+    // $('.navbar').addClass('bg-cl-white');
+    // $('#logoWhite').css({ display: 'none' });
+    // $('#logoDark').css({ display: 'block' });
 
     let getData = this.props.location.search.replace('?id=', '');
     this.props.getDataDetail(getData);
@@ -108,7 +108,7 @@ class Detail extends Component {
         <div className="detail__imgSlide--big">
           <img src={x.photopath} alt="" title="Lojualguebeli.com" />
           <b>
-            <span style={{ color: '#999' }}>Color&nbsp;:</span>&nbsp;&nbsp;
+            {/* <span style={{ color: '#999' }}>Color&nbsp;:</span>&nbsp;&nbsp; */}
             {x.color}
           </b>
         </div>
@@ -168,14 +168,14 @@ class Detail extends Component {
       arrow: false,
       dots: false,
       initialSlide: 0,
-      infinite: true,
+      infinite: false,
       slidesToScroll: 1,
       swipeToSlide: true,
       responsive: [
         {
           breakpoint: 767,
           initialSlide: 0,
-          infinite: true,
+          infinite: false,
           slidesToScroll: 1,
           settings: {
             arrow: false,
@@ -199,6 +199,7 @@ class Detail extends Component {
             arrow: false,
             initialSlide: 0,
             slidesToShow: 4,
+            // autoSlidesToShow: true,
             slidesToScroll: 1,
             vertical: false,
             verticalSwiping: false

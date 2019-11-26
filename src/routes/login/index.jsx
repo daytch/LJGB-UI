@@ -36,10 +36,10 @@ class Login extends Component {
   }
 
   componentWillMount() {
-    $('.navbar').removeClass('navbar-dark');
-    $('.navbar').addClass('bg-cl-white');
-    $('#logoWhite').css({ display: 'none' });
-    $('#logoDark').css({ display: 'block' });
+    // $('.navbar').removeClass('navbar-dark');
+    // $('.navbar').addClass('bg-cl-white');
+    // $('#logoWhite').css({ display: 'none' });
+    // $('#logoDark').css({ display: 'block' });
   }
 
   toggleForm() {
