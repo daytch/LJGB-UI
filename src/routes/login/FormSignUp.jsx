@@ -100,7 +100,7 @@ class FormSignUp extends Component {
             </label>
             <span className="checkmark"></span>
           </div> */}
-        <button className="btn btnGrey" onClick={getSignUp.bind(this)}>
+        <button className="btn btn-primary" onClick={getSignUp.bind(this)}>
           Sign Up
         </button>
         {/* </form> */}

@@ -24,7 +24,7 @@ class ForgetPassword extends Component {
           <label htmlFor="email">Email address</label>
         </div>
 
-        <button className="btn btnGrey">Reset Password</button>
+        <button className="btn btn-primary">Reset Password</button>
       </div>
     );
   }

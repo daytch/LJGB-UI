@@ -70,9 +70,18 @@ class Login extends Component {
   render() {
     var log = this.state;
     const { login, handleState, getLogin } = this.props;
+
+    const formLogin = {
+      height: 'calc(100vh - 70px)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+      paddingTop: '10vh'
+    };
+
     return (
-      <main role="main">
-        <div className="container">
+      <main role="main" style={{ backgroundColor: '#fafafa' }}>
+        <div className="container" style={formLogin}>
           <span
             className={
               log.forget === true ? 'backToLogin' : 'formLoginHide backToLogin'
@@ -185,7 +194,10 @@ class Login extends Component {
                     <span className="checkmark"></span>
                   </div> */}
 
-                <button className="btn btnGrey" onClick={getLogin.bind(this)}>
+                <button
+                  className="btn btn-primary"
+                  onClick={getLogin.bind(this)}
+                >
                   Log In
                 </button>
 
