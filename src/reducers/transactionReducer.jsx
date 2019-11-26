@@ -37,7 +37,8 @@ const INIT_STATE = {
   yearDetail: '',
   colorDetail: '',
   ask: '',
-  bid: ''
+  bid: '',
+  min: ''
 };
 
 export default (state = INIT_STATE, action) => {

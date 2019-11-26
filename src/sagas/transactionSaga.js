@@ -163,10 +163,18 @@ export function* getProcessData(action) {
   try {
     const detail = yield select(getDetail);
     yield put({ type: SET_LOADER_DETAIL, payload: true });
+    let valPrice = typeof detail.price;
+    let price;
+    if (valPrice == 'string') {
+      let a = detail.price;
+      price = parseInt(a.replace(/,/g, ''));
+    } else {
+      price = detail.price;
+    }
     let body = {
       barangID: parseInt(action.value),
       // typePenawaran: detail.type,
-      harga: detail.price
+      harga: price
     };
     // let askBid =
     //   action.property == 'bid'
@@ -187,6 +195,7 @@ export function* getProcessData(action) {
     });
     if (data.isSuccess) {
       success(data.message);
+      window.location.href = '/profile';
       // yield put({ type: SET_DATA_WARNA, payload: data.data });
     } else {
       warning(data.message);

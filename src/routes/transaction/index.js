@@ -21,6 +21,7 @@ import { actions } from '../../actions/trasactionAction';
 // import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import BlockUi from 'react-block-ui';
+import { warning } from '../../components/Message';
 
 // const { Option } = Select;
 
@@ -127,7 +128,23 @@ class Transaction extends Component {
       localStorage.setItem('path', getLast);
       window.location.href = '/login';
     } else {
-      this.props.processData(status, id);
+      let valPrice = typeof this.props.transaction.price;
+      let changeMin;
+      if (valPrice == 'string') {
+        let a = this.props.transaction.price;
+        changeMin = parseInt(a.replace(/,/g, ''));
+      } else {
+        changeMin = this.props.transaction.price;
+      }
+      if (
+        (this.props.transaction.type == 'place bid' ||
+          this.props.transaction.type == 'place ask') &&
+        changeMin < parseInt(this.props.transaction.min)
+      ) {
+        warning('Harga tidak boleh lebih kecil dari harga minimum');
+      } else {
+        this.props.processData(status, id);
+      }
     }
   }
 
@@ -147,6 +164,9 @@ class Transaction extends Component {
                 });
               } else {
                 handleChange('price', {
+                  target: { value: x.highestbid == null ? '' : x.highestbid }
+                });
+                handleChange('min', {
                   target: { value: x.highestbid == null ? '' : x.highestbid }
                 });
               }
@@ -382,6 +402,7 @@ class Transaction extends Component {
                               id="price"
                               // pattern="^\[0-9]\g"
                               // className="form-control"
+                              forma
                               onChange={handleChange.bind(this, 'price')}
                               value={this.changeFormat(transaction.price)}
                               disabled={
@@ -396,7 +417,7 @@ class Transaction extends Component {
                             transaction.type == 'place bid' ? (
                               <span className="minimum">
                                 Minimum Rp.{' '}
-                                {this.numberWithCommas(transaction.price)}
+                                {this.numberWithCommas(transaction.min)}
                               </span>
                             ) : null}
                           </div>
