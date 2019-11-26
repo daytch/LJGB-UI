@@ -33,11 +33,17 @@ class Tracking extends Component {
       }
     ];
 
+    let lastIndex = 1;
+    const updateIndex = () => {
+      lastIndex++;
+      return lastIndex;
+    };
+
     const columns = [
       {
         title: 'no',
-        dataIndex: 'id',
-        key: 'id',
+        dataIndex: updateIndex(),
+        key: 'index',
         width: 80
       },
       {
