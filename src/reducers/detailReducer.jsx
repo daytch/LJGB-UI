@@ -33,7 +33,7 @@ const INIT_STATE = {
   highestbid: '',
   lowestask: '',
   year: '',
-  model: 1,
+  model: null,
   yearDetail: '',
   colorDetail: '',
   ask: '',

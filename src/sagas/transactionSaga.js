@@ -4,6 +4,8 @@ import { master } from '../services/header';
 import Endpoint from '../services/endpoint';
 import { warning, error, success } from '../components/Message';
 import { GET, POST } from '../services/api';
+import swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 import {
   API_DATA,
   GET_DATA_DETAIL,
@@ -194,8 +196,16 @@ export function* getProcessData(action) {
       headers: master.getHeaderToken()
     });
     if (data.isSuccess) {
-      success(data.message);
-      window.location.href = '/profile';
+      swal
+        .fire({
+          title: 'Success',
+          text: data.message,
+          type: 'success'
+        })
+        .then(function() {
+          window.location.href = '/profile';
+        });
+      // success(data.message);
       // yield put({ type: SET_DATA_WARNA, payload: data.data });
     } else {
       warning(data.message);

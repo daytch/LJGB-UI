@@ -49,6 +49,7 @@ class Detail extends Component {
     $('#logoDark').css({ display: 'block' });
 
     let getData = this.props.location.search.replace('?id=', '');
+    this.props.handleChangeDetail('model', parseInt(getData));
     this.props.getDataDetail(getData);
   }
   componentDidMount() {

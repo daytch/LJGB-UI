@@ -58,7 +58,17 @@ export function* getDataTrx(action) {
       headers: master.getHeaderToken()
     });
     if (data.isSuccess) {
-      yield put({ type: SET_DATA_TRX, payload: data.listBidAndBuy });
+      let dataNew = [];
+      data.listBidAndBuy.map((x, i) => {
+        dataNew.push({
+          no: i + 1,
+          produk: x.merkName + ' - ' + x.modelName + ' - ' + x.barangName,
+          price: x.price,
+          status: x.status,
+          date: ''
+        });
+      });
+      yield put({ type: SET_DATA_TRX, payload: dataNew });
     } else {
       warning(data.message);
     }
