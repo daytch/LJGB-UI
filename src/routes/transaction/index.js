@@ -43,10 +43,10 @@ class Transaction extends Component {
     this.showAllAsk = this.showAllAsk.bind(this);
   }
   componentWillMount() {
-    $('.navbar').removeClass('navbar-dark');
-    $('.navbar').addClass('bg-cl-white');
-    $('#logoWhite').css({ display: 'none' });
-    $('#logoDark').css({ display: 'block' });
+    // $('.navbar').removeClass('navbar-dark');
+    // $('.navbar').addClass('bg-cl-white');
+    // $('#logoWhite').css({ display: 'none' });
+    // $('#logoDark').css({ display: 'block' });
 
     const { getDataWarna, getDataTransaksi, handleChange } = this.props;
     $('.navbar').removeClass('navbar-dark');
@@ -235,7 +235,7 @@ class Transaction extends Component {
       arrow: false,
       dots: false,
       initialSlide: 0,
-      infinite: true,
+      infinite: false,
       slidesToScroll: 1,
       // appendDots: dots => (
       //   <div
@@ -264,7 +264,7 @@ class Transaction extends Component {
     const settingSlider2 = {
       dots: false,
       arrow: true,
-      initialSlide: 0,
+      initialSlide: 1,
       infinite: true,
       slidesToScroll: 1,
       // slidesToShow:10,
@@ -275,11 +275,10 @@ class Transaction extends Component {
           breakpoint: 767,
           settings: {
             arrow: false,
-            initialSlide: 0,
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            vertical: false,
-            verticalSwiping: false
+            initialSlide: 1,
+            //slidesToShow: 4,
+            autoSlidesToShow: true,
+            slidesToScroll: 1
           }
         }
       ],
@@ -399,7 +398,9 @@ class Transaction extends Component {
 
                         <div className="field mb-4">
                           <div class="input-group">
-                            {/* <span class="input-group-addon form-control">Rp</span> */}
+                            <span class="input-group-addon form-control">
+                              Rp
+                            </span>
                             <input
                               type="text"
                               name="price"

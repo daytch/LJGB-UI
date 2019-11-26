@@ -50,6 +50,7 @@ class Home extends Component {
     $('.navbar').addClass('bg-cl-white');
     $('#logoWhite').css({ display: 'none' });
     $('#logoDark').css({ display: 'block' });
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   handleScroll = event => {
@@ -120,336 +121,343 @@ class Home extends Component {
 
     let form = 'search';
     return (
-      <main role="main" style={{ marginTop: '0' }}>
-        <div className="slider__top">
-          <Banner />
+      <BlockUi tag="div" blocking={home.isLoading} style={{ width: '100%' }}>
+        <main role="main" style={{ marginTop: '0' }}>
+          <div className="slider__top">
+            <Banner />
 
-          <div className="search">
-            <div className="container">
-              <div className="select__wrapper">
-                <div className="row">
-                  <div className="col-6 col-md">
-                    <span className="search__label">Wilayah</span>
-                    <Select
-                      showSearch
-                      allowClear={true}
-                      style={{ width: 200 }}
-                      placeholder="Select Wilayah"
-                      optionFilterProp="children"
-                      value={home.search.city}
-                      onChange={event => {
-                        let name = 'city';
-                        let nameKota;
-                        home.dataKota.map((x, index) => {
-                          // let name = 'brand';
-                          if (x.id === event) {
-                            nameKota = x.text;
+            <div className="search">
+              <div className="container">
+                <div className="select__wrapper">
+                  <div className="row">
+                    <div className="col-6 col-md">
+                      <span className="search__label">Wilayah</span>
+                      <Select
+                        showSearch
+                        allowClear={true}
+                        style={{ width: 200 }}
+                        placeholder="Select Wilayah"
+                        optionFilterProp="children"
+                        value={home.search.city}
+                        onChange={event => {
+                          let name = 'city';
+                          let nameKota;
+                          home.dataKota.map((x, index) => {
+                            // let name = 'brand';
+                            if (x.id === event) {
+                              nameKota = x.text;
+                            }
+                          });
+                          handleChange(form, name, event);
+                          handleChange(form, 'cityText', nameKota);
+                          if (event !== undefined) {
+                            getDataBrand(form, name, event);
                           }
-                        });
-                        handleChange(form, name, event);
-                        handleChange(form, 'cityText', nameKota);
-                        if (event !== undefined) {
-                          getDataBrand(form, name, event);
+                        }}
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
                         }
-                      }}
-                      filterOption={(input, option) =>
-                        option.props.children
-                          .toLowerCase()
-                          .indexOf(input.toLowerCase()) >= 0
-                      }
-                    >
-                      {(home.dataKota !== undefined ? home.dataKota : []).map(
-                        (x, index) => {
-                          return (
-                            <Option key={index} value={x.id}>
-                              {x.text}
-                            </Option>
-                          );
-                        }
-                      )}
-                    </Select>
-                  </div>
+                      >
+                        {(home.dataKota !== undefined ? home.dataKota : []).map(
+                          (x, index) => {
+                            return (
+                              <Option key={index} value={x.id}>
+                                {x.text}
+                              </Option>
+                            );
+                          }
+                        )}
+                      </Select>
+                    </div>
 
-                  <div className="col-6 col-md">
-                    <span className="search__label">Brand</span>
-                    <Select
-                      showSearch
-                      allowClear={true}
-                      style={{ width: 200 }}
-                      placeholder="Select Brand"
-                      optionFilterProp="children"
-                      value={home.search.brand}
-                      onChange={event => {
-                        let name = 'brand';
-                        handleChange(form, name, event);
-                        if (event !== undefined) {
-                          getDataModel(form, name, event);
+                    <div className="col-6 col-md">
+                      <span className="search__label">Brand</span>
+                      <Select
+                        showSearch
+                        allowClear={true}
+                        style={{ width: 200 }}
+                        placeholder="Select Brand"
+                        optionFilterProp="children"
+                        value={home.search.brand}
+                        onChange={event => {
+                          let name = 'brand';
+                          handleChange(form, name, event);
+                          if (event !== undefined) {
+                            getDataModel(form, name, event);
+                          }
+                        }}
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
                         }
-                      }}
-                      filterOption={(input, option) =>
-                        option.props.children
-                          .toLowerCase()
-                          .indexOf(input.toLowerCase()) >= 0
-                      }
-                    >
-                      {(home.dataBrand !== undefined ? home.dataBrand : []).map(
-                        (x, index) => {
+                      >
+                        {(home.dataBrand !== undefined
+                          ? home.dataBrand
+                          : []
+                        ).map((x, index) => {
                           return (
                             <Option key={index} value={x.id}>
                               {x.text}
                             </Option>
                           );
-                        }
-                      )}
-                    </Select>
-                  </div>
+                        })}
+                      </Select>
+                    </div>
 
-                  <div className="col-6 col-md">
-                    <span className="search__label">Model</span>
-                    <Select
-                      showSearch
-                      allowClear={true}
-                      style={{ width: 200 }}
-                      placeholder="Select Model"
-                      optionFilterProp="children"
-                      value={home.search.model}
-                      onChange={event => {
-                        let name = 'model';
-                        handleChange(form, name, event);
-                        if (event !== undefined) {
-                          getDataType(form, name, event);
+                    <div className="col-6 col-md">
+                      <span className="search__label">Model</span>
+                      <Select
+                        showSearch
+                        allowClear={true}
+                        style={{ width: 200 }}
+                        placeholder="Select Model"
+                        optionFilterProp="children"
+                        value={home.search.model}
+                        onChange={event => {
+                          let name = 'model';
+                          handleChange(form, name, event);
+                          if (event !== undefined) {
+                            getDataType(form, name, event);
+                          }
+                        }}
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
                         }
-                      }}
-                      filterOption={(input, option) =>
-                        option.props.children
-                          .toLowerCase()
-                          .indexOf(input.toLowerCase()) >= 0
-                      }
-                    >
-                      {(home.dataModel !== undefined ? home.dataModel : []).map(
-                        (x, index) => {
+                      >
+                        {(home.dataModel !== undefined
+                          ? home.dataModel
+                          : []
+                        ).map((x, index) => {
                           return (
                             <Option key={index} value={x.id}>
                               {x.text}
                             </Option>
                           );
-                        }
-                      )}
-                    </Select>
-                  </div>
+                        })}
+                      </Select>
+                    </div>
 
-                  <div className="col-6 col-md">
-                    <span className="search__label">Tipe</span>
-                    <Select
-                      showSearch
-                      allowClear={true}
-                      style={{ width: 200 }}
-                      placeholder="Select Tipe"
-                      optionFilterProp="children"
-                      value={home.search.type}
-                      onChange={event => {
-                        let name = 'type';
-                        handleChange(form, name, event);
-                      }}
-                      filterOption={(input, option) =>
-                        option.props.children
-                          .toLowerCase()
-                          .indexOf(input.toLowerCase()) >= 0
-                      }
-                    >
-                      {(home.dataType !== undefined ? home.dataType : []).map(
-                        (x, index) => {
-                          return (
-                            <Option key={index} value={x.id}>
-                              {x.text}
-                            </Option>
-                          );
+                    <div className="col-6 col-md">
+                      <span className="search__label">Tipe</span>
+                      <Select
+                        showSearch
+                        allowClear={true}
+                        style={{ width: 200 }}
+                        placeholder="Select Tipe"
+                        optionFilterProp="children"
+                        value={home.search.type}
+                        onChange={event => {
+                          let name = 'type';
+                          handleChange(form, name, event);
+                        }}
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
                         }
-                      )}
-                    </Select>
-                  </div>
-                  <div className="col-md-12 col-md">
-                    <div className="btn-center" style={{ marginTop: '15px' }}>
-                      <Link to="/search">
-                        <button
-                          className="btn btn-success"
-                          onClick={this.setVar.bind(this, home.search)}
-                        >
-                          Search
-                        </button>
-                      </Link>
+                      >
+                        {(home.dataType !== undefined ? home.dataType : []).map(
+                          (x, index) => {
+                            return (
+                              <Option key={index} value={x.id}>
+                                {x.text}
+                              </Option>
+                            );
+                          }
+                        )}
+                      </Select>
+                    </div>
+                    <div className="col-md-12 col-md">
+                      <div className="btn-center" style={{ marginTop: '15px' }}>
+                        <Link to="/search">
+                          <button
+                            className="btn btn-success"
+                            onClick={this.setVar.bind(this, home.search)}
+                          >
+                            Search
+                          </button>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <BlockUi
-          tag="div"
-          blocking={home.isLoadingHome}
-          style={{ width: '100%' }}
-        >
-          <div>
-            <div className="container pd-t-30">
-              <div className="product">
-                <div className="row__header">
-                  <span className="product__category-big">
-                    <Tooltip
-                      placement="right"
-                      autoAdjustOverflow="true"
-                      title="Lowest ask are the products listed width the lowest ask"
-                    >
-                      Lowest Ask
-                      <FontAwesomeIcon
-                        icon={faInfoCircle}
-                        className="product__info"
-                      />
-                    </Tooltip>
-                  </span>
-                  <Link className="see__all">See all </Link>
-                </div>
-                <Product data={home.dataHome.lowestAsks} title={'Lowest Ask'} />
-              </div>
-
-              <div className="product">
-                <div className="row__header">
-                  <span className="product__category-big">
-                    <Tooltip
-                      placement="right"
-                      autoAdjustOverflow="true"
-                      title="Highest Bid are the products listed width the highest Bid"
-                    >
-                      Highest Bid
-                      <FontAwesomeIcon
-                        icon={faInfoCircle}
-                        className="product__info"
-                      />
-                    </Tooltip>
-                  </span>
-                  <Link className="see__all">See all </Link>
-                </div>
-                <Product
-                  data={home.dataHome.highestBids}
-                  title={'Highest Bid'}
-                />
-              </div>
-
-              <div className="product">
-                <div className="row__header">
-                  <span className="product__category-big">
-                    <Tooltip
-                      placement="right"
-                      autoAdjustOverflow="true"
-                      title="All products"
-                    >
-                      Other
-                      <FontAwesomeIcon
-                        icon={faInfoCircle}
-                        className="product__info"
-                      />
-                    </Tooltip>
-                  </span>
-                  <Link className="see__all">See all </Link>
-                </div>
-                <Product data={home.dataHome.listNormal} title={'Other'} />
-                {/* <Product
-                  data={home.dataHome.highestBids} /> /> */}
-              </div>
-
-              <div className="pilihLjgb">
-                <h4>Kenapa pilih mobil baru di Lojualguebeli.com?</h4>
-
-                <div className="pilihLjgb__wrapper">
-                  <div className="pilihLjgb__item">
-                    <div className="pilihLjgb__item__img">
-                      <img
-                        src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/lengkap.svg"
-                        alt=""
-                        title="Lojualguebeli.com"
-                      />
-                    </div>
-                    <div className="pilihLjgb__item__caption">
-                      <p>
-                        Lojualguebeli.com Pertama di indonesia yang menawarkan
-                        feature BID & Ask. Dengan > 7000 dealer dari berbagai
-                        brand.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="pilihLjgb__item">
-                    <div className="pilihLjgb__item__img">
-                      <img
-                        src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/promo-harga-bersaing.svg"
-                        alt=""
-                        title="Lojualguebeli.com"
-                      />
-                    </div>
-                    <div className="pilihLjgb__item__caption">
-                      <p>
-                        7000+ Wiraniaga yang siap membantu melayani pelanggan.
-                        Semua sales resmi dari authorized dealer dengan didukung
-                        sistem yang terintegrasi
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="pilihLjgb__item">
-                    <div className="pilihLjgb__item__img">
-                      <img
-                        src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/aman-terpecaya.svg"
-                        alt=""
-                        title="Lojualguebeli.com"
-                      />
-                    </div>
-                    <div className="pilihLjgb__item__caption">
-                      <p>
-                        Kemudahan untuk mendapatkan harga terbaik tanpa ribet
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </BlockUi>
-        <Modal
-          title="Silahkan Pilih Provinsi Anda"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-          <span className="search__label">Provinsi</span>
-          <Select
-            className="labelBlack"
-            showSearch
-            style={{ width: 200 }}
-            placeholder="Select Provinsi"
-            optionFilterProp="children"
-            value={home.search.provinsi}
-            onChange={event => {
-              handleChange('search', 'provinsi', event);
-            }}
-            filterOption={(input, option) =>
-              option.props.children
-                .toLowerCase()
-                .indexOf(input.toLowerCase()) >= 0
-            }
+          <BlockUi
+            tag="div"
+            blocking={home.isLoadingHome}
+            style={{ width: '100%' }}
           >
-            {(home.dataProvinsi !== undefined ? home.dataProvinsi : []).map(
-              (x, index) => {
-                return (
-                  <Option key={index} value={x.id}>
-                    {x.text}
-                  </Option>
-                );
+            <div>
+              <div className="container pd-t-30">
+                <div className="product">
+                  <div className="row__header">
+                    <span className="product__category-big">
+                      <Tooltip
+                        placement="right"
+                        autoAdjustOverflow="true"
+                        title="Lowest ask are the products listed width the lowest ask"
+                      >
+                        Lowest Ask
+                        <FontAwesomeIcon
+                          icon={faInfoCircle}
+                          className="product__info"
+                        />
+                      </Tooltip>
+                    </span>
+                    {/* <Link className="see__all">See all </Link> */}
+                  </div>
+                  <Product
+                    data={home.dataHome.lowestAsks}
+                    title={'Lowest Ask'}
+                  />
+                </div>
+
+                <div className="product">
+                  <div className="row__header">
+                    <span className="product__category-big">
+                      <Tooltip
+                        placement="right"
+                        autoAdjustOverflow="true"
+                        title="Highest Bid are the products listed width the highest Bid"
+                      >
+                        Highest Bid
+                        <FontAwesomeIcon
+                          icon={faInfoCircle}
+                          className="product__info"
+                        />
+                      </Tooltip>
+                    </span>
+                    {/* <Link className="see__all">See all </Link> */}
+                  </div>
+                  <Product
+                    data={home.dataHome.highestBids}
+                    title={'Highest Bid'}
+                  />
+                </div>
+
+                <div className="product">
+                  <div className="row__header">
+                    <span className="product__category-big">
+                      <Tooltip
+                        placement="right"
+                        autoAdjustOverflow="true"
+                        title="All products"
+                      >
+                        Other
+                        <FontAwesomeIcon
+                          icon={faInfoCircle}
+                          className="product__info"
+                        />
+                      </Tooltip>
+                    </span>
+                    {/* <Link className="see__all">See all </Link> */}
+                  </div>
+                  <Product data={home.dataHome.listNormal} title={'Other'} />
+                  {/* <Product
+                  data={home.dataHome.highestBids} /> /> */}
+                </div>
+
+                <div className="pilihLjgb">
+                  <h4>Kenapa pilih mobil baru di Lojualguebeli.com?</h4>
+
+                  <div className="pilihLjgb__wrapper">
+                    <div className="pilihLjgb__item">
+                      <div className="pilihLjgb__item__img">
+                        <img
+                          src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/lengkap.svg"
+                          alt=""
+                          title="Lojualguebeli.com"
+                        />
+                      </div>
+                      <div className="pilihLjgb__item__caption">
+                        <p>
+                          Lojualguebeli.com Pertama di indonesia yang menawarkan
+                          feature BID & Ask. Dengan > 7000 dealer dari berbagai
+                          brand.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="pilihLjgb__item">
+                      <div className="pilihLjgb__item__img">
+                        <img
+                          src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/promo-harga-bersaing.svg"
+                          alt=""
+                          title="Lojualguebeli.com"
+                        />
+                      </div>
+                      <div className="pilihLjgb__item__caption">
+                        <p>
+                          7000+ Wiraniaga yang siap membantu melayani pelanggan.
+                          Semua sales resmi dari authorized dealer dengan
+                          didukung sistem yang terintegrasi
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="pilihLjgb__item">
+                      <div className="pilihLjgb__item__img">
+                        <img
+                          src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/aman-terpecaya.svg"
+                          alt=""
+                          title="Lojualguebeli.com"
+                        />
+                      </div>
+                      <div className="pilihLjgb__item__caption">
+                        <p>
+                          Kemudahan untuk mendapatkan harga terbaik tanpa ribet
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </BlockUi>
+          <Modal
+            title="Silahkan Pilih Provinsi Anda"
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+          >
+            <span className="search__label">Provinsi</span>
+            <Select
+              className="labelBlack"
+              showSearch
+              style={{ width: 200 }}
+              placeholder="Select Provinsi"
+              optionFilterProp="children"
+              value={home.search.provinsi}
+              onChange={event => {
+                handleChange('search', 'provinsi', event);
+              }}
+              filterOption={(input, option) =>
+                option.props.children
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0
               }
-            )}
-          </Select>
-        </Modal>
-      </main>
+            >
+              {(home.dataProvinsi !== undefined ? home.dataProvinsi : []).map(
+                (x, index) => {
+                  return (
+                    <Option key={index} value={x.id}>
+                      {x.text}
+                    </Option>
+                  );
+                }
+              )}
+            </Select>
+          </Modal>
+        </main>
+      </BlockUi>
     );
   }
 }

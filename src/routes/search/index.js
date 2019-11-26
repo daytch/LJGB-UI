@@ -93,6 +93,12 @@ class Search extends Component {
     localStorage.removeItem('brand');
     localStorage.removeItem('model');
     localStorage.removeItem('type');
+
+    $('.navbar').removeClass('navbar-dark');
+    $('.navbar').addClass('bg-cl-white');
+    $('#logoWhite').css({ display: 'none' });
+    $('#logoDark').css({ display: 'block' });
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   handleScroll = event => {

@@ -1,15 +1,23 @@
 .formLoginWrapper {
   max-width: 768px;
-  margin: auto;
-  margin-top: 70px;
-  padding: 10px 20px 20px;
+  width: 100%;
+  // margin: auto;
+  // margin-top: 70px;
+  // padding: 10px 20px 20px;
   border-radius: 8px;
-  border: 1px solid #eee;
-  box-shadow: 0 0 10px #eee;
+  overflow: hidden;
+  // border: 1px solid #eee;
+  // box-shadow: 0 0 5px #eee;
+  background: #fff;
+  padding-bottom: 20px;
 
   .btn {
-    width: 100%;
-    margin-top: 10px;
+    width: calc(100% - 40px);
+    margin: auto;
+    display: block;
+  }
+  .field {
+    margin: 1em 20px 1.5em;
   }
 }
 
@@ -150,15 +158,22 @@
 .accessToggle {
   display: flex;
   cursor: pointer;
+  margin-bottom: 30px;
 
   &_option {
+    // font-weight: 400;
+    // color: $color-4;
     width: 50%;
     text-align: center;
-    font-weight: 400;
+    font-weight: 500;
     padding: 10px 0 15px;
-    color: $color-4;
+    color: #878787;
     border-bottom: 3px solid #eee;
     transition: 0.2s ease;
+    background: #dcdcdc;
+    color: #fff;
+    border: none;
+    position: relative;
 
     &:hover,
     &.active {
@@ -166,8 +181,19 @@
     }
 
     &.active {
-      border-color: $color-1;
-      font-weight: 600;
+      border-color: #0069d9;
+      background: #007bff;
+      color: #fff;
+      &:before {
+        content: '';
+        width: 15px;
+        height: 15px;
+        background: #007bff;
+        position: absolute;
+        left: 50%;
+        bottom: -5px;
+        transform: translateX(-50%) rotate(45deg);
+      }
     }
   }
 }
@@ -247,10 +273,11 @@
 
 @media (max-width: 767px) {
   .formLoginWrapper {
-    margin-top: 20px;
+    // margin-top: 20px;
+    margin-top: -40px;
     margin-bottom: 20px;
     box-shadow: unset;
     border: none;
-    padding: 0;
+    // padding: 0;
   }
 }

@@ -5,9 +5,12 @@
   line-height: 1;
   color: #555;
   text-align: center;
-  background-color: #eee;
-  border: 1px solid #ccc;
+  // background-color: #eee;
+  border: none;
   border-radius: 4px;
+}
+.input-group-addon.form-control {
+  display: table-cell;
 }
 
 .input-group .form-control {
