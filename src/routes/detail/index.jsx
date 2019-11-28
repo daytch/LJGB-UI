@@ -379,6 +379,44 @@ class Detail extends Component {
                 </div>
               </div>
 
+              <div className="model model--mob">
+                <div className="container">
+                  <Select
+                    showSearch
+                    // allowClear={true}
+                    placeholder="Select Model"
+                    optionFilterProp="children"
+                    value={detail.model}
+                    onChange={event => {
+                      handleChangeDetail('model', event);
+                      window.location.href = '/detail?id=' + event;
+                      // this.props.getDataDetail(event);
+                    }}
+                    filterOption={(input, option) =>
+                      option.props.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
+                    }
+                  >
+                    {(detail.dataDetail.listModelForDetail !== undefined
+                      ? detail.dataDetail.listModelForDetail
+                      : []
+                    ).map((x, index) => {
+                      return (
+                        <Option
+                          key={index}
+                          value={x.barangID}
+                          className="model__select__option"
+                        >
+                          {x.name}
+                        </Option>
+                      );
+                    })}
+                  </Select>
+                </div>
+              </div>
+              {/* </div> */}
+
               <div className="detail__body">
                 <div className="row">
                   <div className="col-md-12 mb-4">
@@ -438,40 +476,10 @@ class Detail extends Component {
                       </div>
 
                       <div className="col-md-12">
-                        <div className="model model--mob mt-2">
-                          <Select
-                            showSearch
-                            // allowClear={true}
-                            placeholder="Select Model"
-                            optionFilterProp="children"
-                            value={detail.model}
-                            onChange={event => {
-                              handleChangeDetail('model', event);
-                              window.location.href = '/detail?id=' + event;
-                              // this.props.getDataDetail(event);
-                            }}
-                            filterOption={(input, option) =>
-                              option.props.children
-                                .toLowerCase()
-                                .indexOf(input.toLowerCase()) >= 0
-                            }
-                          >
-                            {(detail.dataDetail.listModelForDetail !== undefined
-                              ? detail.dataDetail.listModelForDetail
-                              : []
-                            ).map((x, index) => {
-                              return (
-                                <Option
-                                  key={index}
-                                  value={x.barangID}
-                                  className="model__select__option"
-                                >
-                                  {x.name}
-                                </Option>
-                              );
-                            })}
-                          </Select>
-                        </div>
+                        <p className="note">
+                          <span className="red">*</span> Warna di atas dapat
+                          berbeda dengan warna mobil sesungguhnya
+                        </p>
                       </div>
 
                       {/* <div className="col-md-12">

@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 // import ImageLogo from './../../images/ljgb.png';
 import Banner from '../../components/layouts/common/carousel/banner';
+import Brands from '../../components/layouts/common/brands';
 
 const { Option } = Select;
 
@@ -297,6 +298,21 @@ class Home extends Component {
           >
             <div>
               <div className="container pd-t-30">
+                {/* <div className="product">
+                  <div className="row__header">
+                    <span className="product__category-big">
+                      <Tooltip
+                        placement="right"
+                        autoAdjustOverflow="true"
+                        title=""
+                      >
+                        Brands
+                      </Tooltip>
+                    </span>
+                  </div>
+                  <Brands />
+                </div> */}
+
                 <div className="product">
                   <div className="row__header">
                     <span className="product__category-big">
