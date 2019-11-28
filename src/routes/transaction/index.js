@@ -229,6 +229,21 @@ class Transaction extends Component {
     str = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     return str;
   }
+  changeVal(x) {
+    let valPrice = typeof x;
+    if (valPrice == 'string') {
+      x = parseInt(x.replace(/,/g, ''));
+    } else {
+      x = x;
+    }
+    let mod = x % 500000;
+    if (mod < 500000) {
+      x = x - mod + 500000;
+    } else {
+      x = x - mod + 1000000;
+    }
+    this.props.handleChange('price', { target: { value: x } });
+  }
 
   render() {
     const settingSlider1 = {
@@ -410,6 +425,10 @@ class Transaction extends Component {
                               forma
                               onChange={handleChange.bind(this, 'price')}
                               value={this.changeFormat(transaction.price)}
+                              onBlur={this.changeVal.bind(
+                                this,
+                                transaction.price
+                              )}
                               disabled={
                                 transaction.type === 'sell now' ||
                                 transaction.type === 'buy now'

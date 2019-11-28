@@ -181,14 +181,35 @@ export function* getDataSearch(action) {
   try {
     const home = yield select(getHome);
     let body = {
-      kotaID: home.search.city.length === 0 ? null : home.search.city,
-      merkID: home.search.brand.length === 0 ? null : home.search.brand,
-      modelBarangID: home.search.model.length === 0 ? null : home.search.model,
-      typeID: home.search.type.length === 0 ? null : home.search.type,
+      kotaID:
+        home.search.city.length === 0
+          ? localStorage.getItem('city') == null
+            ? null
+            : parseInt(localStorage.getItem('city'))
+          : home.search.city,
+      merkID:
+        home.search.brand.length === 0
+          ? localStorage.getItem('brand') == null
+            ? null
+            : parseInt(localStorage.getItem('brand'))
+          : home.search.brand,
+      modelBarangID:
+        home.search.model.length === 0
+          ? localStorage.getItem('model') == null
+            ? null
+            : parseInt(localStorage.getItem('model'))
+          : home.search.model,
+      typeID:
+        home.search.type.length === 0
+          ? localStorage.getItem('type') == null
+            ? null
+            : parseInt(localStorage.getItem('type'))
+          : home.search.type,
       start: home.search.dataNumber,
       limit: home.search.pageSize
     };
     yield put({ type: SET_LOADER_MINI, payload: true });
+    yield put({ type: SET_LOADER_HOME, payload: true });
     const data = yield call(
       POST,
       API_DATA + Endpoint.DATA_SEARCH,
@@ -212,10 +233,24 @@ export function* getDataSearch(action) {
         index: 'total',
         value: data.total
       });
+      let type =
+        home.search.type.length === 0
+          ? localStorage.getItem('type') == null
+            ? null
+            : localStorage.getItem('type')
+          : home.search.type;
+      if (type !== null && type !== '') {
+        window.location.href =
+          '/detail?id=' + data.sp_GetBarangByHomeParameters[0].id;
+      }
+      // else {
+      //   window.location.href = '/search'
+      // }
     } else {
       let message = data.message;
       warning(message);
     }
+    yield put({ type: SET_LOADER_HOME, payload: false });
     yield put({ type: SET_LOADER_MINI, payload: false });
   } catch (err) {
     yield put({ type: SET_LOADER_MINI, payload: false });
