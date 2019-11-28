@@ -63,6 +63,10 @@ class Transaction extends Component {
     handleChange(type, 'type');
   }
 
+  componentWillUnmount() {
+    localStorage.removeItem('path');
+  }
+
   componentDidMount() {
     const { transaction } = this.props;
     this.setState({
