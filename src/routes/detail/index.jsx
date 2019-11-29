@@ -41,6 +41,7 @@ class Detail extends Component {
     };
     this.onShowMore = this.onShowMore.bind(this);
     this.showAllAsk = this.showAllAsk.bind(this);
+    this.onSlide = this.onSlide.bind(this);
   }
   componentWillMount() {
     // $('.navbar').removeClass('navbar-dark');
@@ -50,12 +51,18 @@ class Detail extends Component {
     let getData = this.props.location.search.replace('?id=', '');
     this.props.handleChangeDetail('model', parseInt(getData));
     this.props.getDataDetail(getData);
+    // window.addEventListener('wheel', (e) => {
+    //   this.onSlide(e.wheelDelta);
+    // })
   }
   componentDidMount() {
     this.setState({
       nav1: this.slider1,
       nav2: this.slider2
     });
+  }
+  onSlide(y) {
+    y > 0 ? this.slider2.slickNext() : this.slider2.slickPrev();
   }
   onShowMore() {
     this.setState({
@@ -461,6 +468,7 @@ class Detail extends Component {
 
                       <div className="col-md-3">
                         <Slider
+                          id="slider2"
                           asNavFor={this.state.nav1}
                           ref={slider => (this.slider2 = slider)}
                           slidesToShow={3}
