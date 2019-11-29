@@ -145,7 +145,7 @@ class Detail extends Component {
           )}
         >
           <img src={x.photopath} alt="" title="Lojualguebeli.com" />
-          {/* <b>{x.color}</b> */}
+          <b>{x.color}</b>
         </div>
       );
     });
