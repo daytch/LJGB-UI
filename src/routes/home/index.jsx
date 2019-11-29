@@ -89,6 +89,11 @@ class Home extends Component {
     this.props.handleChange('search', 'brand', []);
     this.props.handleChange('search', 'model', []);
     this.props.handleChange('search', 'type', []);
+    if (data.type.length == 0) {
+      window.location.href = '/search';
+    } else {
+      this.props.getSearch();
+    }
   }
 
   handleOk = e => {
@@ -275,14 +280,14 @@ class Home extends Component {
                     </div>
                     <div className="col-md-12 col-md">
                       <div className="btn-center" style={{ marginTop: '15px' }}>
-                        <Link to="/search">
-                          <button
-                            className="btn btn-success"
-                            onClick={this.setVar.bind(this, home.search)}
-                          >
-                            Search
-                          </button>
-                        </Link>
+                        {/* <Link to={home.search.type.length == 0 ? "/search" : "/detail"}> */}
+                        <button
+                          className="btn btn-success"
+                          onClick={this.setVar.bind(this, home.search)}
+                        >
+                          Search
+                        </button>
+                        {/* </Link> */}
                       </div>
                     </div>
                   </div>

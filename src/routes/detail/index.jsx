@@ -47,7 +47,6 @@ class Detail extends Component {
     // $('.navbar').addClass('bg-cl-white');
     // $('#logoWhite').css({ display: 'none' });
     // $('#logoDark').css({ display: 'block' });
-
     let getData = this.props.location.search.replace('?id=', '');
     this.props.handleChangeDetail('model', parseInt(getData));
     this.props.getDataDetail(getData);
