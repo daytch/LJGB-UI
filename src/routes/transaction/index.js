@@ -21,6 +21,7 @@ import { actions } from '../../actions/trasactionAction';
 // import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import BlockUi from 'react-block-ui';
+import { Loader, Types } from 'react-loaders';
 import { warning } from '../../components/Message';
 
 // const { Option } = Select;
@@ -335,6 +336,8 @@ class Transaction extends Component {
         tag="div"
         blocking={transaction.isLoading}
         style={{ width: '100%' }}
+        message={<h3>Loading, please wait</h3>}
+        loader={<Loader active type="ball-pulse-sync" color="#061b56" />}
       >
         <main role="main">
           <div className="container">

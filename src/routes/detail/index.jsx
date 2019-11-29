@@ -21,7 +21,7 @@ import Product from '../../components/layouts/common/product';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import BlockUi from 'react-block-ui';
-import '../../style/component/select.scss';
+import { Loader, Types } from 'react-loaders';
 
 const { Option } = Select;
 
@@ -250,7 +250,13 @@ class Detail extends Component {
     let getData = this.props.location.search.replace('?id=', '');
 
     return (
-      <BlockUi tag="div" blocking={detail.isLoading} style={{ width: '100%' }}>
+      <BlockUi
+        tag="div"
+        blocking={detail.isLoading}
+        style={{ width: '100%' }}
+        message={<h3>Loading, please wait</h3>}
+        loader={<Loader active type="ball-pulse-sync" color="#061b56" />}
+      >
         <main role="main">
           <div className="container detail__container">
             <BreadCrumb breadName={detail.dataDetail.carDetail.name} />
