@@ -55,12 +55,12 @@ class Transaction extends Component {
     let getData = this.props.location.search.replace('?id=', '');
     var status = getData.replace(/[0-9]/g, '');
     var id = getData.replace(/[a-z]/g, '');
-    this.props.getDataDetail(id);
+    // this.props.getDataDetail(id);
     let type = {
       target: { value: status === 'ask' ? 'place ask' : 'place bid' }
     };
     getDataWarna();
-    getDataTransaksi();
+    getDataTransaksi(id, status);
     handleChange(type, 'type');
   }
 
@@ -238,7 +238,9 @@ class Transaction extends Component {
       x = x;
     }
     let mod = x % 500000;
-    if (mod < 500000) {
+    if (mod == 0) {
+      x = x;
+    } else if (mod < 500000) {
       x = x - mod + 500000;
     } else {
       x = x - mod + 1000000;
