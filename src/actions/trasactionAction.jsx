@@ -32,7 +32,8 @@ export function GetAllBid(property, value) {
 
 export function getDataWarna(property, value) {
   return {
-    type: GET_DATA_WARNA
+    type: GET_DATA_WARNA,
+    property
   };
 }
 
@@ -46,7 +47,9 @@ export function processData(property, value) {
 
 export function getDataTransaksi(property, value) {
   return {
-    type: GET_DATA_TRANSAKSI
+    type: GET_DATA_TRANSAKSI,
+    property,
+    value
   };
 }
 

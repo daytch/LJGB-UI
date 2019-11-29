@@ -221,8 +221,8 @@ export function* getDataTransaction(action) {
   try {
     yield put({ type: SET_LOADER_DETAIL, payload: true });
     let body = {
-      id: 1,
-      negoType: 'ask'
+      id: parseInt(action.property),
+      negoType: action.value
     };
     const data = yield call(
       POST,
