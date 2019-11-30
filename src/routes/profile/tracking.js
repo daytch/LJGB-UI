@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { actions } from '../../actions/profileAction';
 import BlockUi from 'react-block-ui';
 import '../../style/component/select.scss';
+import moment from 'moment';
 
 class Tracking extends Component {
   constructor(props) {
@@ -58,7 +59,16 @@ class Tracking extends Component {
       {
         title: 'date',
         dataIndex: 'date',
-        key: 'date'
+        key: 'date',
+        render: (record, data) => {
+          let tempdate =
+            data.date == ''
+              ? ''
+              : moment(data.date)
+                  .format('DD-MM-YYYY')
+                  .toString();
+          return tempdate;
+        }
       }
     ];
     return (

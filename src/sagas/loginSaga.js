@@ -33,6 +33,7 @@ export function* getDataLogin(action) {
     );
     if (data.isSuccess) {
       localStorage.setItem('idToken', data.token);
+      localStorage.setItem('name', data.name);
       yield put({ type: SET_DATA_LOGIN, payload: data.token });
       if (localStorage.getItem('path') !== null) {
         window.location.href = '/transaction' + localStorage.getItem('path');

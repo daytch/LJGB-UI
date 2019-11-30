@@ -21,25 +21,17 @@ const getLogin = state => state.loginReducer;
 export function* getDataProfile(action) {
   try {
     const Login = yield select(getLogin);
-    let body = {
-      email: Login.nameLogin,
-      password: Login.passwordLogin
-    };
+    let body = { token: '' };
     yield put({ type: SET_LOADER_PROFILE, payload: true });
-    // const data = yield call(
-    //     POST,
-    //     API_DATA + Endpoint.DATA_LOGIN,
-    //     body,
-    //     master.getHeader()
-    // );
-    // if (data.isSuccess) {
-    //     localStorage.setItem('idToken', data.token);
-    //     yield put({ type: SET_DATA_PROFILE, payload: data.token });
-    //     window.location.href = '/';
-    // } else {
-    //     let message = data.message;
-    //     warning(message);
-    // }
+    const data = yield call(POST, API_DATA + Endpoint.DATA_USER, body, {
+      headers: master.getHeaderToken()
+    });
+    if (data.isSuccess) {
+      yield put({ type: SET_DATA_PROFILE, payload: data.userProfileModel });
+    } else {
+      let message = data.message;
+      warning(message);
+    }
     yield put({ type: SET_LOADER_PROFILE, payload: false });
   } catch (err) {
     yield put({ type: SET_LOADER_PROFILE, payload: false });
@@ -65,7 +57,7 @@ export function* getDataTrx(action) {
           produk: x.merkName + ' - ' + x.modelName + ' - ' + x.barangName,
           price: x.price,
           status: x.status,
-          date: ''
+          date: x.date
         });
       });
       yield put({ type: SET_DATA_TRX, payload: dataNew });

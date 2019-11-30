@@ -20,9 +20,11 @@ const Endpoint = {
   PROCESS_DATA_ASK: '/NegoBarang/SubmitAsk',
   PROCESS_DATA_BID: '/NegoBarang/SubmitBid',
   PROCESS_DATA_SELL: '/Transaction/SubmitSell',
+  // PROCESS_DATA_SELL: '/Transaction/SubmitSellFrontEnd',
   PROCESS_DATA_BUY: '/Transaction/SubmitBuy',
   DATA_TRANSACTION: '/Barang/GetPhotoAndWarnaByID',
   DATA_TRX: '/Transaction/GetListBidAndBuy',
+  DATA_USER: '/User/GetPost',
 
   DATA_SIGNUP: '/Auth/Register',
   DATA_LOGIN: '/Auth/Login'

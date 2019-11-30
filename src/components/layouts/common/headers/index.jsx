@@ -106,7 +106,7 @@ class Header extends Component {
                 <span className="nav-link">
                   {localStorage.getItem('idToken') === null
                     ? ''
-                    : 'Welcome User'}
+                    : 'Welcome ' + localStorage.getItem('name')}
                 </span>
               </Nav>
               {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">

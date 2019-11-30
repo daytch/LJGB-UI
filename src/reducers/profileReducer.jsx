@@ -8,7 +8,12 @@ import {
 const INIT_STATE = {
   isLoading: false,
   trx: [],
-  profile: ''
+  profile: '',
+  data: {
+    email: '',
+    name: '',
+    telp: ''
+  }
 };
 
 export default (state = INIT_STATE, action) => {

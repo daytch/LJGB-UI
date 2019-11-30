@@ -65,6 +65,9 @@ class Transaction extends Component {
 
   componentWillUnmount() {
     localStorage.removeItem('path');
+    this.props.handleChange('price', {
+      target: { value: '' }
+    });
   }
 
   componentDidMount() {
@@ -146,6 +149,8 @@ class Transaction extends Component {
         changeMin < parseInt(this.props.transaction.min)
       ) {
         warning('Harga tidak boleh lebih kecil dari harga minimum');
+      } else if (this.props.transaction.price == '') {
+        warning('Transaksi belum tersedia');
       } else {
         this.props.processData(status, id);
       }
@@ -162,16 +167,27 @@ class Transaction extends Component {
             className="detail__imgSlide--small"
             onClick={e => {
               let getType = getData.type;
-              if (getType == 'sell now' || getType == 'buy now') {
+              if (getType == 'buy now') {
                 handleChange('price', {
                   target: { value: x.lowestask }
                 });
-              } else {
+              } else if (getType == 'sell now') {
+                handleChange('price', {
+                  target: { value: x.highestbid }
+                });
+              } else if (getType == 'place bid') {
                 handleChange('price', {
                   target: { value: x.highestbid == null ? '' : x.highestbid }
                 });
                 handleChange('min', {
                   target: { value: x.highestbid == null ? '' : x.highestbid }
+                });
+              } else {
+                handleChange('price', {
+                  target: { value: x.lowestask == null ? '' : x.lowestask }
+                });
+                handleChange('min', {
+                  target: { value: x.lowestask == null ? '' : x.lowestask }
                 });
               }
               handleChange('lowestask', {
@@ -230,21 +246,25 @@ class Transaction extends Component {
     return str;
   }
   changeVal(x) {
-    let valPrice = typeof x;
-    if (valPrice == 'string') {
-      x = parseInt(x.replace(/,/g, ''));
-    } else {
-      x = x;
+    let getData = this.props.location.search.replace('?id=', '');
+    var status = getData.replace(/[0-9]/g, '');
+    if (status === 'bid') {
+      let valPrice = typeof x;
+      if (valPrice == 'string' && x !== '') {
+        x = parseInt(x.replace(/,/g, ''));
+      } else {
+        x = x;
+      }
+      let mod = x % 500000;
+      if (mod == 0) {
+        x = x;
+      } else if (mod < 500000) {
+        x = x - mod + 500000;
+      } else {
+        x = x - mod + 1000000;
+      }
+      this.props.handleChange('price', { target: { value: x } });
     }
-    let mod = x % 500000;
-    if (mod == 0) {
-      x = x;
-    } else if (mod < 500000) {
-      x = x - mod + 500000;
-    } else {
-      x = x - mod + 1000000;
-    }
-    this.props.handleChange('price', { target: { value: x } });
   }
 
   render() {

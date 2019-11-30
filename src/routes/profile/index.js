@@ -3,6 +3,8 @@ import { Layout, Menu, Icon, Form } from 'antd';
 import $ from 'jquery';
 import ProfileContent from './profileContent';
 import Tracking from './tracking';
+import { connect } from 'react-redux';
+import { actions } from '../../actions/profileAction';
 
 class Profile extends Component {
   constructor(props) {
@@ -34,7 +36,7 @@ class Profile extends Component {
   }
   render() {
     const { Header, Content, Footer, Sider } = Layout;
-    // const dis = this.state;
+    const { profile } = this.props;
     return (
       <main role="main">
         <Sider
@@ -53,7 +55,7 @@ class Profile extends Component {
                 title="Lojualguebeli.com"
               />
             </div>
-            <h3 className="profile__name">Novia Venessa</h3>
+            <h3 className="profile__name">{profile.data.name}</h3>
           </div>
           <Menu mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" onClick={this.handleProfile}>
@@ -77,4 +79,12 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = state => ({
+  profile: state.profileReducer
+});
+export default connect(
+  mapStateToProps,
+  {
+    ...actions
+  }
+)(Profile);
