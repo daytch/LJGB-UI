@@ -6,7 +6,7 @@ const App = ({ children }) => {
   return (
     <>
       <Header />
-      {children}
+      <div style={{ minHeight: 'calc(100vh - 62px)' }}>{children}</div>
       <Footer />
     </>
   );

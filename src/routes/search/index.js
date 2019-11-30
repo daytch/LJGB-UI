@@ -9,6 +9,7 @@ import { Select, Pagination } from 'antd';
 // import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import $ from 'jquery';
 import BlockUi from 'react-block-ui';
+import { Loader, Types } from 'react-loaders';
 // import Selected from './../../components/globalComponents/customSelect';
 import Product from '../../components/layouts/common/product';
 import Banner from '../../components/layouts/common/carousel/banner';
@@ -309,6 +310,9 @@ class Search extends Component {
           tag="div"
           blocking={home.isLoadingHome}
           style={{ width: '100%' }}
+          message={<h3>Loading, please wait</h3>}
+          keepInView
+          loader={<Loader active type="ball-pulse-sync" color="#061b56" />}
         >
           <div>
             <div className="container pd-t-30">

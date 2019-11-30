@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import customerservice from '../../../../images/img/customer-service.svg';
 
 const Footer = () => {
   return (
@@ -136,11 +137,7 @@ const Footer = () => {
             </div>
             <div className="customercare">
               <div className="customercare__img">
-                <img
-                  src="https://www.rajamobil.com/themes/rmperjuangan/images/footer/customer-service.svg"
-                  alt=""
-                  title="Lojualguebeli.com"
-                />
+                <img src={customerservice} alt="" title="Lojualguebeli.com" />
               </div>
               <div>
                 <span className="title">Customer Care</span>

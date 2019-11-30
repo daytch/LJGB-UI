@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BoxItem from './boxItem';
 import BlockUi from 'react-block-ui';
+import { Loader, Types } from 'react-loaders';
 import { connect } from 'react-redux';
 
 class Product extends Component {

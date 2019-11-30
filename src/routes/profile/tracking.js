@@ -5,6 +5,7 @@ import { actions } from '../../actions/profileAction';
 import BlockUi from 'react-block-ui';
 import '../../style/component/select.scss';
 import moment from 'moment';
+import { Loader, Types } from 'react-loaders';
 
 class Tracking extends Component {
   constructor(props) {
@@ -72,7 +73,13 @@ class Tracking extends Component {
       }
     ];
     return (
-      <BlockUi tag="div" blocking={profile.isLoading} style={{ width: '100%' }}>
+      <BlockUi
+        tag="div"
+        blocking={profile.isLoading}
+        style={{ width: '100%' }}
+        message={<h3>Loading, please wait</h3>}
+        loader={<Loader active type="ball-pulse-sync" color="#061b56" />}
+      >
         <div>
           <h3>Tracking</h3>
           <Table

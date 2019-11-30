@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { actions } from '../../actions/homeAction';
 import { Select, Tooltip, Modal } from 'antd';
 import BlockUi from 'react-block-ui';
-import '../../style/component/select.scss';
+import { Loader, Types } from 'react-loaders';
 
 import Product from '../../components/layouts/common/product';
 import $ from 'jquery';
@@ -14,6 +14,10 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 // import ImageLogo from './../../images/ljgb.png';
 import Banner from '../../components/layouts/common/carousel/banner';
 import Brands from '../../components/layouts/common/brands';
+
+import img1 from '../../images/img/img1.svg';
+import img2 from '../../images/img/img2.svg';
+import img3 from '../../images/img/img3.svg';
 
 const { Option } = Select;
 
@@ -127,7 +131,13 @@ class Home extends Component {
 
     let form = 'search';
     return (
-      <BlockUi tag="div" blocking={home.isLoading} style={{ width: '100%' }}>
+      <BlockUi
+        tag="div"
+        blocking={home.isLoading}
+        style={{ width: '100%' }}
+        message={<h3>Loading, please wait</h3>}
+        loader={<Loader active type="ball-pulse-sync" color="#061b56" />}
+      >
         <main role="main" style={{ marginTop: '0' }}>
           <div className="slider__top">
             <Banner />
@@ -300,6 +310,8 @@ class Home extends Component {
             tag="div"
             blocking={home.isLoadingHome}
             style={{ width: '100%' }}
+            message={<h3>Loading, please wait</h3>}
+            loader={<Loader active type="ball-pulse-sync" color="#061b56" />}
           >
             <div>
               <div className="container pd-t-30">
@@ -392,11 +404,7 @@ class Home extends Component {
                   <div className="pilihLjgb__wrapper">
                     <div className="pilihLjgb__item">
                       <div className="pilihLjgb__item__img">
-                        <img
-                          src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/lengkap.svg"
-                          alt=""
-                          title="Lojualguebeli.com"
-                        />
+                        <img src={img1} alt="" title="Lojualguebeli.com" />
                       </div>
                       <div className="pilihLjgb__item__caption">
                         <p>
@@ -409,11 +417,7 @@ class Home extends Component {
 
                     <div className="pilihLjgb__item">
                       <div className="pilihLjgb__item__img">
-                        <img
-                          src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/promo-harga-bersaing.svg"
-                          alt=""
-                          title="Lojualguebeli.com"
-                        />
+                        <img src={img2} alt="" title="Lojualguebeli.com" />
                       </div>
                       <div className="pilihLjgb__item__caption">
                         <p>
@@ -426,11 +430,7 @@ class Home extends Component {
 
                     <div className="pilihLjgb__item">
                       <div className="pilihLjgb__item__img">
-                        <img
-                          src="https://www.rajamobil.com/themes/rmperjuangan/images/new-home/aman-terpecaya.svg"
-                          alt=""
-                          title="Lojualguebeli.com"
-                        />
+                        <img src={img3} alt="" title="Lojualguebeli.com" />
                       </div>
                       <div className="pilihLjgb__item__caption">
                         <p>
