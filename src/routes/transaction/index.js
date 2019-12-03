@@ -302,10 +302,10 @@ class Transaction extends Component {
     const settingSlider2 = {
       dots: false,
       arrow: true,
-      initialSlide: 1,
+      initialSlide: 0,
       infinite: true,
       slidesToScroll: 1,
-      // slidesToShow:10,
+      // slidesToShow:4,
       rows: 1,
       slidesPerRow: 1,
       responsive: [
@@ -313,7 +313,7 @@ class Transaction extends Component {
           breakpoint: 767,
           settings: {
             arrow: false,
-            initialSlide: 1,
+            initialSlide: 0,
             //slidesToShow: 4,
             autoSlidesToShow: true,
             slidesToScroll: 1
@@ -374,7 +374,7 @@ class Transaction extends Component {
                         asNavFor={this.state.nav2}
                         ref={slider => (this.slider1 = slider)}
                         fade={true}
-                        initialSlide={0}
+                        //initialSlide={0}
                         {...settingSlider1}
                       >
                         {this.sliderImage(transaction.dataTransaction)}
@@ -384,7 +384,7 @@ class Transaction extends Component {
                       asNavFor={this.state.nav1}
                       ref={slider => (this.slider2 = slider)}
                       slidesToShow={4}
-                      initialSlide={0}
+                      //initialSlide={0}
                       swipeToSlide={true}
                       focusOnSelect={true}
                       className="slideTrigger"
