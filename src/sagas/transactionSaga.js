@@ -22,7 +22,8 @@ import {
   GET_PROCESS_DATA,
   GET_DATA_TRANSAKSI,
   SET_DATA_TRANSAKSI,
-  HANDLE_CHANGE_DETAIL
+  HANDLE_CHANGE_DETAIL,
+  HANDLE_CHANGE_TRANSAKSI
 } from '../constants/index';
 
 const getDetail = state => state.detailReducer;
@@ -235,6 +236,11 @@ export function* getDataTransaction(action) {
       yield put({
         type: SET_DATA_TRANSAKSI,
         payload: data.sP_GetPhotoAndWarnaByBarangIDS
+      });
+      yield put({
+        type: HANDLE_CHANGE_TRANSAKSI,
+        val: data.sP_GetPhotoAndWarnaByBarangIDS[0].lowestask,
+        prop: 'lowestask'
       });
     } else {
       warning(data.message);
