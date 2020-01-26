@@ -87,6 +87,28 @@ class FormSignUp extends Component {
             <FontAwesomeIcon icon={this.state.unSeen ? faEye : faEyeSlash} />
           </span>
         </div>
+        <div className="field">
+          <input
+            type={this.state.unSeen ? 'password' : 'text'}
+            name="passwordAgain"
+            id="passwordAgain"
+            placeholder="Konfirmasi Password"
+            className="text-pass"
+            value={login.passwordAgain}
+            onChange={handleState.bind(this, 'passwordAgain')}
+          />
+          <label htmlFor="password"> Konfirmasi Password</label>
+          <span className="iconEye" onClick={this.toggleType}>
+            <FontAwesomeIcon icon={this.state.unSeen ? faEye : faEyeSlash} />
+          </span>
+          <span style={{ color: 'red' }}>
+            {login.passwordAgain !== ''
+              ? login.password !== login.passwordAgain
+                ? 'Password Tidak Sesuai'
+                : null
+              : null}
+          </span>
+        </div>
         {/* <div className="checkGo">
             <input
               type="checkbox"

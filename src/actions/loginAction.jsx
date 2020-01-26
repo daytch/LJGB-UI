@@ -1,4 +1,9 @@
-import { HANDLE_CHANGE_LOGIN, GET_LOGIN, GET_SIGNUP } from '../constants/index';
+import {
+  HANDLE_CHANGE_LOGIN,
+  GET_LOGIN,
+  GET_SIGNUP,
+  GET_FORGOT
+} from '../constants/index';
 
 export function handleState(property, value) {
   let val = value.target.value;
@@ -14,14 +19,22 @@ export function getLogin(property, value) {
     type: GET_LOGIN
   };
 }
+
 export function getSignUp(property, value) {
   return {
     type: GET_SIGNUP
   };
 }
 
+export function getForgot(property, value) {
+  return {
+    type: GET_FORGOT
+  };
+}
+
 export const actions = {
   handleState,
   getLogin,
-  getSignUp
+  getSignUp,
+  getForgot
 };

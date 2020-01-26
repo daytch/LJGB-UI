@@ -2,7 +2,7 @@ import { call, put, all, select, takeLatest } from 'redux-saga/effects';
 // import { takeLatest } from 'redux-saga';
 import { master } from '../services/header';
 import Endpoint from '../services/endpoint';
-import { warning, error, success } from '../components/Message';
+import { warning, error, success, info } from '../components/Message';
 import { GET, POST } from '../services/api';
 import swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -12,7 +12,7 @@ import {
   SET_DATA_DETAIL,
   GET_DATA_ALL_ASK,
   GET_DATA_POSITON_ASK,
-  // SET_DATA_POSITON_ASK,
+  SET_DATA_POSITON_ASK,
   SET_DATA_ALL_ASK,
   GET_DATA_ALL_BID,
   SET_DATA_ALL_BID,
@@ -75,23 +75,39 @@ export function* getDataDetail(action) {
 export function* getDataPositionAsk(action) {
   try {
     yield put({ type: SET_LOADER_DETAIL, payload: true });
-    let id = 1; //action.property
-    let nominal = 2000; //action.value
-    const data = yield call(
-      GET,
-      API_DATA +
-        Endpoint.DATA_POSITION_ASK +
-        '?Id=' +
-        id +
-        '&Nominal=' +
-        nominal,
-      master.getHeader()
-    );
-    if (data.isSuccess) {
-      // yield put({ type: SET_DATA_POSITON_ASK, payload: data });
-    } else {
-      warning(data.message);
+    let id = action.id;
+    let nominal = action.value;
+    let data;
+    if (action.property == 'place ask') {
+      data = yield call(
+        GET,
+        API_DATA +
+          Endpoint.DATA_POSITION_ASK +
+          '?Id=' +
+          id +
+          '&Nominal=' +
+          nominal,
+        master.getHeader()
+      );
+    } else if (action.property == 'place bid') {
+      data = yield call(
+        GET,
+        API_DATA +
+          Endpoint.DATA_POSITION_BID +
+          '?Id=' +
+          id +
+          '&Nominal=' +
+          nominal,
+        master.getHeader()
+      );
     }
+
+    // if (data.isSuccess) {
+    yield put({ type: SET_DATA_POSITON_ASK, payload: data.price_rank });
+    info('anda di posisi ' + data.price_rank);
+    // } else {
+    //   warning(data.message);
+    // }
     yield put({ type: SET_LOADER_DETAIL, payload: false });
   } catch (err) {
     yield put({ type: SET_LOADER_DETAIL, payload: false });
@@ -233,14 +249,55 @@ export function* getDataTransaction(action) {
     );
     if (data.isSuccess) {
       // success(data.message);
+      // yield put({
+      //   type: SET_DATA_TRANSAKSI,
+      //   payload: data.sP_GetPhotoAndWarnaByBarangIDS
+      // });
+      // yield put({
+      //   type: HANDLE_CHANGE_TRANSAKSI,
+      //   val: data.sP_GetPhotoAndWarnaByBarangIDS[0].lowestask,
+      //   prop: 'lowestask'
+      // });
+      let color = localStorage.getItem('color');
+      var getDataColor = data.sP_GetPhotoAndWarnaByBarangIDS.filter(function(
+        data
+      ) {
+        return data.color == color;
+      });
       yield put({
         type: SET_DATA_TRANSAKSI,
-        payload: data.sP_GetPhotoAndWarnaByBarangIDS
+        payload: getDataColor
       });
       yield put({
         type: HANDLE_CHANGE_TRANSAKSI,
-        val: data.sP_GetPhotoAndWarnaByBarangIDS[0].lowestask,
+        val: getDataColor.lowestask == '' ? null : getDataColor.lowestask,
         prop: 'lowestask'
+      });
+      yield put({
+        type: HANDLE_CHANGE_TRANSAKSI,
+        val: getDataColor.lowestask == '' ? null : getDataColor.lowestask,
+        prop: 'price'
+      });
+      yield put({
+        type: HANDLE_CHANGE_TRANSAKSI,
+        val: getDataColor.lowestask == '' ? null : getDataColor.lowestask,
+        prop: 'min'
+      });
+      yield put({
+        type: HANDLE_CHANGE_TRANSAKSI,
+        val: getDataColor.highestbid,
+        prop: 'highestbid'
+      });
+      yield put({
+        type: HANDLE_CHANGE_TRANSAKSI,
+        val: getDataColor.year,
+        prop: 'year'
+      });
+
+      yield put({
+        type: HANDLE_CHANGE_TRANSAKSI,
+        val: data.sP_GetPhotoAndWarnaByBarangIDS[0].lowestask,
+        prop: 'setImage'
       });
     } else {
       warning(data.message);
@@ -257,7 +314,7 @@ export default function* rootSaga() {
     // takeLatest(GET_DATA_DETAIL, getDataDetail),
     // takeLatest(GET_DATA_ALL_ASK, getDataAllAsk),
     // takeLatest(GET_DATA_ALL_BID, getDataAllBid),
-    // takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk),
+    takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk),
     takeLatest(GET_DATA_WARNA, getDataWarna),
     takeLatest(GET_PROCESS_DATA, getProcessData),
     takeLatest(GET_DATA_TRANSAKSI, getDataTransaction)

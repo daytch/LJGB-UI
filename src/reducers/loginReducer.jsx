@@ -15,7 +15,11 @@ const INIT_STATE = {
   passwordAgain: '',
   noHp: '',
   isLoginForm: true,
-  token: localStorage.getItem('idToken')
+  token: localStorage.getItem('idToken'),
+  emailForgot: '',
+  emailChange: '',
+  passwordChange: '',
+  passwordAgainChange: ''
 };
 
 export default (state = INIT_STATE, action) => {

@@ -58,6 +58,10 @@ export function* getDataDetail(action) {
           value: data.sP_GetPhotoAndWarnaByBarangIDS[0].highestbid,
           property: 'bid'
         });
+        localStorage.setItem(
+          'color',
+          data.sP_GetPhotoAndWarnaByBarangIDS[0].color
+        );
       }
     } else {
       warning(data.message);
@@ -223,8 +227,8 @@ export default function* rootSaga() {
   yield all([
     takeLatest(GET_DATA_DETAIL, getDataDetail),
     takeLatest(GET_DATA_ALL_ASK, getDataAllAsk),
-    takeLatest(GET_DATA_ALL_BID, getDataAllBid),
-    takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk)
+    takeLatest(GET_DATA_ALL_BID, getDataAllBid)
+    // takeLatest(GET_DATA_POSITON_ASK, getDataPositionAsk)
     // takeLatest(GET_DATA_WARNA, getDataWarna),
     // takeLatest(GET_PROCESS_DATA, getProcessData),
     // takeLatest(GET_DATA_TRANSAKSI, getDataTransaction)

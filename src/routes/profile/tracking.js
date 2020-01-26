@@ -48,6 +48,11 @@ class Tracking extends Component {
         key: 'produk'
       },
       {
+        title: 'warna',
+        dataIndex: 'color',
+        key: 'produk'
+      },
+      {
         title: 'price',
         dataIndex: 'price',
         key: 'price'

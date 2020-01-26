@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { actions } from '../../actions/loginAction';
 
 class ForgetPassword extends Component {
   constructor(props) {
@@ -6,6 +8,7 @@ class ForgetPassword extends Component {
     this.state = {};
   }
   render() {
+    const { login, handleState, getForgot } = this.props;
     return (
       <div>
         <p style={{ textAlign: 'center', fontSize: '1.3em' }}>Reset Password</p>
@@ -20,14 +23,26 @@ class ForgetPassword extends Component {
             name="email"
             id="email"
             placeholder="email.address@domain.com"
+            value={login.emailForgot}
+            onChange={handleState.bind(this, 'emailForgot')}
           />
           <label htmlFor="email">Email address</label>
         </div>
 
-        <button className="btn btn-primary">Reset Password</button>
+        <button className="btn btn-primary" onClick={getForgot.bind(this)}>
+          Reset Password
+        </button>
       </div>
     );
   }
 }
 
-export default ForgetPassword;
+const mapStateToProps = state => ({
+  login: state.loginReducer
+});
+export default connect(
+  mapStateToProps,
+  {
+    ...actions
+  }
+)(ForgetPassword);

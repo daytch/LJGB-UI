@@ -211,7 +211,7 @@ class Transaction extends Component {
   }
 
   numberWithCommas(x) {
-    let str = x === null || x === '' ? '' : x.toString();
+    let str = x === null || x === '' || x === undefined ? '' : x.toString();
     if (str !== '' && str.length > 9) {
       str = str.substring(0, str.length - 6);
       let get2 = str.substring(1, 4);
@@ -241,13 +241,21 @@ class Transaction extends Component {
   }
 
   changeFormat(x) {
-    let str = x.toString();
-    str = str.replace(/\$\s?|(,*)/g, '');
-    str = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return str;
+    let y = x == '' || x == undefined ? '' : x;
+    if (y !== '') {
+      let str = y.toString();
+      str = str.replace(/\$\s?|(,*)/g, '');
+      str = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return str;
+    } else {
+      return '';
+    }
   }
-  changeVal(x) {
+  changeVal(x, y) {
     let getData = this.props.location.search.replace('?id=', '');
+    let id = parseInt(getData);
+    let hrg = parseInt(x.replace(/,/g, ''));
+    this.props.getPositionAsk(y, hrg, id);
     var status = getData.replace(/[0-9]/g, '');
     if (status === 'bid') {
       let valPrice = typeof x;
@@ -329,6 +337,7 @@ class Transaction extends Component {
     };
 
     const { transaction, handleChange } = this.props;
+    console.log('aaa', transaction);
     // const columns = [
     //   {
     //     title: 'Nama',
@@ -369,6 +378,7 @@ class Transaction extends Component {
               <div className="detail__body">
                 <div className="row">
                   <div className="col-md-8 mb-4">
+                    {transaction.dataDetail.carDetail.color}
                     <div className="detail__body__img transaction__img">
                       <Slider
                         asNavFor={this.state.nav2}
@@ -380,7 +390,7 @@ class Transaction extends Component {
                         {this.sliderImage(transaction.dataTransaction)}
                       </Slider>
                     </div>
-                    <Slider
+                    {/* <Slider
                       asNavFor={this.state.nav1}
                       ref={slider => (this.slider2 = slider)}
                       slidesToShow={4}
@@ -391,7 +401,7 @@ class Transaction extends Component {
                       {...settingSlider2}
                     >
                       {this.sliderImageKanan(transaction.dataTransaction)}
-                    </Slider>
+                    </Slider> */}
                   </div>
                   <div className="col-md-4">
                     <div className="transaction">
@@ -452,7 +462,8 @@ class Transaction extends Component {
                               value={this.changeFormat(transaction.price)}
                               onBlur={this.changeVal.bind(
                                 this,
-                                transaction.price
+                                transaction.price,
+                                transaction.type
                               )}
                               disabled={
                                 transaction.type === 'sell now' ||
@@ -491,7 +502,8 @@ class Transaction extends Component {
 }
 
 const mapStateToProps = state => ({
-  transaction: state.transactionReducer
+  transaction: state.transactionReducer,
+  detail: state.detailReducer
 });
 export default connect(
   mapStateToProps,

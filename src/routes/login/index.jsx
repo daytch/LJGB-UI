@@ -168,18 +168,18 @@ class Login extends Component {
                   </span>
                 </div>
 
-                {/* <p
-                    onClick={this.handleForget}
-                    style={{
-                      fontSize: '12px',
-                      textAlign: 'right',
-                      margin: '-10px 0 0',
-                      color: '#337ab7',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Forgot Password?
-                  </p> */}
+                <p
+                  onClick={this.handleForget}
+                  style={{
+                    fontSize: '12px',
+                    textAlign: 'right',
+                    margin: '-10px 23px 10px 0',
+                    color: '#337ab7',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Forgot Password?
+                </p>
 
                 {/* <div className="checkGo">
                     <input

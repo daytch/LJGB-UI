@@ -9,7 +9,8 @@ import {
   SET_LOADER_LOGIN,
   GET_LOGIN,
   GET_SIGNUP,
-  SET_DATA_LOGIN
+  SET_DATA_LOGIN,
+  GET_FORGOT
 } from '../constants/index';
 import swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -90,9 +91,45 @@ export function* getDataSignup(action) {
   }
 }
 
+export function* sendDataFogot(action) {
+  try {
+    yield put({ type: SET_LOADER_LOGIN, payload: true });
+    const Login = yield select(getLogin);
+    let body = {
+      email: Login.emailForgot
+    };
+    const data = yield call(
+      POST,
+      API_DATA + Endpoint.FORGOT_PASSWORD,
+      body,
+      master.getHeader()
+    );
+    if (data.isSuccess) {
+      swal
+        .fire({
+          title: 'Success',
+          text: data.message,
+          type: 'success'
+        })
+        .then(function() {
+          window.location.reload();
+        });
+      // success(data.message)
+      // yield put({ type: SET_DATA_KOTA, payload: data.listKotas });
+    } else {
+      warning(data.message);
+    }
+    yield put({ type: SET_LOADER_LOGIN, payload: false });
+  } catch (err) {
+    error(err);
+    yield put({ type: SET_LOADER_LOGIN, payload: false });
+  }
+}
+
 export default function* rootSaga() {
   yield all([
     takeLatest(GET_LOGIN, getDataLogin),
-    takeLatest(GET_SIGNUP, getDataSignup)
+    takeLatest(GET_SIGNUP, getDataSignup),
+    takeLatest(GET_FORGOT, sendDataFogot)
   ]);
 }

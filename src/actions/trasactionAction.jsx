@@ -6,7 +6,9 @@ import {
   GET_DATA_TRANSAKSI,
   HANDLE_CHANGE_TRANSAKSI,
   GET_DATA_ALL_BID,
-  HANDLE_CHANGE_DETAIL
+  HANDLE_CHANGE_DETAIL,
+  HANDLE_GET_RANK,
+  GET_DATA_POSITON_ASK
 } from '../constants/index';
 
 export function getDataDetail(property, value) {
@@ -70,6 +72,23 @@ export function handleChangeDetail(property, value) {
   };
 }
 
+export function getRank(property, value) {
+  return {
+    type: HANDLE_GET_RANK,
+    property,
+    value
+  };
+}
+
+export function getPositionAsk(property, value, id) {
+  return {
+    type: GET_DATA_POSITON_ASK,
+    property,
+    value,
+    id
+  };
+}
+
 export const actions = {
   getDataDetail,
   GetAllAsk,
@@ -78,5 +97,7 @@ export const actions = {
   processData,
   getDataTransaksi,
   handleChange,
-  handleChangeDetail
+  handleChangeDetail,
+  getRank,
+  getPositionAsk
 };
