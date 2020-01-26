@@ -47,3 +47,5 @@ export const GET_DATA_TRX = 'GET_DATA_TRX';
 export const SET_LOADER_PROFILE = 'SET_LOADER_PROFILE';
 export const SET_DATA_PROFILE = 'SET_DATA_PROFILE';
 export const SET_DATA_TRX = 'SET_DATA_TRX';
+export const HANDLE_GET_RANK = 'HANDLE_GET_RANK';
+export const GET_FORGOT = 'GET_FORGOT';

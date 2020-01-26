@@ -37,7 +37,8 @@ class Detail extends Component {
       nav2: null,
       lowestask: '',
       highestbid: '',
-      year: ''
+      year: '',
+      idP: 0
     };
     this.onShowMore = this.onShowMore.bind(this);
     this.showAllAsk = this.showAllAsk.bind(this);
@@ -51,6 +52,9 @@ class Detail extends Component {
     let getData = this.props.location.search.replace('?id=', '');
     this.props.handleChangeDetail('model', parseInt(getData));
     this.props.getDataDetail(getData);
+    this.setState({
+      idP: parseInt(getData)
+    });
     // window.addEventListener('wheel', (e) => {
     //   this.onSlide(e.wheelDelta);
     // })
@@ -60,6 +64,13 @@ class Detail extends Component {
       nav1: this.slider1,
       nav2: this.slider2
     });
+  }
+
+  componentDidUpdate() {
+    let a = parseInt(this.props.location.search.replace('?id=', ''));
+    if (a !== this.state.idP) {
+      window.location.reload();
+    }
   }
   onSlide(y) {
     y > 0 ? this.slider2.slickNext() : this.slider2.slickPrev();
@@ -163,6 +174,7 @@ class Detail extends Component {
     this.props.handleChangeDetail('bid', bid);
     this.props.handleChangeDetail('yearDetail', year);
     this.props.handleChangeDetail('colorDetail', color);
+    localStorage.setItem('color', color);
     this.setState({
       lowestask: ask,
       highestbid: bid,

@@ -27,7 +27,10 @@ const Endpoint = {
   DATA_USER: '/User/GetPost',
 
   DATA_SIGNUP: '/Auth/Register',
-  DATA_LOGIN: '/Auth/Login'
+  DATA_LOGIN: '/Auth/Login',
+
+  DATA_POSITION_BID: '/Barang/GetBidPosition',
+  FORGOT_PASSWORD: '/Auth/ForgotPassword'
 };
 
 export default Endpoint;

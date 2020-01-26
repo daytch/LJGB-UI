@@ -8,7 +8,8 @@ import {
   Logout,
   Search,
   Transaction,
-  Profile
+  Profile,
+  ChangePassword
 } from './routes';
 import Detail from './routes/detail';
 
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/search" component={Search} />
           <Route exact path="/transaction" component={Transaction} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/changepassword" component={ChangePassword} />
           <Route path="*" component={PageNotFound} />
         </Switch>
         {/* </Container> */}

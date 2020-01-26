@@ -7,7 +7,8 @@ import {
   SET_DATA_TRANSAKSI,
   HANDLE_CHANGE_TRANSAKSI,
   SET_DATA_ALL_BID,
-  SET_DATA_DETAIL_1
+  SET_DATA_DETAIL_1,
+  SET_DATA_POSITON_ASK
 } from '../constants/index';
 
 const INIT_STATE = {
@@ -18,7 +19,8 @@ const INIT_STATE = {
       description: '',
       highestbid: '',
       lowestask: '',
-      year: ''
+      year: '',
+      setImage: ''
     },
     sP_GetPhotoAndWarnaByBarangIDS: [],
     listModelForDetail: []
@@ -38,7 +40,9 @@ const INIT_STATE = {
   colorDetail: '',
   ask: '',
   bid: '',
-  min: ''
+  min: '',
+  positionAsk: '',
+  setImage: ''
 };
 
 export default (state = INIT_STATE, action) => {
@@ -89,6 +93,12 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         [action.prop]: action.val
+      };
+    }
+    case SET_DATA_POSITON_ASK: {
+      return {
+        ...state,
+        positionAsk: action.payload
       };
     }
     default:

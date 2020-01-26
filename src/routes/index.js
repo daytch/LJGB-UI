@@ -7,5 +7,15 @@ const PageNotFound = asyncComponent(() => import('../components/notFound'));
 const Search = asyncComponent(() => import('./search'));
 const Transaction = asyncComponent(() => import('./transaction'));
 const Profile = asyncComponent(() => import('./profile'));
+const ChangePassword = asyncComponent(() => import('./login/changePassword'));
 
-export { Home, Login, PageNotFound, Logout, Search, Transaction, Profile };
+export {
+  Home,
+  Login,
+  PageNotFound,
+  Logout,
+  Search,
+  Transaction,
+  Profile,
+  ChangePassword
+};
