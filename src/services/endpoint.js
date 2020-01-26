@@ -30,7 +30,9 @@ const Endpoint = {
   DATA_LOGIN: '/Auth/Login',
 
   DATA_POSITION_BID: '/Barang/GetBidPosition',
-  FORGOT_PASSWORD: '/Auth/ForgotPassword'
+  FORGOT_PASSWORD: '/Auth/ForgotPassword',
+  CHANGE_PASSWORD: '/Auth/ChangePassword',
+  ACTIVATE_ACC: '/Auth/ActivateAccount'
 };
 
 export default Endpoint;

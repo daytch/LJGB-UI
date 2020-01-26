@@ -10,7 +10,9 @@ import {
   GET_LOGIN,
   GET_SIGNUP,
   SET_DATA_LOGIN,
-  GET_FORGOT
+  GET_FORGOT,
+  GET_CHANGE_PASSWORD,
+  GET_ACIVATE_ACC
 } from '../constants/index';
 import swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -126,10 +128,84 @@ export function* sendDataFogot(action) {
   }
 }
 
+export function* sendDataChangePassword(action) {
+  try {
+    yield put({ type: SET_LOADER_LOGIN, payload: true });
+    const Login = yield select(getLogin);
+    let body = {
+      email: Login.emailChange,
+      password: Login.passwordChange,
+      token: action.property
+    };
+    const data = yield call(
+      POST,
+      API_DATA + Endpoint.CHANGE_PASSWORD,
+      body,
+      master.getHeader()
+    );
+    if (data.isSuccess) {
+      swal
+        .fire({
+          title: 'Success',
+          text: data.message,
+          type: 'success'
+        })
+        .then(function() {
+          window.location.href = '/login';
+        });
+      // success(data.message)
+      // yield put({ type: SET_DATA_KOTA, payload: data.listKotas });
+    } else {
+      warning(data.message);
+    }
+    yield put({ type: SET_LOADER_LOGIN, payload: false });
+  } catch (err) {
+    error(err);
+    yield put({ type: SET_LOADER_LOGIN, payload: false });
+  }
+}
+
+export function* sendDataActivateAcc(action) {
+  try {
+    yield put({ type: SET_LOADER_LOGIN, payload: true });
+    const Login = yield select(getLogin);
+    let body = {
+      token: action.property
+    };
+    const data = yield call(
+      POST,
+      API_DATA + Endpoint.ACTIVATE_ACC,
+      body,
+      master.getHeader()
+    );
+    if (data.isSuccess) {
+      swal
+        .fire({
+          title: 'Success',
+          text: data.message,
+          type: 'success'
+        })
+        .then(function() {
+          window.location.href = '/';
+        });
+      // success(data.message)
+      // yield put({ type: SET_DATA_KOTA, payload: data.listKotas });
+    } else {
+      warning(data.message);
+    }
+    yield put({ type: SET_LOADER_LOGIN, payload: false });
+  } catch (err) {
+    error(err);
+    yield put({ type: SET_LOADER_LOGIN, payload: false });
+  }
+}
+
 export default function* rootSaga() {
   yield all([
     takeLatest(GET_LOGIN, getDataLogin),
     takeLatest(GET_SIGNUP, getDataSignup),
-    takeLatest(GET_FORGOT, sendDataFogot)
+    takeLatest(GET_FORGOT, sendDataFogot),
+    takeLatest(GET_CHANGE_PASSWORD, sendDataChangePassword),
+    takeLatest(GET_ACIVATE_ACC, sendDataActivateAcc)
   ]);
 }

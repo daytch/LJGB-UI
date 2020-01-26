@@ -1,7 +1,7 @@
 // export const API_DATA = 'http://5.189.160.92:999/api';
 // export const API_DATA = 'http://144.91.102.148/api';
-// export const API_DATA = 'https://api.lojualguebeli.net/api';
-export const API_DATA = 'https://api.lojualguebeli.com/api';
+export const API_DATA = 'https://api.lojualguebeli.net/api';
+// export const API_DATA = 'https://api.lojualguebeli.com/api';
 
 export const GET_DATA_HOME = 'GET_DATA_HOME';
 export const HANDLE_CHANGE_LOGIN = 'HANDLE_CHANGE_LOGIN';
@@ -49,3 +49,5 @@ export const SET_DATA_PROFILE = 'SET_DATA_PROFILE';
 export const SET_DATA_TRX = 'SET_DATA_TRX';
 export const HANDLE_GET_RANK = 'HANDLE_GET_RANK';
 export const GET_FORGOT = 'GET_FORGOT';
+export const GET_CHANGE_PASSWORD = 'GET_CHANGE_PASSWORD';
+export const GET_ACIVATE_ACC = 'GET_ACIVATE_ACC';

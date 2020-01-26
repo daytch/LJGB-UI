@@ -8,6 +8,7 @@ const Search = asyncComponent(() => import('./search'));
 const Transaction = asyncComponent(() => import('./transaction'));
 const Profile = asyncComponent(() => import('./profile'));
 const ChangePassword = asyncComponent(() => import('./login/changePassword'));
+const ActivateAcc = asyncComponent(() => import('./login/activateAcc'));
 
 export {
   Home,
@@ -17,5 +18,6 @@ export {
   Search,
   Transaction,
   Profile,
-  ChangePassword
+  ChangePassword,
+  ActivateAcc
 };

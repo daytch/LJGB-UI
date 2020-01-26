@@ -9,7 +9,8 @@ import {
   Search,
   Transaction,
   Profile,
-  ChangePassword
+  ChangePassword,
+  ActivateAcc
 } from './routes';
 import Detail from './routes/detail';
 
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/transaction" component={Transaction} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/changepassword" component={ChangePassword} />
+          <Route exact path="/activationaccount" component={ActivateAcc} />
           <Route path="*" component={PageNotFound} />
         </Switch>
         {/* </Container> */}
