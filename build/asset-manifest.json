@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.76092dad.chunk.css",
+    "main.js": "/static/js/main.6d15ea4e.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.323e8829.js",
+    "static/css/2.5189ba41.chunk.css": "/static/css/2.5189ba41.chunk.css",
+    "static/js/2.f0d0f40e.chunk.js": "/static/js/2.f0d0f40e.chunk.js",
+    "static/js/3.83b3872d.chunk.js": "/static/js/3.83b3872d.chunk.js",
+    "static/js/4.ab831eae.chunk.js": "/static/js/4.ab831eae.chunk.js",
+    "static/js/5.8c9eed87.chunk.js": "/static/js/5.8c9eed87.chunk.js",
+    "static/js/6.12c6780c.chunk.js": "/static/js/6.12c6780c.chunk.js",
+    "static/js/7.1d5fd85d.chunk.js": "/static/js/7.1d5fd85d.chunk.js",
+    "static/js/8.14796194.chunk.js": "/static/js/8.14796194.chunk.js",
+    "index.html": "/index.html",
+    "precache-manifest.6025dda0dd39eab6aa5d790436bc92b7.js": "/precache-manifest.6025dda0dd39eab6aa5d790436bc92b7.js",
+    "service-worker.js": "/service-worker.js",
+    "static/media/style.scss": "/static/media/icomoon.b39777cc.ttf",
+    "static/media/ljgb.png": "/static/media/ljgb.9b7ffaab.png",
+    "static/media/ljgb_white.png": "/static/media/ljgb_white.8dd3fe70.png",
+    "static/media/slick-theme.css": "/static/media/slick.f97e3bbf.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.323e8829.js",
+    "static/css/2.5189ba41.chunk.css",
+    "static/js/2.f0d0f40e.chunk.js",
+    "static/css/main.76092dad.chunk.css",
+    "static/js/main.6d15ea4e.chunk.js"
+  ]
+}
