@@ -1,0 +1,38 @@
+.pilihLjgb {
+  text-align: center;
+  margin-top: 50px;
+
+  h4 {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 20px 0;
+  }
+
+  &__wrapper {
+    display: flex;
+    @media (max-width: 767px) {
+      display: block;
+    }
+  }
+
+  &__item {
+    width: 33.333%;
+    padding: 15px;
+    &__img {
+      img {
+        height: 100px;
+        @media (max-width: 767px) {
+          height: 70px;
+        }
+      }
+    }
+    &__caption {
+      margin-top: 10px;
+    }
+    @media (max-width: 767px) {
+      width: 100%;
+      padding: 0 10px;
+      // display: flex;
+    }
+  }
+}

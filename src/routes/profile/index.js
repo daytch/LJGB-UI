@@ -1,0 +1,90 @@
+import React, { Component } from 'react';
+import { Layout, Menu, Icon, Form } from 'antd';
+import $ from 'jquery';
+import ProfileContent from './profileContent';
+import Tracking from './tracking';
+import { connect } from 'react-redux';
+import { actions } from '../../actions/profileAction';
+
+class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      profile: true,
+      tracking: false
+    };
+    this.handleProfile = this.handleProfile.bind(this);
+    this.handleTracking = this.handleTracking.bind(this);
+  }
+  componentWillMount() {
+    // $('.navbar').removeClass('navbar-dark');
+    // $('.navbar').addClass('bg-cl-white');
+    // $('#logoWhite').css({ display: 'none' });
+    // $('#logoDark').css({ display: 'block' });
+  }
+  handleProfile() {
+    this.setState({
+      profile: true,
+      tracking: false
+    });
+  }
+  handleTracking() {
+    this.setState({
+      profile: false,
+      tracking: true
+    });
+  }
+  render() {
+    const { Header, Content, Footer, Sider } = Layout;
+    const { profile } = this.props;
+    return (
+      <main role="main">
+        <Sider
+          style={{
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0
+          }}
+        >
+          <div className="profile__header">
+            <div className="profile__picture">
+              <img
+                src="https://www.ayobogor.com/images-bogor/post/articles/2019/08/29/4131/66100743_467711664065817_4828107924256841603_n.jpg"
+                alt=""
+                title="Lojualguebeli.com"
+              />
+            </div>
+            <h3 className="profile__name">{profile.data.name}</h3>
+          </div>
+          <Menu mode="inline" defaultSelectedKeys={['1']}>
+            <Menu.Item key="1" onClick={this.handleProfile}>
+              <Icon type="user" />
+              <span className="nav-text">Profile</span>
+            </Menu.Item>
+            <Menu.Item key="2" onClick={this.handleTracking}>
+              <Icon type="car" />
+              <span className="nav-text">Tracking</span>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+
+        <div className="profile__content">
+          <div className="container pd-t-30">
+            {this.state.profile == true ? <ProfileContent /> : <Tracking />}
+          </div>
+        </div>
+      </main>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  profile: state.profileReducer
+});
+export default connect(
+  mapStateToProps,
+  {
+    ...actions
+  }
+)(Profile);

@@ -1,0 +1,29 @@
+.socmed {
+  margin-bottom: 30px;
+  text-align: center;
+  h4 {
+    font-size: 1.2em;
+    padding-bottom: 10px;
+  }
+  &__icon {
+    border-radius: 50%;
+    color: #fff;
+    padding: 8px;
+    margin-right: 10px;
+    &.icon-facebook {
+      background: $cl_fb;
+    }
+    &.icon-twitter {
+      background: $cl_tw;
+    }
+    &.icon-google-plus {
+      background: $cl_gp;
+    }
+    &.icon-youtube {
+      background: $cl_yt;
+    }
+    &.icon-instagram {
+      background: linear-gradient(45deg, red, purple);
+    }
+  }
+}

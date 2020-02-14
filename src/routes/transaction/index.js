@@ -1,0 +1,513 @@
+import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
+import { Radio, InputNumber } from 'antd';
+// import { Carousel } from 'react-bootstrap';
+
+import $ from 'jquery';
+import Slider from 'react-slick';
+import BreadCrumb from '../../components/layouts/common/breadcrumb';
+
+// import Img1 from './../../images/color/black.jpeg';
+// import Img2 from './../../images/color/black2.jpeg';
+// import Img3 from './../../images/color/red.jpeg';
+// import Img4 from './../../images/color/silver.jpeg';
+// import Img5 from './../../images/color/white.jpeg';
+// import Img6 from './../../images/color/yellow.jpeg';
+import { connect } from 'react-redux';
+import { actions } from '../../actions/trasactionAction';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { Tooltip } from 'antd';
+// import Product from '../../components/layouts/common/product';
+// import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+
+import BlockUi from 'react-block-ui';
+import { Loader, Types } from 'react-loaders';
+import { warning } from '../../components/Message';
+
+// const { Option } = Select;
+
+class Transaction extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMore: false,
+      allAsk: false,
+      allBid: false,
+      visibleAsk: false,
+      nav1: null,
+      nav2: null
+      // lowestask: '',
+      // highestbid: '',
+      // year: ''
+    };
+    this.onShowMore = this.onShowMore.bind(this);
+    this.showAllAsk = this.showAllAsk.bind(this);
+  }
+  componentWillMount() {
+    // $('.navbar').removeClass('navbar-dark');
+    // $('.navbar').addClass('bg-cl-white');
+    // $('#logoWhite').css({ display: 'none' });
+    // $('#logoDark').css({ display: 'block' });
+
+    const { getDataWarna, getDataTransaksi, handleChange } = this.props;
+    $('.navbar').removeClass('navbar-dark');
+    $('.navbar').addClass('bg-cl-white');
+    let getData = this.props.location.search.replace('?id=', '');
+    var status = getData.replace(/[0-9]/g, '');
+    var id = getData.replace(/[a-z]/g, '');
+    // this.props.getDataDetail(id);
+    let type = {
+      target: { value: status === 'ask' ? 'place ask' : 'place bid' }
+    };
+    getDataWarna();
+    getDataTransaksi(id, status);
+    handleChange(type, 'type');
+  }
+
+  componentWillUnmount() {
+    localStorage.removeItem('path');
+    this.props.handleChange('price', {
+      target: { value: '' }
+    });
+  }
+
+  componentDidMount() {
+    const { transaction } = this.props;
+    this.setState({
+      nav1: this.slider1,
+      nav2: this.slider2
+    });
+  }
+
+  onShowMore() {
+    this.setState({
+      showMore: !this.state.showMore
+    });
+  }
+  showAllAsk = () => {
+    let getData = this.props.location.search.replace('?id=', '');
+    var id = getData.replace(/[a-z]/g, '');
+    this.props.GetAllAsk(id);
+    this.setState({
+      visibleAsk: true
+    });
+  };
+  showAllBid = () => {
+    this.setState({
+      visible: true
+    });
+  };
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+      visibleAsk: false
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+      visibleAsk: false
+    });
+  };
+
+  sliderImage(datas) {
+    let image = datas.map((x, i) => {
+      return (
+        // <div>
+        <div className="detail__imgSlide--big">
+          <img src={x.photopath} alt="" title="Lojualguebeli.com" />
+          <b>{x.color}</b>
+        </div>
+        // </div >
+      );
+    });
+    return image;
+  }
+
+  validateProcess() {
+    let getData = this.props.location.search.replace('?id=', '');
+    var status = getData.replace(/[0-9]/g, '');
+    var id = getData.replace(/[a-z]/g, '');
+    if (localStorage.getItem('idToken') === null) {
+      let getLast = this.props.location.search;
+      localStorage.setItem('path', getLast);
+      window.location.href = '/login';
+    } else {
+      let valPrice = typeof this.props.transaction.price;
+      let changeMin;
+      if (valPrice == 'string') {
+        let a = this.props.transaction.price;
+        changeMin = parseInt(a.replace(/,/g, ''));
+      } else {
+        changeMin = this.props.transaction.price;
+      }
+      if (
+        (this.props.transaction.type == 'place bid' ||
+          this.props.transaction.type == 'place ask') &&
+        changeMin < parseInt(this.props.transaction.min)
+      ) {
+        warning('Harga tidak boleh lebih kecil dari harga minimum');
+      } else if (this.props.transaction.price == '') {
+        warning('Transaksi belum tersedia');
+      } else {
+        this.props.processData(status, id);
+      }
+    }
+  }
+
+  sliderImageKanan(datas) {
+    const { handleChange, transaction } = this.props;
+    let image = datas.map((x, i) => {
+      let getData = transaction;
+      return (
+        <div className="pad-0-5">
+          <div
+            className="detail__imgSlide--small"
+            onClick={e => {
+              let getType = getData.type;
+              if (getType == 'buy now') {
+                handleChange('price', {
+                  target: { value: x.lowestask }
+                });
+              } else if (getType == 'sell now') {
+                handleChange('price', {
+                  target: { value: x.highestbid }
+                });
+              } else if (getType == 'place bid') {
+                handleChange('price', {
+                  target: { value: x.highestbid == null ? '' : x.highestbid }
+                });
+                handleChange('min', {
+                  target: { value: x.highestbid == null ? '' : x.highestbid }
+                });
+              } else {
+                handleChange('price', {
+                  target: { value: x.lowestask == null ? '' : x.lowestask }
+                });
+                handleChange('min', {
+                  target: { value: x.lowestask == null ? '' : x.lowestask }
+                });
+              }
+              handleChange('lowestask', {
+                target: { value: x.lowestask }
+              });
+              handleChange('highestbid', {
+                target: { value: x.highestbid }
+              });
+              handleChange('year', {
+                target: { value: x.year }
+              });
+            }}
+          >
+            <img src={x.photopath} alt="" />
+          </div>
+        </div>
+      );
+    });
+    return image;
+  }
+
+  numberWithCommas(x) {
+    let str = x === null || x === '' || x === undefined ? '' : x.toString();
+    if (str !== '' && str.length > 9) {
+      str = str.substring(0, str.length - 6);
+      let get2 = str.substring(1, 4);
+      let get1 = str.substring(0, 1);
+      if (get2.substring(0, 1) == 0) {
+        get2 = get2.substring(1, 4);
+      }
+      if (get2.substring(0, 1) == 0) {
+        get2 = get2.substring(1, 4);
+      }
+      let get3 = get2 == 0 ? '' : get2 + ' JT';
+      str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      return get1 + ' M ' + get3;
+    } else if (str !== '' && str.length >= 7) {
+      str = str.substring(0, str.length - 6);
+      str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      return str + ' JT';
+    } else {
+      return '';
+    }
+    // let str = x === null || x === '' ? '' : x.toString();
+    // if (str !== '' && str.length >= 7) {
+    //   str = str.substring(0, str.length - 6);
+    //   str = str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    //   return str + ' JT';
+    // }
+  }
+
+  changeFormat(x) {
+    let y = x == '' || x == undefined ? '' : x;
+    if (y !== '') {
+      let str = y.toString();
+      str = str.replace(/\$\s?|(,*)/g, '');
+      str = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return str;
+    } else {
+      return '';
+    }
+  }
+  changeVal(x, y) {
+    let getData = this.props.location.search.replace('?id=', '');
+    let id = parseInt(getData);
+    let hrg = parseInt(x.replace(/,/g, ''));
+    this.props.getPositionAsk(y, hrg, id);
+    var status = getData.replace(/[0-9]/g, '');
+    if (status === 'bid') {
+      let valPrice = typeof x;
+      if (valPrice == 'string' && x !== '') {
+        x = parseInt(x.replace(/,/g, ''));
+      } else {
+        x = x;
+      }
+      let mod = x % 500000;
+      if (mod == 0) {
+        x = x;
+      } else if (mod < 500000) {
+        x = x - mod + 500000;
+      } else {
+        x = x - mod + 1000000;
+      }
+      this.props.handleChange('price', { target: { value: x } });
+    }
+  }
+
+  render() {
+    const settingSlider1 = {
+      arrow: false,
+      dots: false,
+      initialSlide: 0,
+      infinite: false,
+      slidesToScroll: 1,
+      // appendDots: dots => (
+      //   <div
+      //     style={{
+      //       bottom: "-40px",
+      //     }}
+      //   >
+      //     <ul style={{ margin: "0px" }}> {dots} </ul>
+      //   </div>
+      // ),
+      // customPaging: i => (
+      //   <div className="small-img" >
+      //     {this.sliderImageBottom(transaction.dataTransaction)}
+      //   </div>
+      // ),
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            arrow: false,
+            dots: false
+          }
+        }
+      ]
+    };
+    const settingSlider2 = {
+      dots: false,
+      arrow: true,
+      initialSlide: 0,
+      infinite: true,
+      slidesToScroll: 1,
+      // slidesToShow:4,
+      rows: 1,
+      slidesPerRow: 1,
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            arrow: false,
+            initialSlide: 0,
+            //slidesToShow: 4,
+            autoSlidesToShow: true,
+            slidesToScroll: 1
+          }
+        }
+      ],
+      beforeChange: function(currentSlide, nextSlide) {
+        console.log('before change', currentSlide, nextSlide);
+      },
+      afterChange: function(currentSlide) {
+        console.log('after change', currentSlide);
+      }
+    };
+
+    const { transaction, handleChange } = this.props;
+    console.log('aaa', transaction);
+    // const columns = [
+    //   {
+    //     title: 'Nama',
+    //     dataIndex: 'name',
+    //     key: 'name'
+    //   },
+    //   {
+    //     title: 'Price',
+    //     dataIndex: 'price',
+    //     ke: 'price'
+    //   }
+    // ];
+    // const rowSelection = {
+    //   onChange: (selectedRowKeys, selectedRows) => {
+    //     console.log(
+    //       `selectedRowKeys: ${selectedRowKeys}`,
+    //       'selectedRows: ',
+    //       selectedRows
+    //     );
+    //   }
+    // };
+
+    let getD = this.props.location.search.replace('?id=', '');
+    var getData = getD.replace(/[0-9]/g, '');
+    return (
+      <BlockUi
+        tag="div"
+        blocking={transaction.isLoading}
+        style={{ width: '100%' }}
+        message={<h3>Loading, please wait</h3>}
+        loader={<Loader active type="ball-pulse-sync" color="#061b56" />}
+      >
+        <main role="main">
+          <div className="container">
+            <BreadCrumb breadName={transaction.dataDetail.carDetail.name} />
+
+            <div className="detail pt-3">
+              <div className="detail__body">
+                <div className="row">
+                  <div className="col-md-8 mb-4">
+                    {transaction.dataDetail.carDetail.color}
+                    <div className="detail__body__img transaction__img">
+                      <Slider
+                        asNavFor={this.state.nav2}
+                        ref={slider => (this.slider1 = slider)}
+                        fade={true}
+                        //initialSlide={0}
+                        {...settingSlider1}
+                      >
+                        {this.sliderImage(transaction.dataTransaction)}
+                      </Slider>
+                    </div>
+                    {/* <Slider
+                      asNavFor={this.state.nav1}
+                      ref={slider => (this.slider2 = slider)}
+                      slidesToShow={4}
+                      //initialSlide={0}
+                      swipeToSlide={true}
+                      focusOnSelect={true}
+                      className="slideTrigger"
+                      {...settingSlider2}
+                    >
+                      {this.sliderImageKanan(transaction.dataTransaction)}
+                    </Slider> */}
+                  </div>
+                  <div className="col-md-4">
+                    <div className="transaction">
+                      <div className="mb-4">
+                        <h4>
+                          Rp. {this.numberWithCommas(transaction.lowestask)}
+                        </h4>
+                      </div>
+                      <div className="bgWhite">
+                        <Radio.Group
+                          onChange={e => {
+                            if (
+                              e.target.value === 'sell now' ||
+                              e.target.value === 'buy now'
+                            ) {
+                              handleChange('price', {
+                                target: { value: transaction.lowestask }
+                              });
+                            } else {
+                              handleChange('price', { target: { value: '' } });
+                            }
+                            handleChange(e, 'type');
+                          }}
+                          defaultValue={
+                            getData === 'ask' ? 'place ask' : 'place bid'
+                          }
+                          className="btnRadio__group mb-4"
+                        >
+                          <Radio.Button
+                            className="btn btnRadio"
+                            value={
+                              getData === 'ask' ? 'place ask' : 'place bid'
+                            }
+                          >
+                            {getData === 'ask' ? 'Place Ask' : 'Place Bid'}
+                          </Radio.Button>
+                          <Radio.Button
+                            className="btn btnRadio"
+                            value={getData === 'ask' ? 'sell now' : 'buy now'}
+                          >
+                            {getData === 'ask' ? 'Sell Now' : 'Buy Now'}
+                          </Radio.Button>
+                        </Radio.Group>
+
+                        <div className="field mb-4">
+                          <div class="input-group">
+                            <span class="input-group-addon form-control">
+                              Rp
+                            </span>
+                            <input
+                              type="text"
+                              name="price"
+                              id="price"
+                              // pattern="^\[0-9]\g"
+                              // className="form-control"
+                              forma
+                              onChange={handleChange.bind(this, 'price')}
+                              value={this.changeFormat(transaction.price)}
+                              onBlur={this.changeVal.bind(
+                                this,
+                                transaction.price,
+                                transaction.type
+                              )}
+                              disabled={
+                                transaction.type === 'sell now' ||
+                                transaction.type === 'buy now'
+                                  ? true
+                                  : false
+                              }
+                            />
+
+                            {transaction.type == 'place ask' ||
+                            transaction.type == 'place bid' ? (
+                              <span className="minimum">
+                                Minimum Rp.{' '}
+                                {this.numberWithCommas(transaction.min)}
+                              </span>
+                            ) : null}
+                          </div>
+                        </div>
+                        <button
+                          className="btn btn-primary w-100"
+                          onClick={this.validateProcess.bind(this)}
+                        >
+                          Process
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </BlockUi>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  transaction: state.transactionReducer,
+  detail: state.detailReducer
+});
+export default connect(
+  mapStateToProps,
+  {
+    ...actions
+  }
+)(Transaction);

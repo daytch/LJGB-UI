@@ -1,0 +1,27 @@
+// base style
+@import 'base/fonts';
+@import 'base/vars';
+@import 'base/mixin';
+@import 'base/global';
+
+// layout style
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/navbar';
+@import 'layout/sider';
+
+// component style
+@import 'component/btn';
+@import 'component/login';
+@import 'component/product';
+@import 'component/pilihLjgb';
+@import 'component/slidertop';
+@import 'component/search';
+@import 'component/detail';
+@import 'component/socmed';
+@import 'component/transaction';
+@import 'component/profile';
+@import 'component/input';
+
+// plugin custom style
+@import 'component/custom';
