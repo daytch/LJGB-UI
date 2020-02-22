@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Banner extends Component {
   constructor(props) {
@@ -8,63 +9,45 @@ class Banner extends Component {
     this.state = {};
   }
   render() {
+    const { layout } = this.props;
     return (
       <Carousel fade="true">
-        <Carousel.Item>
-          <div className="">
-            <div className="head__image">
-              <img
-                src="https://www.toyotajogjadealer.com/wp-content/uploads/2017/07/490.jpg"
-                //src="https://stockx-assets.imgix.net/Core/sneaker.png?auto=compress,format"
-                alt="banner 1"
-                title="Lojualguebeli.com"
-              />
-            </div>
-            <div className="slider__caption">
-              <div className="container">
-                <div className="txt1">
-                  <span>FIND YOUR DREAM CAR</span>
+        {layout.banner.map(function(url, index) {
+          return (
+            <Carousel.Item>
+              <div className="">
+                <div className="head__image">
+                  <img
+                    src={url}
+                    //src="https://stockx-assets.imgix.net/Core/sneaker.png?auto=compress,format"
+                    alt={'banner ' + (index + 1)}
+                    title="Lojualguebeli.com"
+                  />
                 </div>
-                <div className="txt2">NEW ALPHARD </div>
-                <div className="txt3">2.5 G A/T</div>
-                <div className="txt4">
-                  <span>
-                    <Link to="/detail">SEE DETAILS</Link>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div className="">
-            <div className="head__image">
-              <img
-                src="https://images.seva.id/sys-master/images/hff/hf1/8814513717278/main_galery_toyota_new_alphard_interior_1.png"
-                //src="https://stockx-assets.imgix.net/Core/sneaker.png?auto=compress,format"
-                alt="banner 2"
-                title="Lojualguebeli.com"
-              />
-            </div>
-            <div className="slider__caption">
-              <div className="container">
-                <div className="txt1">
-                  <span>FIND YOUR DREAM CAR</span>
-                </div>
-                <div className="txt2">NEW ALPHARD </div>
-                <div className="txt3">2.5 G A/T</div>
-                <div className="txt4">
-                  <span>
-                    <Link to="/detail">SEE DETAILS</Link>
-                  </span>
+                <div className="slider__caption">
+                  <div className="container">
+                    <div className="txt1">
+                      <span>FIND YOUR DREAM CAR</span>
+                    </div>
+                    <div className="txt2">NEW ALPHARD </div>
+                    <div className="txt3">2.5 G A/T</div>
+                    <div className="txt4">
+                      <span>
+                        <Link to="/detail">SEE DETAILS</Link>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </Carousel.Item>
+            </Carousel.Item>
+          );
+        })}
       </Carousel>
     );
   }
 }
 
-export default Banner;
+const mapStateToProps = state => ({
+  layout: state.layoutReducer
+});
+export default connect(mapStateToProps)(Banner);

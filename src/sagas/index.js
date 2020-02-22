@@ -4,7 +4,8 @@ import Detail from './detailSaga';
 import Login from './loginSaga';
 import Transaction from './transactionSaga';
 import Profile from './profilesSaga';
+import Layout from './layoutSaga';
 
 export default function* rootSaga() {
-  yield all([Home(), Detail(), Login(), Transaction(), Profile()]);
+  yield all([Layout(), Home(), Detail(), Login(), Transaction(), Profile()]);
 }

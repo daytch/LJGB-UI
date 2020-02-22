@@ -1,4 +1,5 @@
 const Endpoint = {
+  DATA_MASTER: '/CMS/GetAllMaster',
   DATA_HOME: '/Barang/GetAllForHomePage',
   DATA_KOTA: '/Kota/GetAllForDropdown',
   DATA_PROVINSI: '/Provinsi/GetAllForDropdown',

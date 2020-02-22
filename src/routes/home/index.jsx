@@ -486,9 +486,6 @@ class Home extends Component {
 const mapStateToProps = state => ({
   home: state.homeReducer
 });
-export default connect(
-  mapStateToProps,
-  {
-    ...actions
-  }
-)(Home);
+export default connect(mapStateToProps, {
+  ...actions
+})(Home);
