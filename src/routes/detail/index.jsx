@@ -38,7 +38,8 @@ class Detail extends Component {
       lowestask: '',
       highestbid: '',
       year: '',
-      idP: 0
+      idP: 0,
+      infinite: true
     };
     this.onShowMore = this.onShowMore.bind(this);
     this.showAllAsk = this.showAllAsk.bind(this);
@@ -64,6 +65,19 @@ class Detail extends Component {
       nav1: this.slider1,
       nav2: this.slider2
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    var nextDataLength =
+      nextProps.detail.dataDetail.sP_GetPhotoAndWarnaByBarangIDS.length;
+    if (
+      this.props.detail.dataDetail.sP_GetPhotoAndWarnaByBarangIDS.length !=
+      nextDataLength
+    ) {
+      this.setState({
+        infinite: nextDataLength >= 3
+      });
+    }
   }
 
   componentDidUpdate() {
@@ -149,16 +163,18 @@ class Detail extends Component {
   }
 
   sliderImageKanan(datas) {
-    let image = datas.map((x, i) => {
+    return datas.map((x, i) => {
       return (
         <div
+          key={i}
           className="detail__imgSlide--small"
           onClick={this.setData.bind(
             this,
             x.lowestask,
             x.highestbid,
             x.year,
-            x.color
+            x.color,
+            i
           )}
         >
           <img src={x.photopath} alt="" title="Lojualguebeli.com" />
@@ -166,10 +182,9 @@ class Detail extends Component {
         </div>
       );
     });
-    return image;
   }
 
-  setData(ask, bid, year, color) {
+  setData(ask, bid, year, color, i) {
     this.props.handleChangeDetail('ask', ask);
     this.props.handleChangeDetail('bid', bid);
     this.props.handleChangeDetail('yearDetail', year);
@@ -180,6 +195,7 @@ class Detail extends Component {
       highestbid: bid,
       year: year
     });
+    this.slider1.slickGoTo(i);
   }
 
   render() {
@@ -188,12 +204,12 @@ class Detail extends Component {
       dots: false,
       initialSlide: 0,
       infinite: false,
+      slidesToShow: 1,
       slidesToScroll: 1,
       swipeToSlide: true,
       responsive: [
         {
           breakpoint: 767,
-          initialSlide: 0,
           infinite: false,
           slidesToScroll: 1,
           settings: {
@@ -207,8 +223,9 @@ class Detail extends Component {
       dots: false,
       arrow: true,
       initialSlide: 0,
-      infinite: true,
+      infinite: this.state.infinite,
       slidesToScroll: 1,
+      slidesToShow: 3,
       vertical: true,
       verticalSwiping: true,
       responsive: [
@@ -234,7 +251,8 @@ class Detail extends Component {
       ],
       beforeChange: function(currentSlide, nextSlide) {
         console.log('before change', currentSlide, nextSlide);
-      },
+        this.slider1.slickGoTo(nextSlide);
+      }.bind(this),
       afterChange: function(currentSlide) {
         console.log('after change', currentSlide);
       }
@@ -703,9 +721,6 @@ class Detail extends Component {
 const mapStateToProps = state => ({
   detail: state.detailReducer
 });
-export default connect(
-  mapStateToProps,
-  {
-    ...actions
-  }
-)(Detail);
+export default connect(mapStateToProps, {
+  ...actions
+})(Detail);
