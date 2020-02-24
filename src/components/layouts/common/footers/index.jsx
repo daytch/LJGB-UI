@@ -154,7 +154,7 @@ class Footer extends Component {
                 </div>
                 <div>
                   <span className="title">Customer Care</span>
-                  <span className="phone">021 123456</span>
+                  <span className="phone">{layout.contact.contactCenter}</span>
                   <span className="note">Senin-Jumat, 08:00-17:00 WIB</span>
                 </div>
               </div>
