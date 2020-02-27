@@ -20,14 +20,14 @@ class Banner extends Component {
                   <picture>
                     <source
                       media="(min-width: 992px)"
-                      srcSet={encodeURI(obj.banner)}
+                      srcSet={encodeURI(obj.banner).replace('#', '%23')}
                     />
                     <source
                       media="(min-width: 768px)"
-                      srcSet={encodeURI(obj.tablet)}
+                      srcSet={encodeURI(obj.tablet).replace('#', '%23')}
                     />
                     <img
-                      src={encodeURI(obj.phone)}
+                      src={encodeURI(obj.phone).replace('#', '%23')}
                       alt={'banner ' + (index + 1)}
                       title="Lojualguebeli.com"
                     />
