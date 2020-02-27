@@ -32,9 +32,15 @@ export function* getDataAllMaster(action) {
       };
       data.list_CMSMaster.forEach(function(obj) {
         if (obj.category == 'Banner') {
-          if (obj.value) {
-            payload.banner.push(obj.value);
-          }
+          // descList = ["Banner", "1"] | ["Tablet", "Banner", "1"] | ["Phone", "Banner", "1"]
+          var descList = obj.description.split(' ');
+          var idx = (descList[2] || descList[1]) - 1;
+          var key = descList[0].toLowerCase();
+          // TODO_M Syntax ES6
+          payload.banner[idx] = {
+            ...payload.banner[idx],
+            [key]: obj.value
+          };
         } else if (obj.description == 'Facebook') {
           payload.contact.socialMedia.facebook = obj.value;
         } else if (obj.description == 'Instagram') {

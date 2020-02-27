@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { faBars, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import ImageLogo from '../../../../images/ljgb.png';
 import ImageLogoWhite from '../../../../images/ljgb_white.png';
+import ImageLogoNew from '../../../../images/ljgb_new.png';
 
 class Header extends Component {
   constructor(props) {
@@ -48,14 +49,14 @@ class Header extends Component {
               <Link to="/">
                 <img
                   id="logoDark"
-                  src={ImageLogo}
+                  src={ImageLogoNew}
                   alt="lojualguebeli.com"
                   title="Lojualguebeli.com"
                   style={{ height: '30px' }}
                 />
                 <img
                   id="logoWhite"
-                  src={ImageLogoWhite}
+                  src={ImageLogoNew}
                   alt="lojualguebeli.com"
                   title="Lojualguebeli.com"
                   style={{ height: '30px', display: 'none' }}
