@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.9fb3e4d8.chunk.css",
-    "main.js": "/static/js/main.b0d8a04f.chunk.js",
-    "runtime-main.js": "/static/js/runtime-main.17c9cba2.js",
+    "main.js": "/static/js/main.18543c22.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.14dab160.js",
     "static/css/2.55688b71.chunk.css": "/static/css/2.55688b71.chunk.css",
     "static/js/2.b1c443fc.chunk.js": "/static/js/2.b1c443fc.chunk.js",
-    "static/js/3.d83ab93c.chunk.js": "/static/js/3.d83ab93c.chunk.js",
-    "static/js/4.73abad32.chunk.js": "/static/js/4.73abad32.chunk.js",
+    "static/js/3.fd2385f4.chunk.js": "/static/js/3.fd2385f4.chunk.js",
+    "static/js/4.31095d3e.chunk.js": "/static/js/4.31095d3e.chunk.js",
     "static/css/5.0e433876.chunk.css": "/static/css/5.0e433876.chunk.css",
     "static/js/5.3fb9314c.chunk.js": "/static/js/5.3fb9314c.chunk.js",
     "static/js/6.d7461605.chunk.js": "/static/js/6.d7461605.chunk.js",
@@ -16,7 +16,7 @@
     "static/js/10.3975ab04.chunk.js": "/static/js/10.3975ab04.chunk.js",
     "static/js/11.1dca892d.chunk.js": "/static/js/11.1dca892d.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.8a4a392d68230a3891cd67d5bfa7cc79.js": "/precache-manifest.8a4a392d68230a3891cd67d5bfa7cc79.js",
+    "precache-manifest.9c9f0c0ed15237b13a6172d9a4d6f2a7.js": "/precache-manifest.9c9f0c0ed15237b13a6172d9a4d6f2a7.js",
     "service-worker.js": "/service-worker.js",
     "static/media/brand-daihatsu.png": "/static/media/brand-daihatsu.7adda6f8.png",
     "static/media/brand-honda.png": "/static/media/brand-honda.342103b2.png",
@@ -36,10 +36,10 @@
     "static/media/slick-theme.css": "/static/media/slick.f97e3bbf.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.17c9cba2.js",
+    "static/js/runtime-main.14dab160.js",
     "static/css/2.55688b71.chunk.css",
     "static/js/2.b1c443fc.chunk.js",
     "static/css/main.9fb3e4d8.chunk.css",
-    "static/js/main.b0d8a04f.chunk.js"
+    "static/js/main.18543c22.chunk.js"
   ]
 }
