@@ -11,7 +11,6 @@ import {
 
 export function* getDataAllMaster(action) {
   try {
-    console.log(action);
     const data = yield call(
       GET,
       API_DATA + Endpoint.DATA_MASTER,
@@ -19,7 +18,12 @@ export function* getDataAllMaster(action) {
     );
     if (data.isSuccess) {
       var payload = {
-        banner: [],
+        banner: {
+          desktop: [],
+          tablet: [],
+          phone: [],
+          current: []
+        },
         contact: {
           socialMedia: {
             facebook: '',
@@ -33,14 +37,14 @@ export function* getDataAllMaster(action) {
       data.list_CMSMaster.forEach(function(obj) {
         if (obj.category == 'Banner') {
           // descList = ["Banner", "1"] | ["Tablet", "Banner", "1"] | ["Phone", "Banner", "1"]
+
           var descList = obj.description.split(' ');
           var idx = (descList[2] || descList[1]) - 1;
-          var key = descList[0].toLowerCase();
-          // TODO_M Syntax ES6
-          payload.banner[idx] = {
-            ...payload.banner[idx],
-            [key]: obj.value
-          };
+          var key =
+            descList[0].toLowerCase() == 'banner'
+              ? 'desktop'
+              : descList[0].toLowerCase();
+          payload.banner[key] = [...payload.banner[key], obj.value];
         } else if (obj.description == 'Facebook') {
           payload.contact.socialMedia.facebook = obj.value;
         } else if (obj.description == 'Instagram') {
@@ -53,7 +57,13 @@ export function* getDataAllMaster(action) {
           payload.contact.contactCenter = obj.value;
         }
       });
-      console.log(payload);
+      if (window.innerWidth >= 992) {
+        payload.banner.current = payload.banner.desktop;
+      } else if (window.innerWidth >= 768) {
+        payload.banner.current = payload.banner.tablet;
+      } else {
+        payload.banner.current = payload.banner.phone;
+      }
       yield put({ type: SET_DATA_ALL_MASTER, payload: payload });
     } else {
       warning(data.message);

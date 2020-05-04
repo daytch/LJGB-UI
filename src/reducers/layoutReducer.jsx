@@ -1,8 +1,13 @@
-import { SET_DATA_ALL_MASTER } from '../constants/index';
+import { SET_DATA_ALL_MASTER, SET_DATA_BANNER } from '../constants/index';
 
 const INIT_STATE = {
   isLoading: false,
-  banner: [],
+  banner: {
+    desktop: [],
+    tablet: [],
+    phone: [],
+    current: []
+  },
   contact: {
     socialMedia: {
       facebook: '',
@@ -21,6 +26,15 @@ export default (state = INIT_STATE, action) => {
         ...state,
         banner: action.payload.banner,
         contact: action.payload.contact
+      };
+    }
+    case SET_DATA_BANNER: {
+      return {
+        ...state,
+        banner: {
+          ...state.banner,
+          current: action.payload
+        }
       };
     }
     default:
